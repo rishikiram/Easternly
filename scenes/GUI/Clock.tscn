@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://art/GUI/Clock.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Sprite
+
+func _enter_tree():
+	GameData.connect(\"tik\", self,\"_on_clock_tik\")
+func _on_clock_tik(time):
+	$Hand.rotation = float(time)/float(GameData.day_length) * 2.0 * PI 
+#	print($Hand.rotation)
+"
+
+[node name="Clock" type="Sprite"]
+texture = ExtResource( 1 )
+vframes = 2
+script = SubResource( 1 )
+
+[node name="Hand" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+vframes = 2
+frame = 1

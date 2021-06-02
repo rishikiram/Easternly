@@ -1,0 +1,421 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://art/Ships/Pirate/Ship_rope1.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Button_sail.gd" type="Script" id=2]
+[ext_resource path="res://scripts/Collision_on_off.gd" type="Script" id=3]
+[ext_resource path="res://art/Ships/Pirate/Ship_mast.png" type="Texture" id=4]
+[ext_resource path="res://art/Ships/Pirate/Ship_deck_lower1.0.png" type="Texture" id=5]
+[ext_resource path="res://scripts/Ship_EntranceExit.gd" type="Script" id=6]
+[ext_resource path="res://scripts/StairArea.gd" type="Script" id=7]
+[ext_resource path="res://scenes/Button.tscn" type="PackedScene" id=8]
+[ext_resource path="res://art/Ships/Pirate/Ship_body_upper1.0.png" type="Texture" id=9]
+[ext_resource path="res://scenes/Room.tscn" type="PackedScene" id=10]
+[ext_resource path="res://art/Ships/Pirate/Ship_deck_upper1.0.png" type="Texture" id=11]
+[ext_resource path="res://art/Ships/Pirate/Ship_body_lower1.0.png" type="Texture" id=12]
+[ext_resource path="res://art/Ships/Pirate/ramp.png" type="Texture" id=13]
+[ext_resource path="res://art/Ships/Pirate/Ship_sail.png" type="Texture" id=14]
+[ext_resource path="res://art/Ships/Pirate/Ship_wheel1.0.png" type="Texture" id=15]
+[ext_resource path="res://art/Ships/Pirate/Ship_rope2.png" type="Texture" id=16]
+[ext_resource path="res://art/Ships/Pirate/Ship_rope4.png" type="Texture" id=17]
+[ext_resource path="res://art/Ships/Pirate/Ship_rope3.png" type="Texture" id=18]
+
+
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+# Called when the node enters the scene tree for the first time.
+#var in_world:= false
+export(bool) var add_player:= false
+export(bool) var add_camera:= false
+func _ready():
+#	if in_world:
+#		var ship_ysort = $\"Ship YSort\"
+#		remove_child(ship_ysort)
+#		get_node(\"../World YSort\").add_child(ship_ysort)
+	if add_player:
+		var new_player = preload(\"res://scenes/DinoPlayer.tscn\").instance()
+		$\"Ship YSort\".add_child(new_player)
+		if add_camera:
+			var new_cam = Camera2D.new()
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 2.0
+height = 2.0
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 1, 9 )
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 3.0
+height = 5.0
+
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 4.0
+height = 12.0
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 1.697
+
+[sub_resource type="CapsuleShape2D" id=7]
+radius = 4.0
+height = 3.5
+
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 4.0
+height = 3.5
+
+[sub_resource type="CapsuleShape2D" id=9]
+radius = 4.0
+height = 3.5
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 5, 160 )
+
+[node name="Ship Enviroment" type="Node2D"]
+position = Vector2( 258, 540 )
+scale = Vector2( 2, 2 )
+script = SubResource( 1 )
+add_player = true
+add_camera = true
+
+[node name="Ship YSort" type="YSort" parent="."]
+
+[node name="Upper Hull" type="Sprite" parent="Ship YSort"]
+position = Vector2( -117, -78 )
+texture = ExtResource( 9 )
+centered = false
+offset = Vector2( 0, 3 )
+
+[node name="Lower Deck" type="Sprite" parent="Ship YSort"]
+position = Vector2( -117, -77 )
+texture = ExtResource( 5 )
+centered = false
+offset = Vector2( 0, 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Room" parent="Ship YSort/Lower Deck" instance=ExtResource( 10 )]
+visible = false
+position = Vector2( 0, 13 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" parent="Ship YSort/Lower Deck/Room" index="0"]
+polygon = PoolVector2Array( 133, 17, 133, 18, 173, 18, 173, 54, 133, 54, 133, 55, 174, 55, 174, 17 )
+
+[node name="CollisionPolygon2D" parent="Ship YSort/Lower Deck/Room/RoomArea" index="0"]
+polygon = PoolVector2Array( 133, 18, 147, 24, 147, 43, 133, 54, 173, 54, 173, 18 )
+
+[node name="Room2" parent="Ship YSort/Lower Deck" instance=ExtResource( 10 )]
+visible = false
+position = Vector2( 0, 13 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" parent="Ship YSort/Lower Deck/Room2" index="0"]
+polygon = PoolVector2Array( 50, 19, 9, 19, 9, 56, 49, 56, 49, 55, 10, 55, 10, 20, 50, 20 )
+
+[node name="CollisionPolygon2D" parent="Ship YSort/Lower Deck/Room2/RoomArea" index="0"]
+polygon = PoolVector2Array( 50, 20, 36, 30, 36, 44, 49, 55, 10, 55, 10, 20 )
+
+[node name="Upper Deck" type="Sprite" parent="Ship YSort"]
+position = Vector2( -117, -76 )
+texture = ExtResource( 11 )
+centered = false
+offset = Vector2( 0, 1 )
+
+[node name="Room" parent="Ship YSort/Upper Deck" instance=ExtResource( 10 )]
+visible = false
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionPolygon2D" parent="Ship YSort/Upper Deck/Room" index="0"]
+polygon = PoolVector2Array( 151, 19, 152, 19, 152, 58, 133, 67, 133, 66, 151, 58, 151, 20, 133, 30, 133, 29 )
+
+[node name="CollisionPolygon2D" parent="Ship YSort/Upper Deck/Room/RoomArea" index="0"]
+polygon = PoolVector2Array( 133, 29, 133, 18, 153, 6, 176, 6, 207, 35, 174, 68, 153, 68, 134, 79, 134, 67, 152, 58, 152, 19 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Ship YSort/Upper Deck/Room"]
+polygon = PoolVector2Array( 132, 19, 132, 18, 154, 5, 176, 5, 208, 35, 174, 69, 153, 69, 132, 81, 132, 80, 153, 68, 174, 68, 193, 48, 194, 48, 207, 35, 192, 21, 191, 21, 176, 6, 154, 6 )
+
+[node name="Room2" parent="Ship YSort/Upper Deck" instance=ExtResource( 10 )]
+visible = false
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionPolygon2D" parent="Ship YSort/Upper Deck/Room2" index="0"]
+polygon = PoolVector2Array( 49, 67, 32, 56, 32, 21, 50, 32, 50, 31, 32, 20, 31, 20, 31, 57, 49, 68 )
+
+[node name="CollisionPolygon2D" parent="Ship YSort/Upper Deck/Room2/RoomArea" index="0"]
+polygon = PoolVector2Array( 49, 68, 49, 80, 30, 68, 3, 68, 3, 6, 32, 6, 51, 19, 50, 31, 31, 20, 31, 57 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Ship YSort/Upper Deck/Room2"]
+polygon = PoolVector2Array( 51, 19, 32, 6, 3, 6, 3, 68, 30, 68, 49, 80, 49, 81, 30, 69, 1, 69, 1, 5, 32, 5, 51, 18 )
+
+[node name="Right" type="Node2D" parent="Ship YSort/Upper Deck"]
+visible = false
+
+[node name="Stair Upper" type="Area2D" parent="Ship YSort/Upper Deck/Right"]
+collision_layer = 12
+collision_mask = 12
+script = ExtResource( 7 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ship YSort/Upper Deck/Right/Stair Upper"]
+position = Vector2( 1, 7 )
+polygon = PoolVector2Array( 132, 11, 149, 1, 149, 13, 133, 21 )
+
+[node name="Stair Lower" type="Area2D" parent="Ship YSort/Upper Deck/Right"]
+collision_layer = 12
+collision_mask = 12
+script = ExtResource( 7 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ship YSort/Upper Deck/Right/Stair Lower"]
+position = Vector2( 2, 5 )
+polygon = PoolVector2Array( 132, 74, 148, 65, 148, 54, 132, 62 )
+
+[node name="Left" type="Node2D" parent="Ship YSort/Upper Deck"]
+visible = false
+
+[node name="Stair Upper" type="Area2D" parent="Ship YSort/Upper Deck/Left"]
+collision_layer = 12
+collision_mask = 12
+script = ExtResource( 7 )
+angle = 30.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ship YSort/Upper Deck/Left/Stair Upper"]
+position = Vector2( 1.5, 6 )
+polygon = PoolVector2Array( 47.5, 11, 32.5, 1, 32.5, 15, 47.5, 24 )
+
+[node name="Stair Lower" type="Area2D" parent="Ship YSort/Upper Deck/Left"]
+collision_layer = 12
+collision_mask = 12
+script = ExtResource( 7 )
+angle = 30.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ship YSort/Upper Deck/Left/Stair Lower"]
+position = Vector2( 2, 4 )
+polygon = PoolVector2Array( 46, 76, 46, 63, 31, 53, 31, 67 )
+
+[node name="Lower Hull" type="Sprite" parent="Ship YSort"]
+position = Vector2( -117, 5 )
+texture = ExtResource( 12 )
+centered = false
+offset = Vector2( 0, -80 )
+
+[node name="Ramp" type="Sprite" parent="Ship YSort/Lower Hull"]
+position = Vector2( 59, -4 )
+texture = ExtResource( 13 )
+centered = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Ramp" type="StaticBody2D" parent="Ship YSort/Lower Hull/Ramp"]
+position = Vector2( -1, -8 )
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ship YSort/Lower Hull/Ramp/Ramp"]
+polygon = PoolVector2Array( 4, 39, 35, 22, 52, 22, 52, 13, 53, 13, 53, 23, 35, 23, 4, 40 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Ship YSort/Lower Hull/Ramp/Ramp"]
+polygon = PoolVector2Array( 1, 30, 3, 30, 35, 12, 35, 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ship YSort/Lower Hull/Ramp/Ramp"]
+position = Vector2( 49.5, 39 )
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="Stair Lower" type="Area2D" parent="Ship YSort/Lower Hull/Ramp/Ramp"]
+position = Vector2( -58, -69 )
+collision_layer = 12
+collision_mask = 12
+script = ExtResource( 7 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ship YSort/Lower Hull/Ramp/Ramp/Stair Lower"]
+position = Vector2( 34.0021, 35.557 )
+polygon = PoolVector2Array( 57, 56, 57, 47, 26, 64, 26, 73 )
+
+[node name="Ship Entrance" type="Area2D" parent="Ship YSort/Lower Hull/Ramp"]
+position = Vector2( 0, 10 )
+script = ExtResource( 6 )
+is_exit = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ship YSort/Lower Hull/Ramp/Ship Entrance"]
+polygon = PoolVector2Array( 0, 12, 0, 22, 3, 22, 3, 23, -1, 23, -1, 12 )
+
+[node name="Ship Exit" type="Area2D" parent="Ship YSort/Lower Hull/Ramp"]
+position = Vector2( 0, 10 )
+collision_layer = 4
+collision_mask = 4
+script = ExtResource( 6 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ship YSort/Lower Hull/Ramp/Ship Exit"]
+polygon = PoolVector2Array( -7, 12, -7, 27, 16, 27, 24, 14, 23, 14, 16, 26, -6, 26, -6, 12 )
+
+[node name="Rail" type="StaticBody2D" parent="Ship YSort/Lower Hull"]
+position = Vector2( 89, 6 )
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ship YSort/Lower Hull/Rail"]
+position = Vector2( 13, -6 )
+rotation = -1.5708
+shape = SubResource( 3 )
+
+[node name="Mast" type="Sprite" parent="Ship YSort"]
+position = Vector2( -31, -27.5 )
+texture = ExtResource( 4 )
+offset = Vector2( 0, -53 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Ship YSort/Mast"]
+visible = false
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ship YSort/Mast/StaticBody2D"]
+position = Vector2( 0, -1 )
+rotation = 1.5708
+shape = SubResource( 4 )
+
+[node name="Sail" type="Sprite" parent="Ship YSort"]
+position = Vector2( -18, -28 )
+texture = ExtResource( 14 )
+offset = Vector2( 0, -65 )
+
+[node name="Wheel" type="Sprite" parent="Ship YSort"]
+position = Vector2( -92, -41.5 )
+texture = ExtResource( 15 )
+offset = Vector2( 0, -3 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Ship YSort/Wheel"]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource( 3 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ship YSort/Wheel/StaticBody2D"]
+position = Vector2( 0, -3 )
+polygon = PoolVector2Array( -5, 2.5, -5, 10.5, 6.42654, 10.4891, 6.48273, 2.45336 )
+
+[node name="Button" parent="Ship YSort/Wheel" instance=ExtResource( 8 )]
+position = Vector2( -16.3818, -15.7896 )
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ship YSort/Wheel/Button"]
+position = Vector2( 13.3818, 19.2896 )
+rotation = 1.5708
+shape = SubResource( 5 )
+
+[node name="Rope1" type="Sprite" parent="Ship YSort"]
+position = Vector2( -91, -74 )
+texture = ExtResource( 1 )
+centered = false
+offset = Vector2( 0, -55 )
+
+[node name="Rope2" type="Sprite" parent="Ship YSort"]
+position = Vector2( -41, -26 )
+texture = ExtResource( 16 )
+centered = false
+offset = Vector2( 0, -86 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Ship YSort/Rope2"]
+visible = false
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ship YSort/Rope2/StaticBody2D"]
+position = Vector2( 1.5, -0.5 )
+shape = SubResource( 6 )
+
+[node name="Button" parent="Ship YSort/Rope2" instance=ExtResource( 8 )]
+position = Vector2( -12.8949, -24.8687 )
+collision_layer = 4
+collision_mask = 4
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ship YSort/Rope2/Button"]
+visible = false
+position = Vector2( 14.4081, 24.3423 )
+rotation = 1.5708
+shape = SubResource( 7 )
+
+[node name="Rope3" type="Sprite" parent="Ship YSort"]
+position = Vector2( -32, -95 )
+texture = ExtResource( 17 )
+offset = Vector2( 0, 15 )
+
+[node name="Button" parent="Ship YSort/Rope3" instance=ExtResource( 8 )]
+position = Vector2( -33.2898, 16.4475 )
+collision_layer = 4
+collision_mask = 4
+script = ExtResource( 2 )
+turn_direction = -1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ship YSort/Rope3/Button"]
+visible = false
+position = Vector2( 14.2107, 19.9344 )
+shape = SubResource( 8 )
+
+[node name="Rope4" type="Sprite" parent="Ship YSort"]
+position = Vector2( -35, 8 )
+texture = ExtResource( 18 )
+offset = Vector2( 0, -28 )
+
+[node name="Button" parent="Ship YSort/Rope4" instance=ExtResource( 8 )]
+position = Vector2( -33, -24 )
+collision_layer = 4
+collision_mask = 4
+script = ExtResource( 2 )
+turn_direction = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ship YSort/Rope4/Button"]
+visible = false
+position = Vector2( 16.1844, 18.816 )
+shape = SubResource( 9 )
+
+[node name="Deck Boundry" type="StaticBody2D" parent="."]
+visible = false
+position = Vector2( 0, -52 )
+collision_layer = 4
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Deck Boundry"]
+polygon = PoolVector2Array( -7, 56, 15, 56, 36, 44, 57, 44, 76, 24, 77, 24, 90, 11, 91, 11, 77, 25, 57, 45, 36, 45, 15, 57, -7, 57 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Deck Boundry"]
+scale = Vector2( 0.2, 0.2 )
+polygon = PoolVector2Array( -330, -25, -425, -90, -570, -90, -570, -95, -425, -95, -330, -30, 74.9999, -30, 185, -95, 295, -95, 375, -20, 455, 55, 450, 55, 375, -15, 370, -15, 295, -90, 185, -90, 74.9999, -25 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Deck Boundry"]
+polygon = PoolVector2Array( -114, 44, -87, 44, -68, 56, -24, 56, -24, 57, -68, 57, -87, 45, -114, 45 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deck Boundry"]
+position = Vector2( -115, 13 )
+scale = Vector2( 0.2, 0.2 )
+shape = SubResource( 10 )
+[connection signal="make_not_transparent" from="Ship YSort/Lower Deck/Room" to="Ship YSort/Upper Deck/Room" method="_on_Room_make_not_transparent"]
+[connection signal="make_transparent" from="Ship YSort/Lower Deck/Room" to="Ship YSort/Upper Deck/Room" method="_on_Room_make_transparent"]
+[connection signal="make_not_transparent" from="Ship YSort/Lower Deck/Room2" to="Ship YSort/Upper Deck/Room2" method="_on_Room_make_not_transparent"]
+[connection signal="make_transparent" from="Ship YSort/Lower Deck/Room2" to="Ship YSort/Upper Deck/Room2" method="_on_Room_make_transparent"]
+
+[editable path="Ship YSort/Lower Deck/Room"]
+
+[editable path="Ship YSort/Lower Deck/Room2"]
+
+[editable path="Ship YSort/Upper Deck/Room"]
+
+[editable path="Ship YSort/Upper Deck/Room2"]

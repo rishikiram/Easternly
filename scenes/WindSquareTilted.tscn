@@ -1,0 +1,68 @@
+[gd_scene load_steps=30 format=2]
+
+[ext_resource path="res://scripts/WindSquare.gd" type="Script" id=1]
+[ext_resource path="res://art/Wind Animation/Wind9.png" type="Texture" id=2]
+[ext_resource path="res://art/Wind Animation/Wind2.png" type="Texture" id=3]
+[ext_resource path="res://art/Wind Animation/Wind7.png" type="Texture" id=4]
+[ext_resource path="res://art/Wind Animation/Wind8.png" type="Texture" id=5]
+[ext_resource path="res://art/Wind Animation/Wind13.png" type="Texture" id=6]
+[ext_resource path="res://art/Wind Animation/Wind11.png" type="Texture" id=7]
+[ext_resource path="res://art/Wind Animation/Wind12.png" type="Texture" id=8]
+[ext_resource path="res://art/Wind Animation/Wind5.png" type="Texture" id=9]
+[ext_resource path="res://art/Wind Animation/Wind_NE_11.png" type="Texture" id=10]
+[ext_resource path="res://art/Wind Animation/Wind_NE_9.png" type="Texture" id=11]
+[ext_resource path="res://art/Wind Animation/Wind_NE_10.png" type="Texture" id=12]
+[ext_resource path="res://art/Wind Animation/Wind_NE_4.png" type="Texture" id=13]
+[ext_resource path="res://art/Wind Animation/Wind_NE_12.png" type="Texture" id=14]
+[ext_resource path="res://art/Wind Animation/Wind_NE_3.png" type="Texture" id=15]
+[ext_resource path="res://art/Wind Animation/Wind_NE_5.png" type="Texture" id=16]
+[ext_resource path="res://art/Wind Animation/Wind_NE_2.png" type="Texture" id=17]
+[ext_resource path="res://art/Wind Animation/Wind_NE_1.png" type="Texture" id=19]
+[ext_resource path="res://art/Wind Animation/Wind_NE_13.png" type="Texture" id=20]
+[ext_resource path="res://art/Wind Animation/Wind_NE_6.png" type="Texture" id=21]
+[ext_resource path="res://art/Wind Animation/Wind_NE_7.png" type="Texture" id=22]
+[ext_resource path="res://art/Wind Animation/Wind_NE_8.png" type="Texture" id=23]
+[ext_resource path="res://art/Wind Animation/Wind3.png" type="Texture" id=24]
+[ext_resource path="res://art/Wind Animation/Wind1.png" type="Texture" id=25]
+[ext_resource path="res://art/Wind Animation/Wind6.png" type="Texture" id=26]
+[ext_resource path="res://art/Wind Animation/Wind4.png" type="Texture" id=27]
+[ext_resource path="res://art/Wind Animation/Wind10.png" type="Texture" id=28]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 25 ), ExtResource( 3 ), ExtResource( 24 ), ExtResource( 27 ), ExtResource( 9 ), ExtResource( 26 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 28 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "normal",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 13 ), ExtResource( 16 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 14 ), ExtResource( 20 ) ],
+"loop": true,
+"name": "tilted",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 256, 256 )
+
+[node name="WindSquare" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 2, 2 )
+frames = SubResource( 1 )
+animation = "normal"
+frame = 4
+playing = true
+
+[node name="WindArea" type="Area2D" parent="." groups=[
+"wind",
+]]
+gravity = 0.0
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindArea"]
+shape = SubResource( 2 )

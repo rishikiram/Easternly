@@ -1,0 +1,150 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://addons/dialogue_tree/resource/dialogue_tree.gd" type="Script" id=1]
+[ext_resource path="res://addons/dialogue_tree/assets/ResIcon.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+connections = [ {
+"from": "StartNode",
+"from_port": 0,
+"to": "BasicDialogue",
+"to_port": 0
+}, {
+"from": "BasicDialogue",
+"from_port": 0,
+"to": "ChoiceDialogue",
+"to_port": 0
+}, {
+"from": "ChoiceDialogue",
+"from_port": 0,
+"to": "BasicDialogue3",
+"to_port": 0
+}, {
+"from": "BasicDialogue3",
+"from_port": 0,
+"to": "BasicDialogue2",
+"to_port": 0
+}, {
+"from": "BasicDialogue2",
+"from_port": 0,
+"to": "EndNode",
+"to_port": 0
+}, {
+"from": "ChoiceDialogue",
+"from_port": 1,
+"to": "EndNode2",
+"to_port": 0
+} ]
+Nodes = [ {
+"filename": "res://addons/dialogue_tree/scenes/StartNode.tscn",
+"name": "StartNode",
+"rect_size_x": 174.859,
+"rect_size_y": 109.0,
+"rect_x": -7.1382,
+"rect_y": 669.48
+}, {
+"Actor": "",
+"Dialogue": "I need some special items, can you help me out?",
+"RefName": "",
+"filename": "res://addons/dialogue_tree/scenes/BasicDialogue.tscn",
+"name": "BasicDialogue",
+"rect_size_x": 339.109,
+"rect_size_y": 221.0,
+"rect_x": 147.611,
+"rect_y": 290.48
+}, {
+"Conditonal": false,
+"RefName": "",
+"choices": [ {
+"Conditional": "",
+"Dialogue": "Will you pay?",
+"ToolTip": ""
+}, {
+"Conditional": "",
+"Dialogue": "Another time.",
+"ToolTip": ""
+} ],
+"filename": "res://addons/dialogue_tree/scenes/ChoiceDialogue.tscn",
+"name": "ChoiceDialogue",
+"rect_size_x": 421.0,
+"rect_size_y": 274.0,
+"rect_x": 327.611,
+"rect_y": 630.48
+}, {
+"Actor": "",
+"Dialogue": "Oh looking for gold?",
+"RefName": "",
+"filename": "res://addons/dialogue_tree/scenes/BasicDialogue.tscn",
+"name": "BasicDialogue3",
+"rect_size_x": 339.11,
+"rect_size_y": 221.0,
+"rect_x": 764.051,
+"rect_y": 316.955
+}, {
+"Actor": "",
+"Dialogue": "Bring me two blue starfish and one orange starfish and I'll give you 20 pieces.",
+"RefName": "",
+"filename": "res://addons/dialogue_tree/scenes/BasicDialogue.tscn",
+"name": "BasicDialogue2",
+"rect_size_x": 339.11,
+"rect_size_y": 221.0,
+"rect_x": 1144.05,
+"rect_y": 376.955
+}, {
+"filename": "res://addons/dialogue_tree/scenes/EndNode.tscn",
+"name": "EndNode2",
+"rect_size_x": 162.125,
+"rect_size_y": 109.0,
+"rect_x": 1004.05,
+"rect_y": 856.955
+}, {
+"filename": "res://addons/dialogue_tree/scenes/EndNode.tscn",
+"name": "EndNode",
+"rect_size_x": 162.125,
+"rect_size_y": 109.0,
+"rect_x": 1304.05,
+"rect_y": 736.955
+} ]
+DialogueTree = {
+"dialogue": [ {
+"Actor": "",
+"Dialogue": "I need some special items, can you help me out?",
+"NodeName": "BasicDialogue",
+"Ref": "",
+"next": 1
+}, {
+"Choices": [ {
+"Conditional": "",
+"Dialogue": "Will you pay?",
+"PassCondition": true,
+"ToolTip": "",
+"next": 2
+}, {
+"Conditional": "",
+"Dialogue": "Another time.",
+"PassCondition": true,
+"ToolTip": "",
+"next": "End"
+} ],
+"Conditonal": false,
+"NodeName": "ChoiceDialogue",
+"Ref": ""
+}, {
+"Actor": "",
+"Dialogue": "Oh looking for gold?",
+"NodeName": "BasicDialogue3",
+"Ref": "",
+"next": 3
+}, {
+"Actor": "",
+"Dialogue": "Bring me two blue starfish and one orange starfish and I'll give you 20 pieces.",
+"NodeName": "BasicDialogue2",
+"Ref": "",
+"next": "End"
+} ],
+"start_index": 0
+}

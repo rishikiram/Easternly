@@ -1,0 +1,161 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://art/Characters/Racoon_sheet.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Classes/Dino8movement.gd" type="Script" id=2]
+
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Sprite
+onready var state_machine = $AnimationTree.get(\"parameters/playback\")
+
+func handle_state(velocity:Vector2):
+	var current_node = state_machine.get_current_node()
+	if velocity ==  Vector2(0,0):
+		state_machine.travel('idle')
+	else:
+		state_machine.travel('walk')
+	if velocity.x < 0 and scale[0] > 0:
+		flip()
+	if velocity.x > 0 and scale[0] < 0:
+		flip()
+func flip():
+	scale[0] = scale[0] * -1
+	if get_parent().is_holding_item:
+		get_parent().get_node(\"Item\").position.x = -1*get_parent().get_node(\"Item\").position.x
+"
+
+[sub_resource type="Animation" id=2]
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.8, 1.9, 2, 2.8, 2.9, 3, 3.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 8, 7, 6, 5, 6 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "transition"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "transition"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+
+[sub_resource type="AnimationNodeStateMachine" id=15]
+states/bend_down/node = SubResource( 5 )
+states/bend_down/position = Vector2( 243.5, 53.5 )
+states/idle/node = SubResource( 6 )
+states/idle/position = Vector2( 349.5, 175 )
+states/stand_up/node = SubResource( 7 )
+states/stand_up/position = Vector2( 516.5, 153.5 )
+states/walk/node = SubResource( 8 )
+states/walk/position = Vector2( 496, 70 )
+transitions = [ "bend_down", "walk", SubResource( 9 ), "idle", "bend_down", SubResource( 10 ), "stand_up", "idle", SubResource( 11 ), "walk", "stand_up", SubResource( 12 ), "bend_down", "idle", SubResource( 13 ), "stand_up", "walk", SubResource( 14 ) ]
+start_node = "idle"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=16]
+
+[sub_resource type="CapsuleShape2D" id=17]
+radius = 2.0
+height = 6.0
+
+[sub_resource type="CapsuleShape2D" id=18]
+radius = 9.99999
+height = 6.0
+
+[node name="KinematicBody2D" type="KinematicBody2D"]
+scale = Vector2( 2, 2 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 5
+frame = 5
+script = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+anims/idle = SubResource( 2 )
+anims/transition = SubResource( 3 )
+anims/walk = SubResource( 4 )
+
+[node name="AnimationTree" type="AnimationTree" parent="Sprite"]
+tree_root = SubResource( 15 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 16 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 9.5 )
+rotation = 1.5708
+shape = SubResource( 17 )
+
+[node name="PlayerArea" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]
+position = Vector2( 0, -2 )
+rotation = 1.5708
+shape = SubResource( 18 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true

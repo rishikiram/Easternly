@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://scripts/ShopPriceTable.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+table = {
+"caged_sloth": Vector2( 200, 190 ),
+"carpet": Vector2( 30, 25 ),
+"coconut": Vector2( 2, 1 ),
+"mango": Vector2( 15, 12 ),
+"mango_big": Vector2( 20, 18 ),
+"porcelain": Vector2( 45, 40 ),
+"porcelain_teapot": Vector2( 50, 45 ),
+"seashell_pink": Vector2( 7, 5 ),
+"starfish_blue": Vector2( 5, 4 ),
+"starfish_orange": Vector2( 10, 7 ),
+"tea_leaves": Vector2( 10, 8 ),
+"wood_red": Vector2( 9, 8 ),
+"wood_yellow": Vector2( 8, 7 )
+}

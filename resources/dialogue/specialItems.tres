@@ -1,0 +1,223 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://addons/dialogue_tree/resource/dialogue_tree.gd" type="Script" id=1]
+[ext_resource path="res://addons/dialogue_tree/assets/ResIcon.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+connections = [ {
+"from": "StartNode",
+"from_port": 0,
+"to": "BasicDialogue",
+"to_port": 0
+}, {
+"from": "ChoiceDialogue",
+"from_port": 0,
+"to": "BasicDialogue2",
+"to_port": 0
+}, {
+"from": "ChoiceDialogue",
+"from_port": 1,
+"to": "BasicDialogue3",
+"to_port": 0
+}, {
+"from": "BasicDialogue2",
+"from_port": 0,
+"to": "BasicDialogue4",
+"to_port": 0
+}, {
+"from": "BasicDialogue",
+"from_port": 0,
+"to": "BasicDialogue5",
+"to_port": 0
+}, {
+"from": "BasicDialogue5",
+"from_port": 0,
+"to": "ChoiceDialogue",
+"to_port": 0
+}, {
+"from": "BasicDialogue3",
+"from_port": 0,
+"to": "EndNode",
+"to_port": 0
+}, {
+"from": "SignalNode",
+"from_port": 0,
+"to": "EndNode",
+"to_port": 0
+}, {
+"from": "BasicDialogue4",
+"from_port": 0,
+"to": "SignalNode2",
+"to_port": 0
+}, {
+"from": "SignalNode2",
+"from_port": 0,
+"to": "SignalNode",
+"to_port": 0
+} ]
+Nodes = [ {
+"filename": "res://addons/dialogue_tree/scenes/StartNode.tscn",
+"name": "StartNode",
+"rect_size_x": 174.859,
+"rect_size_y": 109.0,
+"rect_x": -1239.35,
+"rect_y": 635.245
+}, {
+"filename": "res://addons/dialogue_tree/scenes/EndNode.tscn",
+"name": "EndNode",
+"rect_size_x": 162.125,
+"rect_size_y": 109.0,
+"rect_x": 1441.55,
+"rect_y": 745.419
+}, {
+"Actor": "",
+"Dialogue": "Hey come over here.",
+"RefName": "",
+"filename": "res://addons/dialogue_tree/scenes/BasicDialogue.tscn",
+"name": "BasicDialogue",
+"rect_size_x": 339.11,
+"rect_size_y": 221.0,
+"rect_x": 0.0,
+"rect_y": 0.0
+}, {
+"Actor": "",
+"Dialogue": "I have a  proposition",
+"RefName": "",
+"filename": "res://addons/dialogue_tree/scenes/BasicDialogue.tscn",
+"name": "BasicDialogue5",
+"rect_size_x": 339.11,
+"rect_size_y": 221.0,
+"rect_x": 0.0,
+"rect_y": 0.0
+}, {
+"Conditonal": false,
+"RefName": "",
+"choices": [ {
+"Conditional": "",
+"Dialogue": "Is there gold involved?",
+"ToolTip": ""
+}, {
+"Conditional": "",
+"Dialogue": "Not right now.",
+"ToolTip": ""
+} ],
+"filename": "res://addons/dialogue_tree/scenes/ChoiceDialogue.tscn",
+"name": "ChoiceDialogue",
+"rect_size_x": 421.0,
+"rect_size_y": 274.0,
+"rect_x": 0.0,
+"rect_y": 0.0
+}, {
+"Actor": "",
+"Dialogue": "Gold? Of course!",
+"RefName": "",
+"filename": "res://addons/dialogue_tree/scenes/BasicDialogue.tscn",
+"name": "BasicDialogue2",
+"rect_size_x": 339.11,
+"rect_size_y": 221.0,
+"rect_x": 0.0,
+"rect_y": 0.0
+}, {
+"Actor": "",
+"Dialogue": "Well come back when you're ready.",
+"RefName": "",
+"filename": "res://addons/dialogue_tree/scenes/BasicDialogue.tscn",
+"name": "BasicDialogue3",
+"rect_size_x": 339.109,
+"rect_size_y": 221.0,
+"rect_x": 0.0,
+"rect_y": 0.0
+}, {
+"Event": "LoadQuest",
+"Modifiers": [ "threeStarfish" ],
+"filename": "res://addons/dialogue_tree/scenes/SignalNode.tscn",
+"name": "SignalNode",
+"rect_size_x": 402.0,
+"rect_size_y": 221.0,
+"rect_x": 0.0,
+"rect_y": 0.0
+}, {
+"Event": "QueueDialogue",
+"Modifiers": [ "openShop" ],
+"filename": "res://addons/dialogue_tree/scenes/SignalNode.tscn",
+"name": "SignalNode2",
+"rect_size_x": 402.0,
+"rect_size_y": 221.0,
+"rect_x": 0.0,
+"rect_y": 0.0
+}, {
+"Actor": "",
+"Dialogue": "Bring me two blue and one rare orange starfish and I'll pay you 20 ",
+"RefName": "",
+"filename": "res://addons/dialogue_tree/scenes/BasicDialogue.tscn",
+"name": "BasicDialogue4",
+"rect_size_x": 339.11,
+"rect_size_y": 221.0,
+"rect_x": 0.0,
+"rect_y": 0.0
+} ]
+DialogueTree = {
+"dialogue": [ {
+"Actor": "",
+"Dialogue": "Hey come over here.",
+"NodeName": "BasicDialogue",
+"Ref": "",
+"next": 1
+}, {
+"Actor": "",
+"Dialogue": "I have a  proposition",
+"NodeName": "BasicDialogue5",
+"Ref": "",
+"next": 2
+}, {
+"Choices": [ {
+"Conditional": "",
+"Dialogue": "Is there gold involved?",
+"PassCondition": true,
+"ToolTip": "",
+"next": 3
+}, {
+"Conditional": "",
+"Dialogue": "Not right now.",
+"PassCondition": true,
+"ToolTip": "",
+"next": 4
+} ],
+"Conditonal": false,
+"NodeName": "ChoiceDialogue",
+"Ref": ""
+}, {
+"Actor": "",
+"Dialogue": "Gold? Of course!",
+"NodeName": "BasicDialogue2",
+"Ref": "",
+"next": 7
+}, {
+"Actor": "",
+"Dialogue": "Well come back when you're ready.",
+"NodeName": "BasicDialogue3",
+"Ref": "",
+"next": "End"
+}, {
+"Event": "LoadQuest",
+"Modifiers": [ "threeStarfish" ],
+"NodeName": "SignalNode",
+"next": "End"
+}, {
+"Event": "QueueDialogue",
+"Modifiers": [ "openShop" ],
+"NodeName": "SignalNode2",
+"next": 5
+}, {
+"Actor": "",
+"Dialogue": "Bring me two blue and one rare orange starfish and I'll pay you 20 ",
+"NodeName": "BasicDialogue4",
+"Ref": "",
+"next": 6
+} ],
+"start_index": 0
+}

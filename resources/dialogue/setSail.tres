@@ -1,0 +1,99 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://addons/dialogue_tree/resource/dialogue_tree.gd" type="Script" id=1]
+[ext_resource path="res://addons/dialogue_tree/assets/ResIcon.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+connections = [ {
+"from": "ChoiceDialogue",
+"from_port": 1,
+"to": "EndNode",
+"to_port": 0
+}, {
+"from": "StartNode",
+"from_port": 0,
+"to": "ChoiceDialogue",
+"to_port": 0
+}, {
+"from": "ChoiceDialogue",
+"from_port": 0,
+"to": "SignalNode",
+"to_port": 0
+}, {
+"from": "SignalNode",
+"from_port": 0,
+"to": "EndNode",
+"to_port": 0
+} ]
+Nodes = [ {
+"filename": "res://addons/dialogue_tree/scenes/EndNode.tscn",
+"name": "EndNode",
+"rect_size_x": 162.125,
+"rect_size_y": 109.0,
+"rect_x": 1643.44,
+"rect_y": 479.6
+}, {
+"Event": "SetSail",
+"Modifiers": [ "" ],
+"filename": "res://addons/dialogue_tree/scenes/SignalNode.tscn",
+"name": "SignalNode",
+"rect_size_x": 402.0,
+"rect_size_y": 221.0,
+"rect_x": 1103.44,
+"rect_y": 419.6
+}, {
+"Conditonal": false,
+"RefName": "",
+"choices": [ {
+"Conditional": "",
+"Dialogue": "Set Sail",
+"ToolTip": ""
+}, {
+"Conditional": "",
+"Dialogue": "Do Not Set Sail",
+"ToolTip": ""
+} ],
+"filename": "res://addons/dialogue_tree/scenes/ChoiceDialogue.tscn",
+"name": "ChoiceDialogue",
+"rect_size_x": 421.0,
+"rect_size_y": 274.0,
+"rect_x": 603.438,
+"rect_y": 399.6
+}, {
+"filename": "res://addons/dialogue_tree/scenes/StartNode.tscn",
+"name": "StartNode",
+"rect_size_x": 174.859,
+"rect_size_y": 109.0,
+"rect_x": 323.438,
+"rect_y": 499.6
+} ]
+DialogueTree = {
+"dialogue": [ {
+"Event": "SetSail",
+"Modifiers": [ "" ],
+"NodeName": "SignalNode",
+"next": "End"
+}, {
+"Choices": [ {
+"Conditional": "",
+"Dialogue": "Set Sail",
+"PassCondition": true,
+"ToolTip": "",
+"next": 0
+}, {
+"Conditional": "",
+"Dialogue": "Do Not Set Sail",
+"PassCondition": true,
+"ToolTip": "",
+"next": "End"
+} ],
+"Conditonal": false,
+"NodeName": "ChoiceDialogue",
+"Ref": ""
+} ],
+"start_index": 1
+}

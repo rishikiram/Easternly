@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://art/WaveTiles/WaveTileAnimationx64.png" type="Texture" id=1]
+[ext_resource path="res://xArchives/AnimationPlayer.gd" type="Script" id=2]
+
+
+[sub_resource type="Animation" id=1]
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.275116, 0.487655, 0.737221, 1.00441, 1.31603, 1.52402, 1.77556 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[node name="AnimatedWaveTile" type="Sprite"]
+texture = ExtResource( 1 )
+hframes = 8
+frame = 6
+
+[node name="WavePlayer" type="AnimationPlayer" parent="."]
+anims/Wave = SubResource( 1 )
+script = ExtResource( 2 )

@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/Docking Area.gd" type="Script" id=1]
+
+[node name="Docking Area" type="Area2D" groups=[
+"Clickable",
+]]
+collision_layer = 32
+collision_mask = 32
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[connection signal="body_entered" from="." to="." method="_on_Docking_Area_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Docking_Area_body_exited"]
+[connection signal="input_event" from="." to="." method="_on_Docking_Area_input_event"]

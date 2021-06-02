@@ -1,0 +1,192 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://addons/dialogue_tree/resource/dialogue_tree.gd" type="Script" id=1]
+[ext_resource path="res://addons/dialogue_tree/assets/ResIcon.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+connections = [ {
+"from": "StartNode",
+"from_port": 0,
+"to": "BasicDialogue",
+"to_port": 0
+}, {
+"from": "BasicDialogue",
+"from_port": 0,
+"to": "BasicDialogue2",
+"to_port": 0
+}, {
+"from": "ChoiceDialogue",
+"from_port": 1,
+"to": "BasicDialogue3",
+"to_port": 0
+}, {
+"from": "BasicDialogue3",
+"from_port": 0,
+"to": "BasicDialogue4",
+"to_port": 0
+}, {
+"from": "ChoiceDialogue",
+"from_port": 0,
+"to": "BasicDialogue5",
+"to_port": 0
+}, {
+"from": "BasicDialogue5",
+"from_port": 0,
+"to": "EndNode",
+"to_port": 0
+}, {
+"from": "BasicDialogue4",
+"from_port": 0,
+"to": "EndNode2",
+"to_port": 0
+}, {
+"from": "BasicDialogue2",
+"from_port": 0,
+"to": "ChoiceDialogue",
+"to_port": 0
+} ]
+Nodes = [ {
+"filename": "res://addons/dialogue_tree/scenes/EndNode.tscn",
+"name": "EndNode",
+"rect_size_x": 162.125,
+"rect_size_y": 109.0,
+"rect_x": 310.845,
+"rect_y": 150.57
+}, {
+"filename": "res://addons/dialogue_tree/scenes/StartNode.tscn",
+"name": "StartNode",
+"rect_size_x": 174.859,
+"rect_size_y": 109.0,
+"rect_x": 310.845,
+"rect_y": 150.57
+}, {
+"Actor": "",
+"Dialogue": "Hey, I like your coconuts.",
+"RefName": "",
+"filename": "res://addons/dialogue_tree/scenes/BasicDialogue.tscn",
+"name": "BasicDialogue",
+"rect_size_x": 339.109,
+"rect_size_y": 221.0,
+"rect_x": 310.845,
+"rect_y": 150.57
+}, {
+"Actor": "",
+"Dialogue": "In fact, I like them a lot. Can I buy some for you?",
+"RefName": "",
+"filename": "res://addons/dialogue_tree/scenes/BasicDialogue.tscn",
+"name": "BasicDialogue2",
+"rect_size_x": 339.109,
+"rect_size_y": 221.0,
+"rect_x": 310.845,
+"rect_y": 150.57
+}, {
+"filename": "res://addons/dialogue_tree/scenes/EndNode.tscn",
+"name": "EndNode2",
+"rect_size_x": 162.125,
+"rect_size_y": 109.0,
+"rect_x": 810.845,
+"rect_y": 470.57
+}, {
+"Actor": "",
+"Dialogue": "Great, put 5 in the chest right there and I'll pay you.",
+"RefName": "",
+"filename": "res://addons/dialogue_tree/scenes/BasicDialogue.tscn",
+"name": "BasicDialogue5",
+"rect_size_x": 339.109,
+"rect_size_y": 221.0,
+"rect_x": 610.845,
+"rect_y": -49.43
+}, {
+"Actor": "",
+"Dialogue": "Loser.",
+"RefName": "",
+"filename": "res://addons/dialogue_tree/scenes/BasicDialogue.tscn",
+"name": "BasicDialogue4",
+"rect_size_x": 339.11,
+"rect_size_y": 221.0,
+"rect_x": 970.845,
+"rect_y": 230.57
+}, {
+"Actor": "",
+"Dialogue": "Oh, ok.",
+"RefName": "",
+"filename": "res://addons/dialogue_tree/scenes/BasicDialogue.tscn",
+"name": "BasicDialogue3",
+"rect_size_x": 339.109,
+"rect_size_y": 221.0,
+"rect_x": 1130.84,
+"rect_y": 10.57
+}, {
+"Conditonal": false,
+"RefName": "",
+"choices": [ {
+"Conditional": "",
+"Dialogue": "Sure",
+"ToolTip": ""
+}, {
+"Conditional": "",
+"Dialogue": "No thanks",
+"ToolTip": ""
+} ],
+"filename": "res://addons/dialogue_tree/scenes/ChoiceDialogue.tscn",
+"name": "ChoiceDialogue",
+"rect_size_x": 421.0,
+"rect_size_y": 274.0,
+"rect_x": 530.845,
+"rect_y": 210.57
+} ]
+DialogueTree = {
+"dialogue": [ {
+"Actor": "",
+"Dialogue": "Hey, I like your coconuts.",
+"NodeName": "BasicDialogue",
+"Ref": "",
+"next": 1
+}, {
+"Actor": "",
+"Dialogue": "In fact, I like them a lot. Can I buy some for you?",
+"NodeName": "BasicDialogue2",
+"Ref": "",
+"next": 5
+}, {
+"Actor": "",
+"Dialogue": "Great, put 5 in the chest right there and I'll pay you.",
+"NodeName": "BasicDialogue5",
+"Ref": "",
+"next": "End"
+}, {
+"Actor": "",
+"Dialogue": "Loser.",
+"NodeName": "BasicDialogue4",
+"Ref": "",
+"next": "End"
+}, {
+"Actor": "",
+"Dialogue": "Oh, ok.",
+"NodeName": "BasicDialogue3",
+"Ref": "",
+"next": 3
+}, {
+"Choices": [ {
+"Conditional": "",
+"Dialogue": "Sure",
+"PassCondition": true,
+"ToolTip": "",
+"next": 2
+}, {
+"Conditional": "",
+"Dialogue": "No thanks",
+"PassCondition": true,
+"ToolTip": "",
+"next": 4
+} ],
+"Conditonal": false,
+"NodeName": "ChoiceDialogue",
+"Ref": ""
+} ],
+"start_index": 0
+}
