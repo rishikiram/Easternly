@@ -84,6 +84,7 @@ rotation = 1.5708
 shape = SubResource( 4 )
 
 [node name="PlayerArea" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]
 position = Vector2( 0, -2 )
@@ -95,6 +96,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
 [connection signal="mouse_entered" from="." to="." method="_on_DinoPlayer_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_DinoPlayer_mouse_exited"]
 [connection signal="body_entered" from="PlayerArea" to="." method="_on_PlayerArea_body_entered"]

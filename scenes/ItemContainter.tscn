@@ -12,14 +12,14 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 5 ), ExtResource( 5 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 11 ) ],
-"loop": false,
-"name": "silver",
-"speed": 8.0
-}, {
 "frames": [ ExtResource( 8 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 4 ) ],
 "loop": false,
 "name": "wood",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 5 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 11 ) ],
+"loop": false,
+"name": "silver",
 "speed": 8.0
 } ]
 
@@ -59,6 +59,7 @@ visible = false
 position = Vector2( 0, -0.5 )
 rotation = 1.5708
 shape = SubResource( 3 )
+
 [connection signal="input_event" from="." to="." method="_on_ItemContainer_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_ItemContainer_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_ItemContainer_mouse_exited"]

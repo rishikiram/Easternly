@@ -2,7 +2,7 @@
 
 [ext_resource path="res://art/GUI/flag_wave.png" type="Texture" id=1]
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=1]
 script/source = "extends Sprite
 
 func handle_wind_force(f):
@@ -35,8 +35,7 @@ tracks/0/keys = {
 "values": [ 6, 7, 8, 9, 10, 11 ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "slow"
+[sub_resource type="Animation" id=3]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -56,10 +55,11 @@ tracks/0/keys = {
 "Flag",
 ]]
 texture = ExtResource( 1 )
-vframes = 3
 hframes = 6
-script = SubResource( 3 )
+vframes = 3
+frame = 6
+script = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/fast = SubResource( 2 )
-anims/slow = SubResource( 1 )
+anims/slow = SubResource( 3 )

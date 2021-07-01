@@ -59,7 +59,7 @@ func _on_Item_mouse_entered():
 func _on_Item_mouse_exited():
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 func _on_Item_body_entered(body):
-	if body.is_in_group("Player") and !body.is_holding_item and get_colliding_bodies().has(body):
+	if body.is_in_group("Player") and !body.is_holding_item:# and get_colliding_bodies().has(body):
 		body.pickup_item(self)
 #func get_save_dictionary():
 #	var save_dict := {

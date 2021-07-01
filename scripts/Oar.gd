@@ -26,7 +26,7 @@ func _physics_process(delta):
 		#####row back code-depends on boat speed#####
 		else:
 			get_parent().is_rowing = true
-			speed = get_parent().speed
+			speed = get_parent().velocity.length()
 			if speed == 0:
 				t += delta
 			else:

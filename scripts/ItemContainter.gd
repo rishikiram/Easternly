@@ -7,8 +7,12 @@ export(String) var item_spawn_parent:String = ".."
 export(int) var box_type = 0
 var animation:= "wood"
 
-var player_in_range:= false
+export(PoolStringArray) var set_items
+
+var player_in_range:= true
 func _ready():
+	if set_items:
+		set_items(set_items)
 	if box_type == 1:
 		animation = "silver"
 	$AnimatedSprite.play(animation)

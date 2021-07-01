@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/BeachForegroundTileset.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/BeachTileset.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/WindSquare.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/Miniships/Rowboat Mini.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Ship3D.tscn" type="PackedScene" id=4]
 [ext_resource path="res://PixelFont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://art/ocean.png" type="Texture" id=6]
 [ext_resource path="res://art/beach_tileset.png" type="Texture" id=7]
@@ -707,146 +707,109 @@ next_scene_path = "res://scenes/Dock10.tscn"
 position = Vector2( 1046.82, -421.479 )
 next_scene_path = "res://scenes/DockNE.tscn"
 
-[node name="Rowboat Mini" parent="Beach Scene/YSort" instance=ExtResource( 4 )]
-position = Vector2( 238.295, 132.5 )
-
 [node name="Wind" type="Node2D" parent="Beach Scene"]
 
 [node name="WindSquare" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 320, 128 )
-is_tilted = false
 
 [node name="WindSquare19" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( -192, 128 )
-is_tilted = false
 
 [node name="WindSquare20" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( -192, 640 )
-is_tilted = false
 
 [node name="WindSquare30" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( -192, 1152 )
-is_tilted = false
 
 [node name="WindSquare32" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( -192, 1664 )
-is_tilted = false
 
 [node name="WindSquare11" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 322.067, -384 )
-is_tilted = false
 
 [node name="WindSquare15" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( -189.933, -384 )
-is_tilted = false
 
 [node name="WindSquare16" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 834.067, -896 )
-is_tilted = false
 
 [node name="WindSquare17" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 1346.07, -896 )
-is_tilted = false
 
 [node name="WindSquare18" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 1858.07, -896 )
-is_tilted = false
 
 [node name="WindSquare12" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 834.067, -384 )
-is_tilted = false
 
 [node name="WindSquare13" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 1344, -384 )
-is_tilted = false
 
 [node name="WindSquare14" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 1856, -384 )
-is_tilted = false
 
 [node name="WindSquare2" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 832, 128 )
-is_tilted = false
 
 [node name="WindSquare3" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 1344, 128 )
-is_tilted = false
 
 [node name="WindSquare4" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 1856, 128 )
-is_tilted = false
 
 [node name="WindSquare5" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 2368, 128 )
-is_tilted = false
 
 [node name="WindSquare33" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 2368, -384 )
-is_tilted = false
 
 [node name="WindSquare34" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 2368, -896 )
-is_tilted = false
 
 [node name="WindSquare10" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 320, 640 )
-is_tilted = false
 
 [node name="WindSquare9" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 832, 640 )
-is_tilted = false
 
 [node name="WindSquare29" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 320, 1152 )
-is_tilted = false
 
 [node name="WindSquare31" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 320, 1664 )
-is_tilted = false
 
 [node name="WindSquare28" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 832, 1152 )
-is_tilted = false
 
 [node name="WindSquare8" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 1344, 640 )
-is_tilted = false
 
 [node name="WindSquare7" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 1856, 640 )
-is_tilted = false
 
 [node name="WindSquare21" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 1858.07, 1152 )
-is_tilted = false
 
 [node name="WindSquare26" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 2368, 1152 )
-is_tilted = false
 
 [node name="WindSquare22" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 1346.07, 1152 )
-is_tilted = false
 
 [node name="WindSquare23" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 832, 1664 )
-is_tilted = false
 
 [node name="WindSquare24" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 1344, 1664 )
-is_tilted = false
 
 [node name="WindSquare25" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 1856, 1664 )
-is_tilted = false
 
 [node name="WindSquare27" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 2368, 1664 )
-is_tilted = false
 
 [node name="WindSquare6" parent="Beach Scene/Wind" instance=ExtResource( 3 )]
 position = Vector2( 2368, 640 )
-is_tilted = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -882,4 +845,9 @@ __meta__ = {
 position = Vector2( 134.572, 331.919 )
 scale = Vector2( 3, 3 )
 
-[editable path="Beach Scene/YSort/Rowboat Mini"]
+[node name="KinematicBody" parent="." instance=ExtResource( 4 )]
+
+[node name="Camera" parent="KinematicBody" index="0"]
+current = true
+
+[editable path="KinematicBody"]

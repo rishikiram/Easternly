@@ -24,6 +24,7 @@ margin_bottom = 156.0
 
 [node name="VBoxContainer" parent="ShopGUI/HBoxContainer/Items" index="0"]
 margin_bottom = 156.0
+
 [connection signal="pressed" from="ShopGUI/Menu/Right/MarginContainer/TextureButton" to="." method="_on_XButton_pressed"]
 
 [editable path="ShopGUI"]

@@ -97,7 +97,10 @@ func _physics_process(delta):
 		speed = max_speed
 		#move#
 	var velocity = Vector2(speed,0).rotated(rotation)
+	velocity = Vector2(velocity.x, velocity.y/2)#isometric
 	velocity = move_and_slide(velocity)
+	#velocity = velocity.bounce(collision.normal)
+	
 #	var velocity = Vector2(speed,0).rotated(rotation)
 #	var collision = move_and_collide(velocity * delta)
 #	if collision:

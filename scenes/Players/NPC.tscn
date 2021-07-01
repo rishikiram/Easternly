@@ -99,6 +99,7 @@ script = ExtResource( 3 )
 [node name="Shop" parent="." instance=ExtResource( 4 )]
 visible = false
 position = Vector2( 32, -100 )
+
 [connection signal="input_event" from="." to="." method="_on_NPC_input_event"]
 [connection signal="body_entered" from="NPCArea" to="." method="_on_NPCArea_body_entered"]
 [connection signal="body_exited" from="NPCArea" to="." method="_on_NPCArea_body_exited"]

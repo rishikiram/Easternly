@@ -1,0 +1,439 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://art/Barrel.png" type="Texture" id=1]
+[ext_resource path="res://art/Table.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Islands/Empty Island.tscn" type="PackedScene" id=3]
+[ext_resource path="res://art/BeachTilesetTrees/Tree_big.png" type="Texture" id=4]
+[ext_resource path="res://art/beach_tileset.png" type="Texture" id=5]
+[ext_resource path="res://art/BeachTilesetTrees/Tree2.png" type="Texture" id=6]
+[ext_resource path="res://art/BeachTilesetTrees/Tree1.png" type="Texture" id=7]
+[ext_resource path="res://art/ShopFlag.png" type="Texture" id=8]
+[ext_resource path="res://art/BeachTilesetTrees/Treehamock.png" type="Texture" id=9]
+[ext_resource path="res://scenes/Item.tscn" type="PackedScene" id=10]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 1.56657
+height = 6.89987
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 2.0
+height = 10.0
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 3.5
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 3.0
+height = 7.5
+
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 2.0
+height = 3.0
+
+[node name="Rocky Island" instance=ExtResource( 3 )]
+
+[node name="World Objects" type="YSort" parent="." index="2"]
+position = Vector2( 27.7699, -6 )
+
+[node name="Tree_a" type="StaticBody2D" parent="World Objects" index="0"]
+visible = false
+position = Vector2( -17, 10 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="World Objects/Tree_a" index="0"]
+position = Vector2( 1, -27 )
+texture = ExtResource( 7 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World Objects/Tree_a" index="1"]
+position = Vector2( 1, -1 )
+polygon = PoolVector2Array( -3.78554, 3.01939, -6, 2, -6, 0, -4, -1, 1.90529, -1.078, 4, 0, 4, 2, 2, 3 )
+
+[node name="Tree_b" type="StaticBody2D" parent="World Objects" index="1"]
+visible = false
+position = Vector2( -47, -30 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="World Objects/Tree_b" index="0"]
+position = Vector2( 5, -25 )
+texture = ExtResource( 6 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World Objects/Tree_b" index="1"]
+position = Vector2( 1, -1 )
+polygon = PoolVector2Array( -3.78554, 3.01939, -6, 2, -6, 0, -4, -1, 2, -1, 5, 0, 4, 2, 2, 3 )
+
+[node name="Tree_c" type="StaticBody2D" parent="World Objects" index="2"]
+visible = false
+position = Vector2( 48, -19 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="World Objects/Tree_c" index="0"]
+position = Vector2( -2, -38 )
+texture = ExtResource( 4 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World Objects/Tree_c" index="1"]
+position = Vector2( 1, -1 )
+polygon = PoolVector2Array( -6, 4, -7, 3, -8, 1, -5, -1, 2, -2, 6, -1, 6, 1, 3, 4 )
+
+[node name="Tree_d" type="StaticBody2D" parent="World Objects" index="3"]
+visible = false
+position = Vector2( 100, 2.2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="World Objects/Tree_d" index="0"]
+position = Vector2( 3, -28 )
+texture = ExtResource( 9 )
+offset = Vector2( 0.5, 0 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World Objects/Tree_d" index="1"]
+position = Vector2( 19, -2 )
+polygon = PoolVector2Array( -4, 3, -6, 2, -6, 0, -4, -1, 1, -1, 4, 0, 4, 2, 2, 3 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="World Objects/Tree_d" index="2"]
+position = Vector2( -17, -4 )
+polygon = PoolVector2Array( -5, 3, -6, 2, -6, 0, -3, -1, 2, -1, 4, 0, 4, 2, 2, 3 )
+
+[node name="Shop_a" type="StaticBody2D" parent="World Objects" index="4"]
+visible = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="World Objects/Shop_a" index="0"]
+position = Vector2( 0.140121, -2.80236 )
+texture = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Objects/Shop_a" index="1"]
+position = Vector2( -52.2641, 3.7832 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World Objects/Shop_a" index="2"]
+position = Vector2( 55.3467, 1.96166 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="Barrel" type="StaticBody2D" parent="World Objects" index="5"]
+visible = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="World Objects/Barrel" index="0"]
+position = Vector2( 0, -10 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Objects/Barrel" index="1"]
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="Table" type="StaticBody2D" parent="World Objects" index="6"]
+visible = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="World Objects/Table" index="0"]
+position = Vector2( 0, -2 )
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World Objects/Table" index="1"]
+polygon = PoolVector2Array( -18, 0, -15, 3, 17, 3, 20, 0 )
+
+[node name="Rock_a" type="StaticBody2D" parent="World Objects" index="7"]
+position = Vector2( -48.7667, -0.9 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="World Objects/Rock_a" index="0"]
+position = Vector2( 0, -7 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 194, 181, 29, 23 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Objects/Rock_a" index="1"]
+visible = false
+rotation = 1.5708
+shape = SubResource( 3 )
+
+[node name="Rock_b" type="StaticBody2D" parent="World Objects" index="8"]
+position = Vector2( -17, 12 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="World Objects/Rock_b" index="0"]
+position = Vector2( 0, -7 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 225, 184, 15, 22 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Objects/Rock_b" index="1"]
+visible = false
+rotation = 1.5708
+shape = SubResource( 4 )
+
+[node name="Rock_b2" type="StaticBody2D" parent="World Objects" index="9"]
+position = Vector2( -26.8599, 14.2486 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="World Objects/Rock_b2" index="0"]
+position = Vector2( 0, -7 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 225, 184, 15, 22 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Objects/Rock_b2" index="1"]
+visible = false
+rotation = 1.5708
+shape = SubResource( 4 )
+
+[node name="Rock_c" type="StaticBody2D" parent="World Objects" index="10"]
+position = Vector2( -20, -6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="World Objects/Rock_c" index="0"]
+position = Vector2( 0, -4 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 165, 194, 24, 12 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World Objects/Rock_c" index="1"]
+visible = false
+polygon = PoolVector2Array( -10, 1, -3, 1, -2, 0, 7, 0, 8, -1, 7, -2, -2, -2, -3, -1, -9, -1, -10, 0 )
+
+[node name="Rock_c2" type="StaticBody2D" parent="World Objects" index="11"]
+position = Vector2( -4.40797, 0.869993 )
+scale = Vector2( -1, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="World Objects/Rock_c2" index="0"]
+position = Vector2( 0, -4 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 165, 194, 24, 12 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World Objects/Rock_c2" index="1"]
+visible = false
+polygon = PoolVector2Array( -10, 1, -3, 1, -2, 0, 7, 0, 8, -1, 7, -2, -2, -2, -3, -1, -9, -1, -10, 0 )
+
+[node name="Rock_d" type="StaticBody2D" parent="World Objects" index="12"]
+position = Vector2( -35.4, 13.2486 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="World Objects/Rock_d" index="0"]
+position = Vector2( 0, -4 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 146, 194, 14, 10 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World Objects/Rock_d" index="1"]
+visible = false
+polygon = PoolVector2Array( -3, 1, -7, -1, -6, -2, 5, -2, 6, -1, 5, 1 )
+
+[node name="Rock_d2" type="StaticBody2D" parent="World Objects" index="13"]
+position = Vector2( -52, 10 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="World Objects/Rock_d2" index="0"]
+position = Vector2( 0, -4 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 146, 194, 14, 10 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World Objects/Rock_d2" index="1"]
+visible = false
+polygon = PoolVector2Array( -3, 1, -7, -1, -6, -2, 5, -2, 6, -1, 5, 1 )
+
+[node name="Rock_e" type="StaticBody2D" parent="World Objects" index="14"]
+position = Vector2( 0, 13.2486 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="World Objects/Rock_e" index="0"]
+position = Vector2( 0, -4 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 133, 193, 10, 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Objects/Rock_e" index="1"]
+visible = false
+position = Vector2( -0.5, 0 )
+rotation = 1.5708
+shape = SubResource( 5 )
+
+[node name="Rock_e2" type="StaticBody2D" parent="World Objects" index="15"]
+position = Vector2( -43.3256, 18.2486 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="World Objects/Rock_e2" index="0"]
+position = Vector2( 0, -4 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 133, 193, 10, 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Objects/Rock_e2" index="1"]
+visible = false
+position = Vector2( -0.5, 0 )
+rotation = 1.5708
+shape = SubResource( 5 )
+
+[node name="Rock_f" type="StaticBody2D" parent="World Objects" index="16"]
+position = Vector2( -1.58041, 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="World Objects/Rock_f" index="0"]
+position = Vector2( 0, -2 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 116, 196, 10, 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Objects/Rock_f" index="1"]
+visible = false
+position = Vector2( 0, -1 )
+rotation = 1.5708
+shape = SubResource( 5 )
+
+[node name="Rock_f2" type="StaticBody2D" parent="World Objects" index="17"]
+position = Vector2( -24.5, 20.1746 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="World Objects/Rock_f2" index="0"]
+position = Vector2( 0, -2 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 116, 196, 10, 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Objects/Rock_f2" index="1"]
+visible = false
+position = Vector2( 0, -1 )
+rotation = 1.5708
+shape = SubResource( 5 )
+
+[node name="Rock_f3" type="StaticBody2D" parent="World Objects" index="18"]
+position = Vector2( -47, 17.5783 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="World Objects/Rock_f3" index="0"]
+position = Vector2( 0, -2 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 116, 196, 10, 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Objects/Rock_f3" index="1"]
+visible = false
+position = Vector2( 0, -1 )
+rotation = 1.5708
+shape = SubResource( 5 )
+
+[node name="Rock_f4" type="StaticBody2D" parent="World Objects" index="19"]
+position = Vector2( -29.4, 3.6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="World Objects/Rock_f4" index="0"]
+position = Vector2( 0, -2 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 116, 196, 10, 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Objects/Rock_f4" index="1"]
+visible = false
+position = Vector2( 0, -1 )
+rotation = 1.5708
+shape = SubResource( 5 )
+
+[node name="Rock_f5" type="StaticBody2D" parent="World Objects" index="20"]
+position = Vector2( -29.4, 3.6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="World Objects/Rock_f5" index="0"]
+position = Vector2( 0, -2 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 116, 196, 10, 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Objects/Rock_f5" index="1"]
+visible = false
+position = Vector2( 0, -1 )
+rotation = 1.5708
+shape = SubResource( 5 )
+
+[node name="Item" parent="World Objects" index="21" instance=ExtResource( 10 )]
+position = Vector2( -6.58041, 21.0497 )
+collision_layer = 0
+collision_mask = 0
+sleeping = true
+item_id = "seashell_pink"
+global_item_scale = Vector2( 1, 1 )
+
+[node name="Item2" parent="World Objects" index="22" instance=ExtResource( 10 )]
+position = Vector2( -17, -8.9 )
+collision_layer = 0
+collision_mask = 0
+sleeping = true
+item_id = "seashell_pink"
+global_item_scale = Vector2( 1, 1 )
+
+[node name="Item3" parent="World Objects" index="23" instance=ExtResource( 10 )]
+position = Vector2( -59, -6 )
+collision_layer = 0
+collision_mask = 0
+sleeping = true
+item_id = "starfish_orange"
+global_item_scale = Vector2( 1, 1 )
+
+[node name="Item4" parent="World Objects" index="24" instance=ExtResource( 10 )]
+position = Vector2( -20, 5.6 )
+collision_layer = 0
+collision_mask = 0
+sleeping = true
+item_id = "starfish_orange"
+global_item_scale = Vector2( 1, 1 )
+
+[node name="Item5" parent="World Objects" index="25" instance=ExtResource( 10 )]
+position = Vector2( -39, 7.1 )
+collision_layer = 0
+collision_mask = 0
+sleeping = true
+item_id = "starfish_blue"
+global_item_scale = Vector2( 1, 1 )
+
+[node name="Item6" parent="World Objects" index="26" instance=ExtResource( 10 )]
+position = Vector2( 1.41959, 9 )
+collision_layer = 0
+collision_mask = 0
+sleeping = true
+item_id = "starfish_orange"
+global_item_scale = Vector2( 1, 1 )

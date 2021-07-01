@@ -166,5 +166,6 @@ custom_constants/separation = 1
 
 [node name="ShopItem" parent="HBoxContainer/Items/VBoxContainer" instance=ExtResource( 1 )]
 margin_right = 500.0
+
 [connection signal="mouse_entered" from="Menu" to="Menu" method="_on_ShopItem_mouse_entered"]
 [connection signal="mouse_exited" from="Menu" to="Menu" method="_on_ShopItem_mouse_exited"]
