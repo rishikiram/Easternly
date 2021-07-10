@@ -103,4 +103,7 @@ render_target_v_flip = true
 
 [node name="Ship3D" parent="Viewport" instance=ExtResource( 7 )]
 
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -16, 6, -16, -6, 10, -6, 14, -5, 16, -3, 16, 3, 14, 5, 10, 6 )
+
 [editable path="Viewport/Ship3D"]

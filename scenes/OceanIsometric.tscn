@@ -17,7 +17,7 @@ script = ExtResource( 2 )
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="OceanBackround2" parent="Background" instance=ExtResource( 4 )]
+[node name="OceanBackround" parent="Background" instance=ExtResource( 4 )]
 camera_path = NodePath("../../Camera2D")
 scroll_scale = 0.5
 
@@ -33,7 +33,6 @@ position = Vector2( 0, 4.76837e-07 )
 scale = Vector2( 2.5, 1.25 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
 scale = Vector2( 2, 2 )
 current = true
 zoom = Vector2( 0.5, 0.5 )
@@ -72,23 +71,8 @@ layer = 2
 
 [node name="HUD" parent="HUD" instance=ExtResource( 5 )]
 
-[node name="Top Right" parent="HUD/HUD" index="0"]
-margin_left = 873.0
-margin_bottom = 32.0
-
-[node name="CoinContainer" parent="HUD/HUD/Top Right" index="0"]
+[node name="CoinContainer" parent="HUD/HUD/Top Right" index="5"]
 margin_right = 151.0
-
-[node name="Coin Counter" parent="HUD/HUD/Top Right/CoinContainer" index="0"]
-margin_left = 0.0
-margin_right = 115.0
-
-[node name="TextureRect" parent="HUD/HUD/Top Right/CoinContainer" index="1"]
-margin_left = 119.0
-margin_right = 151.0
-
-[node name="Backpack" parent="HUD/HUD/Top Right" index="1"]
-visible = false
 
 [connection signal="viewport_exited" from="YSort/Pirate Miniship/VisibilityNotifier2D" to="YSort/Pirate Miniship" method="_on_VisibilityNotifier2D_viewport_exited"]
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_PlayerDetector_body_entered"]

@@ -7,6 +7,8 @@ script/source = "extends Sprite
 
 func _enter_tree():
 	GameData.connect(\"tik\", self,\"_on_clock_tik\")
+func _ready():
+	_on_clock_tik(GameData.clock)
 func _on_clock_tik(time):
 	$Hand.rotation = float(time)/float(GameData.day_length) * 2.0 * PI 
 #	print($Hand.rotation)

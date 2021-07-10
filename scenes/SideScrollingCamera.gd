@@ -9,7 +9,7 @@ func _ready():
 	player = get_node(player_path)
 
 func _physics_process(delta):
-	position.x = player.position.x
+	position.x = player.global_position.x
 	if Input.is_action_just_pressed("shift"):
 		if zoom == Vector2(1,1):
 			zoom = Vector2(.5,.5)

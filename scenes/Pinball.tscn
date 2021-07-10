@@ -1,47 +1,106 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://art/Pinball/board.png" type="Texture" id=1]
-[ext_resource path="res://art/Pinball/box.png" type="Texture" id=2]
+[ext_resource path="res://art/Pinball/plank_top.png" type="Texture" id=2]
 [ext_resource path="res://art/Pinball/sides.png" type="Texture" id=3]
-[ext_resource path="res://art/Pinball/box_top.png" type="Texture" id=4]
+[ext_resource path="res://art/Pinball/plank.png" type="Texture" id=4]
 [ext_resource path="res://scenes/Pinball/Peg_circle.tscn" type="PackedScene" id=5]
 [ext_resource path="res://art/Pinball/peg_circle.png" type="Texture" id=6]
 [ext_resource path="res://art/Pinball/peg_circle_top.png" type="Texture" id=7]
-[ext_resource path="res://scenes/Item.tscn" type="PackedScene" id=8]
+[ext_resource path="res://art/Pinball/Cannon.png" type="Texture" id=8]
 [ext_resource path="res://scenes/Pinball/Box.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scripts/Pinball.gd" type="Script" id=10]
-[ext_resource path="res://scenes/Pinball/coin.tscn" type="PackedScene" id=11]
+[ext_resource path="res://art/Pinball/Cannon_fuze.png" type="Texture" id=11]
+[ext_resource path="res://art/Pinball/corner_top.png" type="Texture" id=12]
+[ext_resource path="res://art/Pinball/corner.png" type="Texture" id=13]
+[ext_resource path="res://PixelFont.tres" type="DynamicFont" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2, 49 )
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 2.0
-height = 11.0
-
-[sub_resource type="PhysicsMaterial" id=7]
+[sub_resource type="PhysicsMaterial" id=2]
 bounce = 0.9
 absorbent = true
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 48.9242, 1.36929 )
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 8.5
+height = 6.0
+
+[sub_resource type="Animation" id=5]
+length = 2.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 11 ]
+}
+
+[sub_resource type="CircleShape2D" id=6]
 radius = 2.5
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="PhysicsMaterial" id=7]
+friction = 5.0
+rough = true
+bounce = 0.5
+absorbent = true
+
+[sub_resource type="GDScript" id=8]
+script/source = "extends Area2D
+
+var count := 0
+func _on_Area2D_body_entered(body):
+	count = count + 1
+	$Node2D/RichTextLabel.text = str(count)
+"
+
+[sub_resource type="CircleShape2D" id=9]
+radius = 1.0
+
+[node name="Pinball_A" type="Node2D"]
 script = ExtResource( 10 )
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 57.9613, 32.9124 )
+current = true
+zoom = Vector2( 0.25, 0.25 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_right = 100.0
+margin_left = -23.0
+margin_top = -18.0
+margin_right = 105.0
 margin_bottom = 98.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Board" type="NinePatchRect" parent="MarginContainer"]
-margin_right = 100.0
-margin_bottom = 98.0
+margin_right = 128.0
+margin_bottom = 116.0
 texture = ExtResource( 1 )
 patch_margin_left = 5
 patch_margin_top = 6
@@ -67,8 +126,591 @@ region_rect = Rect2( 4, 1, 7, 101 )
 position = Vector2( -2, 49 )
 shape = SubResource( 1 )
 
+[node name="Side_left2" type="StaticBody2D" parent="."]
+position = Vector2( -23, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Side_left2"]
+texture = ExtResource( 3 )
+centered = false
+offset = Vector2( -6, 0 )
+region_enabled = true
+region_rect = Rect2( 4, 1, 7, 101 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Side_left2"]
+position = Vector2( -2, 49 )
+shape = SubResource( 1 )
+
+[node name="Boxes" type="Node2D" parent="."]
+
+[node name="Box" parent="Boxes" instance=ExtResource( 9 )]
+position = Vector2( 10.5, 98 )
+
+[node name="Box2" parent="Boxes" instance=ExtResource( 9 )]
+position = Vector2( 26.5, 98 )
+
+[node name="Box3" parent="Boxes" instance=ExtResource( 9 )]
+position = Vector2( 42.5, 98 )
+
+[node name="Box4" parent="Boxes" instance=ExtResource( 9 )]
+position = Vector2( 58.5, 98 )
+
+[node name="Box5" parent="Boxes" instance=ExtResource( 9 )]
+position = Vector2( 74.5, 98 )
+
+[node name="Box6" parent="Boxes" instance=ExtResource( 9 )]
+position = Vector2( 90.5, 98 )
+
+[node name="Bottom" type="StaticBody2D" parent="Boxes"]
+position = Vector2( 49.5625, 105.601 )
+z_index = 1
+physics_material_override = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boxes/Bottom"]
+shape = SubResource( 3 )
+
+[node name="Corner" type="StaticBody2D" parent="."]
+position = Vector2( -17, -11 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Corner"]
+texture = ExtResource( 13 )
+
+[node name="Sprite2" type="Sprite" parent="Corner"]
+z_index = 1
+texture = ExtResource( 12 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Corner"]
+polygon = PoolVector2Array( -8, 9, 9, -8, -8, -8 )
+
+[node name="Cannon" type="StaticBody2D" parent="."]
+position = Vector2( -14, 95 )
+z_index = 1
+input_pickable = true
+collision_layer = 16
+collision_mask = 16
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Cannon"]
+z_index = 1
+texture = ExtResource( 8 )
+hframes = 11
+
+[node name="Sprite2" type="Sprite" parent="Cannon"]
+position = Vector2( -8, 0 )
+z_index = 1
+texture = ExtResource( 11 )
+hframes = 12
+frame = 11
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cannon"]
+position = Vector2( 0, 1.5 )
+shape = SubResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cannon"]
+anims/Fire = SubResource( 5 )
+
+[node name="Pegs" type="Node2D" parent="."]
+position = Vector2( -18.1772, -10.0753 )
+
+[node name="Peg_circle" parent="Pegs" instance=ExtResource( 5 )]
+position = Vector2( 32.1772, 26.0753 )
+
+[node name="Peg_circle2" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 50.1772, 26.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle2"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle2"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle2"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle3" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 68.1772, 26.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle3"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle3"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle3"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle4" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 86.1772, 26.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle4"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle4"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle4"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle5" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 104.177, 26.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle5"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle5"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle5"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle23" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 32.1772, 86.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle23"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle23"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle23"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle24" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 50.1772, 86.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle24"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle24"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle24"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle25" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 68.1772, 86.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle25"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle25"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle25"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle26" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 86.1772, 86.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle26"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle26"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle26"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle27" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 104.177, 86.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle27"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle27"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle27"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle6" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 41.1772, 41.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle6"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle6"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle6"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle11" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 23.1772, 41.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle11"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle11"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle11"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle7" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 59.1772, 41.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle7"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle7"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle7"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle8" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 77.1772, 41.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle8"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle8"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle8"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle9" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 95.1772, 41.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle9"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle9"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle9"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle10" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 113.177, 41.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle10"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle10"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle10"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle12" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 32.1772, 56.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle12"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle12"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle12"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle13" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 50.1772, 56.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle13"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle13"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle13"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle14" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 68.1772, 56.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle14"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle14"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle14"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle15" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 86.1772, 56.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle15"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle15"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle15"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle16" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 104.177, 56.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle16"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle16"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle16"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle17" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 41.1772, 71.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle17"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle17"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle17"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle18" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 23.1772, 71.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle18"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle18"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle18"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle19" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 59.1772, 71.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle19"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle19"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle19"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle20" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 77.1772, 71.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle20"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle20"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle20"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle21" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 95.1772, 71.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle21"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle21"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle21"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Peg_circle22" type="StaticBody2D" parent="Pegs"]
+position = Vector2( 113.177, 71.0753 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Pegs/Peg_circle22"]
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="Pegs/Peg_circle22"]
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle22"]
+position = Vector2( -1.0387, -0.538696 )
+shape = SubResource( 6 )
+
+[node name="Plank" type="StaticBody2D" parent="."]
+position = Vector2( 53, -4 )
+scale = Vector2( 0.85, 1 )
+physics_material_override = SubResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Plank"]
+texture = ExtResource( 4 )
+centered = false
+
+[node name="Sprite2" type="Sprite" parent="Plank"]
+z_index = 1
+texture = ExtResource( 2 )
+centered = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Plank"]
+position = Vector2( 29, 3 )
+z_index = 1
+polygon = PoolVector2Array( -29, 3, -29, 2, -28, 0, -27, -1, 26, -1, 27, 0, 28, 2, 28, 3 )
+
+[node name="Plank2" type="StaticBody2D" parent="."]
+position = Vector2( -6.5, -4 )
+scale = Vector2( 0.9, 1 )
+physics_material_override = SubResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Plank2"]
+texture = ExtResource( 4 )
+centered = false
+
+[node name="Sprite2" type="Sprite" parent="Plank2"]
+visible = false
+z_index = 1
+texture = ExtResource( 2 )
+centered = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Plank2"]
+position = Vector2( 29, 3 )
+polygon = PoolVector2Array( -29, 3, -29, 2, -28, 0, -27, -1, 26, -1, 27, 0, 28, 2, 28, 3 )
+
 [node name="Side_right" type="StaticBody2D" parent="."]
-position = Vector2( 100, 0 )
+position = Vector2( 100, -9 )
+scale = Vector2( 1, 1.1 )
 z_index = 1
 __meta__ = {
 "_edit_group_": true
@@ -85,587 +727,53 @@ region_rect = Rect2( 4, 1, 7, 101 )
 position = Vector2( 2, 49 )
 shape = SubResource( 1 )
 
-[node name="Box" parent="." instance=ExtResource( 9 )]
+[node name="counters" type="Node2D" parent="."]
 
-[node name="Box2" type="StaticBody2D" parent="."]
-position = Vector2( 26.7809, 94.1395 )
+[node name="Area2D" type="Area2D" parent="counters"]
+position = Vector2( 58, 7 )
+script = SubResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="counters/Area2D"]
+position = Vector2( -19, 2 )
+shape = SubResource( 9 )
+
+[node name="Node2D" type="Node2D" parent="counters/Area2D"]
+position = Vector2( -25.5, 0 )
+scale = Vector2( 0.25, 0.25 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="counters/Area2D/Node2D"]
+margin_right = 58.0
+margin_bottom = 40.0
+custom_fonts/normal_font = ExtResource( 14 )
+text = "000"
+scroll_active = false
 __meta__ = {
-"_edit_group_": true
+"_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="Box2"]
-texture = ExtResource( 2 )
+[node name="Area2D2" type="Area2D" parent="counters"]
+position = Vector2( 78, 7 )
+script = SubResource( 8 )
 
-[node name="Sprite2" type="Sprite" parent="Box2"]
-z_index = 1
-texture = ExtResource( 4 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="counters/Area2D2"]
+position = Vector2( -19, 2 )
+shape = SubResource( 9 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Box2"]
-visible = false
-position = Vector2( 7.5, 0.5 )
-shape = SubResource( 2 )
+[node name="Node2D" type="Node2D" parent="counters/Area2D2"]
+position = Vector2( -25.5, 0 )
+scale = Vector2( 0.25, 0.25 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Box2"]
-visible = false
-position = Vector2( -8.5, 0.5 )
-shape = SubResource( 2 )
-
-[node name="Box3" type="StaticBody2D" parent="."]
-position = Vector2( 42.7809, 94.1395 )
+[node name="RichTextLabel" type="RichTextLabel" parent="counters/Area2D2/Node2D"]
+margin_right = 58.0
+margin_bottom = 40.0
+custom_fonts/normal_font = ExtResource( 14 )
+text = "000"
+scroll_active = false
 __meta__ = {
-"_edit_group_": true
+"_edit_use_anchors_": false
 }
-
-[node name="Sprite" type="Sprite" parent="Box3"]
-texture = ExtResource( 2 )
-
-[node name="Sprite2" type="Sprite" parent="Box3"]
-z_index = 1
-texture = ExtResource( 4 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Box3"]
-visible = false
-position = Vector2( 7.5, 0.5 )
-shape = SubResource( 2 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Box3"]
-visible = false
-position = Vector2( -8.5, 0.5 )
-shape = SubResource( 2 )
-
-[node name="Box4" type="StaticBody2D" parent="."]
-position = Vector2( 58.0625, 94.1395 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Box4"]
-texture = ExtResource( 2 )
-
-[node name="Sprite2" type="Sprite" parent="Box4"]
-z_index = 1
-texture = ExtResource( 4 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Box4"]
-visible = false
-position = Vector2( 7.5, 0.5 )
-shape = SubResource( 2 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Box4"]
-visible = false
-position = Vector2( -8.5, 0.5 )
-shape = SubResource( 2 )
-
-[node name="Box5" type="StaticBody2D" parent="."]
-position = Vector2( 74.0625, 94.1395 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Box5"]
-texture = ExtResource( 2 )
-
-[node name="Sprite2" type="Sprite" parent="Box5"]
-z_index = 1
-texture = ExtResource( 4 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Box5"]
-visible = false
-position = Vector2( 7.5, 0.5 )
-shape = SubResource( 2 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Box5"]
-visible = false
-position = Vector2( -8.5, 0.5 )
-shape = SubResource( 2 )
-
-[node name="Box6" type="StaticBody2D" parent="."]
-position = Vector2( 90.0625, 94.1395 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Box6"]
-texture = ExtResource( 2 )
-
-[node name="Sprite2" type="Sprite" parent="Box6"]
-z_index = 1
-texture = ExtResource( 4 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Box6"]
-visible = false
-position = Vector2( 7.5, 0.5 )
-shape = SubResource( 2 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Box6"]
-visible = false
-position = Vector2( -8.5, 0.5 )
-shape = SubResource( 2 )
-
-[node name="Bottom" type="StaticBody2D" parent="."]
-position = Vector2( 49.5625, 105.601 )
-z_index = 1
-physics_material_override = SubResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom"]
-shape = SubResource( 8 )
-
-[node name="Peg_circle" parent="." instance=ExtResource( 5 )]
-
-[node name="Peg_circle2" type="StaticBody2D" parent="."]
-position = Vector2( 32, 15 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle2"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle2"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle2"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle3" type="StaticBody2D" parent="."]
-position = Vector2( 50, 15 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle3"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle3"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle3"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle4" type="StaticBody2D" parent="."]
-position = Vector2( 68, 15 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle4"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle4"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle4"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle5" type="StaticBody2D" parent="."]
-position = Vector2( 86, 15 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle5"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle5"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle5"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle23" type="StaticBody2D" parent="."]
-position = Vector2( 14, 75 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle23"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle23"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle23"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle24" type="StaticBody2D" parent="."]
-position = Vector2( 32, 75 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle24"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle24"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle24"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle25" type="StaticBody2D" parent="."]
-position = Vector2( 50, 75 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle25"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle25"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle25"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle26" type="StaticBody2D" parent="."]
-position = Vector2( 68, 75 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle26"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle26"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle26"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle27" type="StaticBody2D" parent="."]
-position = Vector2( 86, 75 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle27"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle27"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle27"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle6" type="StaticBody2D" parent="."]
-position = Vector2( 23, 30 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle6"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle6"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle6"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle11" type="StaticBody2D" parent="."]
-position = Vector2( 5, 30 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle11"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle11"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle11"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle7" type="StaticBody2D" parent="."]
-position = Vector2( 41, 30 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle7"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle7"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle7"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle8" type="StaticBody2D" parent="."]
-position = Vector2( 59, 30 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle8"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle8"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle8"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle9" type="StaticBody2D" parent="."]
-position = Vector2( 77, 30 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle9"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle9"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle9"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle10" type="StaticBody2D" parent="."]
-position = Vector2( 95, 30 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle10"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle10"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle10"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle12" type="StaticBody2D" parent="."]
-position = Vector2( 14, 45 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle12"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle12"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle12"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle13" type="StaticBody2D" parent="."]
-position = Vector2( 32, 45 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle13"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle13"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle13"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle14" type="StaticBody2D" parent="."]
-position = Vector2( 50, 45 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle14"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle14"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle14"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle15" type="StaticBody2D" parent="."]
-position = Vector2( 68, 45 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle15"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle15"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle15"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle16" type="StaticBody2D" parent="."]
-position = Vector2( 86, 45 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle16"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle16"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle16"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle17" type="StaticBody2D" parent="."]
-position = Vector2( 23, 60 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle17"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle17"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle17"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle18" type="StaticBody2D" parent="."]
-position = Vector2( 5, 60 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle18"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle18"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle18"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle19" type="StaticBody2D" parent="."]
-position = Vector2( 41, 60 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle19"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle19"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle19"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle20" type="StaticBody2D" parent="."]
-position = Vector2( 59, 60 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle20"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle20"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle20"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle21" type="StaticBody2D" parent="."]
-position = Vector2( 77, 60 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle21"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle21"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle21"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="Peg_circle22" type="StaticBody2D" parent="."]
-position = Vector2( 95, 60 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Peg_circle22"]
-texture = ExtResource( 6 )
-
-[node name="Sprite2" type="Sprite" parent="Peg_circle22"]
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Peg_circle22"]
-position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 4 )
-
-[node name="coin" parent="." instance=ExtResource( 11 )]
-
-[node name="Item" parent="." instance=ExtResource( 8 )]
-position = Vector2( 25.0983, -4.66202 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 57.9613, 32.9124 )
-current = true
-zoom = Vector2( 0.25, 0.25 )
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
-autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="input_event" from="Cannon" to="." method="_on_Cannon_input_event"]
+[connection signal="body_entered" from="counters/Area2D" to="counters/Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="counters/Area2D2" to="counters/Area2D2" method="_on_Area2D_body_entered"]

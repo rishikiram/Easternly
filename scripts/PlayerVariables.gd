@@ -84,21 +84,21 @@ func sell_item(item:GDInv_ItemDefinition, price)->bool:
 		return true
 	return false
 		
-func complete_quest(quest_id)->bool:
-	var q = QuestDB.get_quest_by_id(quest_id)
-	#check if have enough items
-	for key in q.items.keys():
-		if get_item_count_in(key, player_inventory)<q.items[key]:
-			return false
-	#give reward and remove items
-	coins += q.reward
-	for key in q.items.keys():
-		for _i in range (0,q.items[key]):
-			var r = remove_item(key)
-			if !r:
-				print("!!error in completing quest!")
-	emit_signal("update_HUD")
-	return true
+#func complete_quest(quest_id)->bool:
+#	var q = QuestDB.get_quest_by_id(quest_id)
+#	#check if have enough items
+#	for key in q.items.keys():
+#		if get_item_count_in(key, player_inventory)<q.items[key]:
+#			return false
+#	#give reward and remove items
+#	coins += q.reward
+#	for key in q.items.keys():
+#		for _i in range (0,q.items[key]):
+#			var r = remove_item(key)
+#			if !r:
+#				print("!!error in completing quest!")
+#	emit_signal("update_HUD")
+#	return true
 func get_item_count_in(id: String, inv:Array)->int:
 	var count:= 0
 	for item in inv:

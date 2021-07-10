@@ -118,3 +118,5 @@ func make_stack_by_id(item_id: String, count: int = 1) -> GDInv_ItemStack:
 # Getter by key for definition registry.
 func get_item_by_id(item_id: String) -> GDInv_ItemDefinition:
 	return REGISTRY.get(item_id);
+func get_random_item() -> GDInv_ItemDefinition:
+	return REGISTRY[ REGISTRY.keys()[ randi() % REGISTRY.size() ] ]

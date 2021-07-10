@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 export (bool) var is_testing := false
+export (bool) var is_sleep = false
 
 export (float) var max_speed:=200
 export (float) var v_drag:= 0.75
@@ -10,7 +11,6 @@ export (float) var min_bounce_speed = 100
 export (float) var max_rotational_speed:=2.0
 export (float) var rotation_acceleration:=0.2
 export (float) var r_drag:=0.2
-
 
 var rot_velocity:float
 var current_torque:float
@@ -35,6 +35,9 @@ func get_forces():
 	pass
 func get_torque():
 	pass
+func loose_coin():
+	InventoryData.remove_coins(1)
+	
 func _physics_process(delta):
 	##reset##
 	current_torque = 0 
@@ -103,6 +106,7 @@ func _physics_process(delta):
 #	var velocity = Vector2(speed,0).rotated(rotation)
 	var collision = move_and_collide(Vector2(velocity.x, velocity.y/2) * delta)
 	if collision:
+		loose_coin()
 		velocity = velocity.bounce(collision.normal)
 		if velocity.dot(collision.normal) < min_bounce_speed:
 			velocity = velocity + collision.normal*(min_bounce_speed-velocity.dot(collision.normal))

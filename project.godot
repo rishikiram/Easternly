@@ -81,9 +81,10 @@ config/icon="res://art/Ships/Pirate/Ship_full1.0.png"
 
 Global="*res://scripts/Global.gd"
 GameData="*res://scripts/Singletons/GameData.gd"
-PlayerVariables="*res://scripts/PlayerVariables.gd"
+PlayerVariables="res://scripts/PlayerVariables.gd"
 GDInv_ItemDB="*res://addons/gdinv/GDInv_ItemDB.gd"
-QuestDB="*res://scripts/Singletons/Quest_DB.gd"
+QuestDB="res://scripts/Singletons/Quest_DB.gd"
+InventoryData="*res://scripts/Singletons/InventoryData.gd"
 
 [debug]
 

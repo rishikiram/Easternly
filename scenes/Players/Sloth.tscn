@@ -206,9 +206,9 @@ script = ExtResource( 1 )
 position = Vector2( 0, -6 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, 0.5 )
-vframes = 4
 hframes = 6
-frame = 2
+vframes = 4
+frame = 5
 script = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
@@ -246,5 +246,6 @@ one_shot = true
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 0.5, 0.5 )
+
 [connection signal="body_entered" from="PlayerArea" to="." method="_on_PlayerArea_body_entered"]
 [connection signal="body_exited" from="PlayerArea" to="." method="_on_PlayerArea_body_exited"]

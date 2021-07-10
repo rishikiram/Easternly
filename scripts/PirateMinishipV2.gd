@@ -52,17 +52,18 @@ func get_wind_force():
 	#get_tree().call_group("Flag", "handle_wind_force", force.dot(ship_dir) )
 	#return force.dot(ship_dir)*wind_force_coefficient
 func _process(delta):
-	$Viewport/Ship3D/mesh.rotation = Vector3(0, -rotation, 0)
+	rotate_mesh(rotation)
+	#if Input.is_action_just_pressed("w"):
+		#$Viewport/Ship3D/Camera.translation = $Viewport/Ship3D/Camera.translation + Vector3(-1, 1, 0)
+		#$Sprite.position = $Sprite.position + Vector2(1,0)
+	#if Input.is_action_just_pressed("s"):
+		#$Viewport/Ship3D/Camera.translation = $Viewport/Ship3D/Camera.translation - Vector3(-1, 1, 0)
+		#$Sprite.position = $Sprite.position - Vector2(1,0)
+func rotate_mesh(rot):
+	$Viewport/Ship3D/mesh.rotation = Vector3(0, -rot, 0)
 	#print("DEBIG: rotation of ship mesh",$Viewport/KinematicBody/mesh.rotation)
 	$Sprite.texture = $Viewport.get_texture()
-	$Sprite.rotation = -rotation
-	if Input.is_action_just_pressed("w"):
-		#$Viewport/Ship3D/Camera.translation = $Viewport/Ship3D/Camera.translation + Vector3(-1, 1, 0)
-		$Sprite.position = $Sprite.position + Vector2(1,0)
-	if Input.is_action_just_pressed("s"):
-		#$Viewport/Ship3D/Camera.translation = $Viewport/Ship3D/Camera.translation - Vector3(-1, 1, 0)
-		$Sprite.position = $Sprite.position - Vector2(1,0)
-
+	$Sprite.rotation = -rot
 func _on_VisibilityNotifier2D_viewport_exited(viewport):
 	if position.y > 0:
 		position.y = -position.y-100

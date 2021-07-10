@@ -1,21 +1,17 @@
 extends StaticBody2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+var count:= 0
+var item:GDInv_ItemDefinition
+signal coin_landed
+func set_item(i: GDInv_ItemDefinition):
+	item = i
+	var texture_path = "res://art/item sprites/%s.png" % item.identifier
+	$Sprite2/item.texture = load(texture_path)
 
 func _on_Area2D_body_entered(body):
-	$Sprite.frame = 1
-	$Sprite2.frame = 1
+	$AnimationPlayer.play("blink")
+	emit_signal("coin_landed", item)
+	body.queue_free()
+	
+	count += 1
+	$"Sprite2/Node2D/RichTextLabel2".text = str(count)

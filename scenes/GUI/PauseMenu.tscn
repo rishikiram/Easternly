@@ -96,7 +96,7 @@ save_slot = 4
 [node name="Save5" type="Button" parent="VBoxContainer"]
 margin_top = 148.0
 margin_right = 256.0
-margin_bottom = 181.0
+margin_bottom = 182.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 8 )
@@ -107,9 +107,9 @@ script = ExtResource( 6 )
 save_slot = 5
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
-margin_top = 185.0
+margin_top = 186.0
 margin_right = 256.0
-margin_bottom = 217.0
+margin_bottom = 218.0
 custom_fonts/font = ExtResource( 8 )
 text = "QUIT TO MENU"
 icon = ExtResource( 7 )
@@ -117,11 +117,12 @@ expand_icon = true
 script = SubResource( 1 )
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_top = 221.0
+margin_top = 222.0
 margin_right = 256.0
-margin_bottom = 247.0
+margin_bottom = 248.0
 custom_fonts/font = ExtResource( 8 )
 text = "press esc to close"
+
 [connection signal="pressed" from="VBoxContainer/Save1" to="VBoxContainer/Save1" method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Save2" to="VBoxContainer/Save2" method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Save3" to="VBoxContainer/Save3" method="_on_Button_pressed"]

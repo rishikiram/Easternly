@@ -21,10 +21,11 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
 
-func _ready():
-	connect(\"pressed\", self, \"_on_Button_pressed\")
+#func _ready():
+#	connect(\"pressed\", self, \"_on_Button_pressed\")
 	
 func _on_Button_pressed():
+	print(\"pressed\")
 	Global.goto_scene(\"res://scenes/OceanIsometric.tscn\")
 "
 
@@ -253,6 +254,7 @@ size_flags_vertical = 3
 texture = ExtResource( 11 )
 stretch_mode = 6
 
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/Button" to="VBoxContainer/HBoxContainer3/Button" method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/GridContainer/Button" to="VBoxContainer/HBoxContainer/GridContainer/Button" method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/GridContainer/Button2" to="VBoxContainer/HBoxContainer/GridContainer/Button2" method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/GridContainer/Button3" to="VBoxContainer/HBoxContainer/GridContainer/Button3" method="_on_Button_pressed"]

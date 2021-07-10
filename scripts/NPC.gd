@@ -6,8 +6,8 @@ export(Vector2) var dialog_y_offset:= Vector2(0,-20)
 export(Vector2) var coin_spawn_offset:= Vector2(0,30)
 #export() var quest_container
 const dialogue_folder := "res://resources/dialogue/"
-#func open_shop():
-#	sh
+
+signal clicked
 
 func _unhandled_key_input(event):
 	if player_in_range && event.is_action_pressed("e"):
@@ -43,18 +43,19 @@ func _on_NPCArea_body_exited(body):
 	pass # Replace with function body.
 func _on_NPCArea_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton && event.pressed:
+		emit_signal("clicked")
 		if !$Dialogue.in_dialogue:
 			initiate_dialog()
 		else:
 			$Dialogue.next_dialogue()
 
-func _on_QuestItemContainer_quest_completed(quest_id):
-	var coin = load("res://scenes/Coin.tscn")
-	var reward:int = QuestDB.REGISTRY[quest_id].reward
-	for _i in range(0,reward):
-		var c = coin.instance()
-		get_parent().add_child(c)
-		c.global_position = global_position + coin_spawn_offset
+#func _on_QuestItemContainer_quest_completed(quest_id):
+#	var coin = load("res://scenes/Coin.tscn")
+#	var reward:int = QuestDB.REGISTRY[quest_id].reward
+#	for _i in range(0,reward):
+#		var c = coin.instance()
+#		get_parent().add_child(c)
+#		c.global_position = global_position + coin_spawn_offset
 
 func _on_NPCArea_mouse_entered():
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)

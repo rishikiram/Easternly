@@ -4,11 +4,12 @@ extends Node
 #
 #	global also has a static func which finds node with group "Player" 
 ###
-
+var rng = RandomNumberGenerator.new()
 var current_scene = null
 #var current_scene_path :String
 signal scene_loaded
 func _ready():
+	rng.randomize()
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() - 1)
 	randomize()
@@ -49,21 +50,21 @@ func _deferred_goto_scene(scene_path, ship_enviroment_node = null):
 #	if current_scene.has_method("load_scene"):#in ready function beacuse it should be called everytime
 #		current_scene.load_scene()#GameData.island_registery[scene_path])
 	emit_signal("scene_loaded")
-func save_game(slot = 1):
-	current_scene.save_scene()
-	var save_dict := {
-		"game data" : GameData.create_save_file(),
-		"current scene path" : current_scene.scene_path,
-		"player state" : PlayerVariables.save_game()
-		
-	}
-	var json_str = JSON.print(save_dict)
-	var save_game = File.new()
-	
-	save_game.open("user://savegame" +str(slot)+ ".save", File.WRITE)
-	save_game.store_line(json_str)
-	save_game.close()
-	#write savve_dict as json to a save file
+#func save_game(slot = 1):
+#	current_scene.save_scene()
+#	var save_dict := {
+#		"game data" : GameData.create_save_file(),
+#		"current scene path" : current_scene.scene_path,
+#		"player state" : PlayerVariables.save_game()
+#
+#	}
+#	var json_str = JSON.print(save_dict)
+#	var save_game = File.new()
+#
+#	save_game.open("user://savegame" +str(slot)+ ".save", File.WRITE)
+#	save_game.store_line(json_str)
+#	save_game.close()
+#	#write savve_dict as json to a save file
 func load_game(save_file_path = "user://savegame1.save" ):
 	var save_game = File.new()
 	if not save_game.file_exists(save_file_path):
@@ -77,7 +78,7 @@ func load_game(save_file_path = "user://savegame1.save" ):
 	GameData.load_save_file(save_data["game data"])
 	goto_scene(save_data["current scene path"])
 #	yield(self, "scene_loaded")
-	PlayerVariables.load_game(save_data["player state"]) 
+#	PlayerVariables.load_game(save_data["player state"]) 
 #func create_island_save(dict: Dictionary, island_name:String):
 #	var file = File.new()
 #	file.open("res://resources/island data/" + island_name +".json", File.WRITE)

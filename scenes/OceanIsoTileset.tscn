@@ -7,7 +7,6 @@ mode = 1
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 16 )
 cell_y_sort = true
-show_collision = true
 centered_textures = true
 collision_layer = 64
 collision_mask = 64

@@ -61,8 +61,8 @@ radius = 1.99998
 height = 4.00004
 
 [sub_resource type="CapsuleShape2D" id=5]
-radius = 35.0
-height = 0.0
+radius = 6.67852
+height = 5.12374
 
 [node name="NPC" type="KinematicBody2D" groups=[
 "Clickable",
@@ -81,16 +81,13 @@ anims/Idle_slow = SubResource( 2 )
 anims/Walk = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 rotation = 1.5708
 shape = SubResource( 4 )
 
 [node name="NPCArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPCArea"]
-visible = false
-position = Vector2( -0.0852928, -2 )
-rotation = 1.5708
+position = Vector2( 0, -6 )
 shape = SubResource( 5 )
 
 [node name="Dialogue" type="Node" parent="."]
@@ -100,7 +97,6 @@ script = ExtResource( 3 )
 visible = false
 position = Vector2( 32, -100 )
 
-[connection signal="input_event" from="." to="." method="_on_NPC_input_event"]
 [connection signal="body_entered" from="NPCArea" to="." method="_on_NPCArea_body_entered"]
 [connection signal="body_exited" from="NPCArea" to="." method="_on_NPCArea_body_exited"]
 [connection signal="input_event" from="NPCArea" to="." method="_on_NPCArea_input_event"]
