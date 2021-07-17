@@ -64,6 +64,7 @@ centered = false
 region_rect = Rect2( 3, 3, 10, 9 )
 
 [node name="Node2D" type="Node2D" parent="Sprite2"]
+visible = false
 scale = Vector2( 0.25, 0.25 )
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="Sprite2/Node2D"]

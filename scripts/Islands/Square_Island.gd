@@ -16,6 +16,11 @@ func _ready():
 #	pass
 func _process(delta):
 	$Path2D/PathFollow2D.get_child(0).rotate_mesh($Path2D/PathFollow2D.rotation)
+#	$Path2D/PathFollow2D.unit_offset += delta/3
+#	print($Path2D/PathFollow2D.unit_offset)
+#	var tween = $Tween
+#
+#	print(tween)
 func make_player_child(player:KinematicBody2D):
 	if player.get_parent():
 		player.get_parent().remove_child(player)
@@ -28,8 +33,9 @@ func make_player_child(player:KinematicBody2D):
 	
 	var tween = $Tween
 	tween.interpolate_property($Path2D/PathFollow2D, "unit_offset",
-		0, 1, 3,
+		0, 1, 4,
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		
 	tween.start()
 
 	

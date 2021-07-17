@@ -26,6 +26,7 @@ script/source = "extends Button
 	
 func _on_Button_pressed():
 	print(\"pressed\")
+	InventoryData.add_coins(25)
 	Global.goto_scene(\"res://scenes/OceanIsometric.tscn\")
 "
 

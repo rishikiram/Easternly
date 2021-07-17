@@ -10,6 +10,17 @@ func _ready():
 	pinball_position = $Pinball.position
 	$Pinball.position = $Pinball.position + Vector2(0, -250)
 	$Background/OceanBackround.on_window_resize()
+#	get_tree().get_root().connect("size_changed", self, "on_window_resize")
+#	set_pinball_position()
+
+#func set_pinball_position():
+#	var x = OS.window_size.x * $Camera2D.zoom.x *.75 - 246
+#	var y = OS.window_size.y * $Camera2D.zoom.y *.75 - 142
+#	print("x: ",x,"  y: ", y," " ,OS.window_size)
+#	$Pinball.position = Vector2(x,y)
+
+#func on_window_resize():
+#	set_pinball_position()
 	
 func start_pinball():
 	var tween = $Tween

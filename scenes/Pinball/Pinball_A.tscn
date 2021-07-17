@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://scenes/Pinball/Box.tscn" type="PackedScene" id=1]
 [ext_resource path="res://PixelFont.tres" type="DynamicFont" id=2]
@@ -15,9 +15,10 @@
 [ext_resource path="res://art/Pinball/Cannon_fuze.png" type="Texture" id=13]
 [ext_resource path="res://scenes/Pinball/Peg_circle.tscn" type="PackedScene" id=14]
 [ext_resource path="res://art/Pinball/Cannon_highlighted.png" type="Texture" id=15]
+[ext_resource path="res://scenes/Pinball/Betting_GUI.tscn" type="PackedScene" id=16]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 2, 49 )
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 3, 45 )
 
 [sub_resource type="PhysicsMaterial" id=2]
 bounce = 0.9
@@ -57,6 +58,12 @@ tracks/1/keys = {
 "values": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 11 ]
 }
 
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 0.74419, 10 )
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 2, 2.08345 )
+
 [sub_resource type="CircleShape2D" id=6]
 radius = 2.5
 
@@ -83,8 +90,8 @@ script = ExtResource( 3 )
 testing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 39, 38 )
-zoom = Vector2( 0.25, 0.25 )
+position = Vector2( 19, 42 )
+zoom = Vector2( 0.3, 0.3 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
@@ -111,6 +118,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Betting Panel" parent="." instance=ExtResource( 16 )]
+position = Vector2( -92, 66 )
+testing = false
+coin_parent = NodePath("..")
+
 [node name="Side_left" type="StaticBody2D" parent="."]
 __meta__ = {
 "_edit_group_": true
@@ -125,10 +137,11 @@ region_rect = Rect2( 4, 1, 7, 101 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Side_left"]
 position = Vector2( -2, 49 )
-shape = SubResource( 1 )
+shape = SubResource( 10 )
 
 [node name="Side_left2" type="StaticBody2D" parent="."]
 position = Vector2( -23, 0 )
+scale = Vector2( 1, 0.91 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -141,8 +154,8 @@ region_enabled = true
 region_rect = Rect2( 4, 1, 7, 101 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Side_left2"]
-position = Vector2( -2, 49 )
-shape = SubResource( 1 )
+position = Vector2( -2, 44 )
+shape = SubResource( 10 )
 
 [node name="Boxes" type="Node2D" parent="."]
 
@@ -198,9 +211,6 @@ z_index = 1
 input_pickable = true
 collision_layer = 16
 collision_mask = 16
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Sprite" type="Sprite" parent="Cannon"]
 z_index = 1
@@ -227,6 +237,21 @@ shape = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Cannon"]
 anims/Fire = SubResource( 5 )
+
+[node name="Trigger" type="StaticBody2D" parent="Cannon"]
+position = Vector2( -6.2085, 0 )
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cannon/Trigger"]
+shape = SubResource( 11 )
+
+[node name="Area2D" type="Area2D" parent="Cannon"]
+position = Vector2( 16, -96.4715 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cannon/Area2D"]
+position = Vector2( -8.79125, 99 )
+shape = SubResource( 12 )
 
 [node name="Pegs" type="Node2D" parent="."]
 position = Vector2( -18.1772, -10.0753 )
@@ -737,9 +762,10 @@ region_rect = Rect2( 4, 1, 7, 101 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Side_right"]
 position = Vector2( 2, 49 )
-shape = SubResource( 1 )
+shape = SubResource( 10 )
 
 [node name="counters" type="Node2D" parent="."]
+visible = false
 
 [node name="Area2D" type="Area2D" parent="counters"]
 position = Vector2( 58, 7 )
@@ -789,5 +815,6 @@ __meta__ = {
 [connection signal="input_event" from="Cannon" to="." method="_on_Cannon_input_event"]
 [connection signal="mouse_entered" from="Cannon" to="." method="_on_Cannon_mouse_entered"]
 [connection signal="mouse_exited" from="Cannon" to="." method="_on_Cannon_mouse_exited"]
+[connection signal="body_entered" from="Cannon/Area2D" to="." method="_on_Cannon_Area2D_body_entered"]
 [connection signal="body_entered" from="counters/Area2D" to="counters/Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="counters/Area2D2" to="counters/Area2D2" method="_on_Area2D_body_entered"]

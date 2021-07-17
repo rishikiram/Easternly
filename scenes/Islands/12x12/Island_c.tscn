@@ -1,10 +1,38 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/OceanIsoTileset.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Islands/6x6/Square.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Coin_Spinning.tscn" type="PackedScene" id=3]
 
 [node name="Island_c" instance=ExtResource( 1 )]
 tile_data = PoolIntArray( 1, 7, 7, 2, 7, 3, 3, 7, 3, 4, 7, 3, 5, 7, 3, 6, 7, 3, 7, 7, 5, 65536, 7, 65542, 65537, 7, 65543, 65538, 7, 131075, 65539, 7, 131073, 65540, 7, 131075, 65541, 7, 131073, 65542, 7, 131073, 65543, 7, 65536, 65544, 7, 65537, 131072, 7, 2, 131073, 7, 131072, 131074, 7, 65539, 131075, 7, 1, 131076, 7, 1, 131077, 7, 1, 131078, 7, 1, 131079, 7, 1, 131080, 7, 4, 196608, 7, 2, 196609, 7, 65539, 196610, 7, 4, 196616, 8, 2, 196617, 7, 7, 196618, 7, 65537, 262144, 7, 2, 262145, 7, 0, 262153, 7, 2, 262154, 7, 65536, 262155, 7, 5, 327680, 7, 2, 327681, 7, 0, 327689, 7, 2, 327690, 7, 131074, 327691, 7, 0, 393216, 7, 2, 393217, 7, 0, 393218, 8, 1, 393224, 8, 2, 393225, 7, 2, 393226, 7, 131072, 393227, 7, 0, 458752, 7, 2, 458753, 7, 0, 458754, 8, 1, 458761, 7, 2, 458762, 7, 131072, 458763, 7, 0, 524288, 7, 2, 524289, 7, 0, 524290, 8, 1, 524297, 7, 2, 524298, 7, 131072, 524299, 7, 0, 589824, 7, 2, 589825, 7, 65536, 589826, 7, 3, 589827, 7, 3, 589828, 7, 5, 589830, 8, 0, 589831, 7, 7, 589832, 7, 3, 589833, 7, 65543, 589834, 7, 131074, 589835, 7, 0, 655360, 7, 6, 655361, 7, 65541, 655362, 7, 131075, 655363, 7, 131075, 655364, 7, 65536, 655365, 7, 3, 655366, 7, 3, 655367, 7, 65543, 655368, 7, 131074, 655369, 7, 131074, 655370, 7, 65539, 655371, 7, 65538, 720897, 7, 65540, 720898, 7, 1, 720899, 7, 1, 720900, 7, 1, 720901, 7, 1, 720902, 7, 1, 720903, 7, 1, 720904, 7, 1, 720905, 7, 1, 720906, 7, 4 )
 
 [node name="Square" parent="." index="0" instance=ExtResource( 2 )]
 position = Vector2( 0, 48 )
+
+[node name="Coin_Spinning" parent="." index="1" instance=ExtResource( 3 )]
+position = Vector2( 64, 88 )
+
+[node name="Coin_Spinning2" parent="." index="2" instance=ExtResource( 3 )]
+position = Vector2( 56, 104 )
+
+[node name="Coin_Spinning3" parent="." index="3" instance=ExtResource( 3 )]
+position = Vector2( -72, 96 )
+
+[node name="Coin_Spinning4" parent="." index="4" instance=ExtResource( 3 )]
+position = Vector2( -64, 104 )
+
+[node name="Coin_Spinning5" parent="." index="5" instance=ExtResource( 3 )]
+position = Vector2( -64, 88 )
+
+[node name="Coin_Spinning6" parent="." index="6" instance=ExtResource( 3 )]
+position = Vector2( -80, 88 )
+
+[node name="Coin_Spinning7" parent="." index="7" instance=ExtResource( 3 )]
+position = Vector2( -80, 104 )
+
+[node name="Coin_Spinning8" parent="." index="8" instance=ExtResource( 3 )]
+position = Vector2( -88, 96 )
+
+[node name="Coin_Spinning9" parent="." index="9" instance=ExtResource( 3 )]
+position = Vector2( -56, 96 )

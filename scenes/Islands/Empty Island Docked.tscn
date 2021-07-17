@@ -58,7 +58,7 @@ current = true
 zoom = Vector2( 0.4, 0.4 )
 
 [node name="Pinball" parent="." instance=ExtResource( 7 )]
-position = Vector2( 186.617, 128.035 )
+position = Vector2( 184, 142 )
 testing = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -66,9 +66,9 @@ testing = false
 [node name="HUD" parent="CanvasLayer" instance=ExtResource( 9 )]
 
 [node name="TextureButton" type="TextureButton" parent="CanvasLayer/HUD"]
-margin_left = 874.0
+margin_left = 869.0
 margin_top = 470.0
-margin_right = 1024.0
+margin_right = 1019.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 150, 130 )
 size_flags_horizontal = 8

@@ -33,7 +33,7 @@ func get_wind_force():
 	#if wind_vector == Vector2(0,0):
 		#return 0
 		
-	var wind_vector := Vector2(1,0)
+	var wind_vector := Vector2(InventoryData.wind_speed_counter,0)#Vector2(1,0)
 	if $"../../WindParrallelX/Wind" and (not $"../../WindParrallelX/Wind".visible):
 		return 0
 	var ship_dir = Vector2(1,0).rotated(rotation)
@@ -64,10 +64,13 @@ func rotate_mesh(rot):
 	#print("DEBIG: rotation of ship mesh",$Viewport/KinematicBody/mesh.rotation)
 	$Sprite.texture = $Viewport.get_texture()
 	$Sprite.rotation = -rot
+	
+	$CollisionPolygon2D.rotation = -sin(rot*2) * .2
+	$CollisionPolygon2D.scale.x = cos(rot*2)*.2 + .75
 func _on_VisibilityNotifier2D_viewport_exited(viewport):
 	if position.y > 0:
-		position.y = -position.y-100
+		position.y = -position.y
 	else:
-		position.y = -position.y+100
+		position.y = -position.y
 
 

@@ -25,12 +25,14 @@ scroll_scale = 0.5
 
 [node name="Pirate Miniship" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( -100, 0 )
+z_index = 1
 max_rotational_speed = 2.4
-oar_force = 20.0
+oar_force = 5.0
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="YSort/Pirate Miniship"]
-position = Vector2( 0, 4.76837e-07 )
-scale = Vector2( 2.5, 1.25 )
+position = Vector2( 2.06916, 4.76837e-07 )
+scale = Vector2( 2.02966, 1.25 )
+rect = Rect2( -9, -10, 19, 20 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2( 2, 2 )

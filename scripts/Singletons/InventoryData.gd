@@ -6,12 +6,19 @@ signal update_HUD
 func _ready():
 	pass
 func add_coins(amount = 1)->bool:
-	coins += 1
+	coins += amount
 	emit_signal("update_HUD")
 	return true
 func remove_coins(amount = 1)->bool:
-	coins -= 1
+	coins -= amount
 	emit_signal("update_HUD")
+	#if driving ship, or end of pinball scene, end game
 	return true
 	
+var island_density_counter = 25
+var wind_speed_counter = .8
+
+func increase_difficulty(i= 1):
+	island_density_counter += i
+	wind_speed_counter += i/10
 

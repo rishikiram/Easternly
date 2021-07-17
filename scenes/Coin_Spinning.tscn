@@ -3,11 +3,10 @@
 [ext_resource path="res://art/Pinball/coin_8x8_sheet.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Coin_Spinning.gd" type="Script" id=2]
 
-[sub_resource type="CircleShape2D" id=2]
-radius = 4.0
+[sub_resource type="CircleShape2D" id=1]
+radius = 6.0
 
-[sub_resource type="Animation" id=1]
-resource_name = "spin"
+[sub_resource type="Animation" id=2]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -23,12 +22,13 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 }
 
-[node name="Coin_Spinning" type="RigidBody2D"]
-position = Vector2( 54.4428, 33.8933 )
+[node name="Coin_Spinning" type="Area2D"]
+collision_layer = 32
+collision_mask = 32
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -37,8 +37,10 @@ frame = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 autoplay = "spin"
-anims/spin = SubResource( 1 )
+anims/spin = SubResource( 2 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_Coin_Spinning_body_entered"]

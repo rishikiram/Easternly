@@ -1,0 +1,359 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://art/Pinball/plank.png" type="Texture" id=1]
+[ext_resource path="res://art/Pinball/plank_top.png" type="Texture" id=2]
+[ext_resource path="res://art/Pinball/board.png" type="Texture" id=3]
+[ext_resource path="res://art/Pinball/sides.png" type="Texture" id=4]
+[ext_resource path="res://PixelFont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://scripts/Pinball/Betting_GUI.gd" type="Script" id=6]
+[ext_resource path="res://scenes/Pinball/Box.tscn" type="PackedScene" id=7]
+[ext_resource path="res://art/Pinball/coin_8x8.png" type="Texture" id=9]
+[ext_resource path="res://art/Pinball/box_top.png" type="Texture" id=10]
+
+[sub_resource type="PhysicsMaterial" id=7]
+friction = 5.0
+rough = true
+bounce = 0.5
+absorbent = true
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 2, 10 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 10 )
+region = Rect2( 6, 4, 14, 11 )
+
+[node name="Betting_Board" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_top = -9.0
+margin_right = 66.0
+margin_bottom = 35.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Board" type="NinePatchRect" parent="MarginContainer"]
+margin_right = 66.0
+margin_bottom = 44.0
+texture = ExtResource( 3 )
+patch_margin_left = 5
+patch_margin_top = 6
+patch_margin_right = 3
+patch_margin_bottom = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Plank" type="StaticBody2D" parent="."]
+position = Vector2( -3, 32 )
+scale = Vector2( 0.85, 1 )
+physics_material_override = SubResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Plank"]
+visible = false
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Sprite2" type="Sprite" parent="Plank"]
+visible = false
+z_index = 1
+texture = ExtResource( 2 )
+centered = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Plank"]
+position = Vector2( 29, 3 )
+z_index = 1
+polygon = PoolVector2Array( -29, -3, 75.7059, -3.8147e-06, 75.7059, 3, -29, 2 )
+
+[node name="MarginContainer" type="MarginContainer" parent="Plank"]
+margin_right = 94.0
+margin_bottom = 6.0
+size_flags_vertical = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Plank/MarginContainer"]
+margin_right = 94.0
+margin_bottom = 6.0
+texture = ExtResource( 1 )
+patch_margin_left = 8
+patch_margin_top = 3
+patch_margin_right = 8
+patch_margin_bottom = 3
+
+[node name="Side_left2" type="StaticBody2D" parent="."]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Side_left2"]
+position = Vector2( 0, 15 )
+texture = ExtResource( 4 )
+centered = false
+offset = Vector2( -6, 0 )
+region_enabled = true
+region_rect = Rect2( 4, 86, 7, 16 )
+
+[node name="Sprite2" type="Sprite" parent="Side_left2"]
+texture = ExtResource( 4 )
+centered = false
+offset = Vector2( -6, 0 )
+region_enabled = true
+region_rect = Rect2( 4, 1, 7, 23 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Side_left2"]
+position = Vector2( -2, 19 )
+shape = SubResource( 1 )
+
+[node name="Side_left6" type="StaticBody2D" parent="."]
+visible = false
+position = Vector2( 67.25, 0 )
+z_index = 1
+collision_layer = 0
+collision_mask = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Side_left6"]
+position = Vector2( 0, 10 )
+texture = ExtResource( 4 )
+centered = false
+offset = Vector2( -6, 0 )
+region_enabled = true
+region_rect = Rect2( 4, 86, 7, 16 )
+
+[node name="Sprite2" type="Sprite" parent="Side_left6"]
+texture = ExtResource( 4 )
+centered = false
+offset = Vector2( -6, 0 )
+region_enabled = true
+region_rect = Rect2( 4, 1, 7, 23 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Side_left6"]
+position = Vector2( -2, 19 )
+shape = SubResource( 1 )
+
+[node name="Side_left3" type="StaticBody2D" parent="."]
+position = Vector2( 16.2469, -5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Side_left3"]
+position = Vector2( 0, 15 )
+texture = ExtResource( 4 )
+centered = false
+offset = Vector2( -6, 0 )
+region_enabled = true
+region_rect = Rect2( 4, 86, 7, 16 )
+
+[node name="Sprite2" type="Sprite" parent="Side_left3"]
+position = Vector2( 0, 15 )
+z_index = 1
+texture = ExtResource( 4 )
+centered = false
+offset = Vector2( -6, 0 )
+region_enabled = true
+region_rect = Rect2( 4, 86, 5, 16 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Side_left3"]
+position = Vector2( -2, 19 )
+shape = SubResource( 1 )
+
+[node name="Side_left4" type="StaticBody2D" parent="."]
+position = Vector2( 32.2469, -5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Side_left4"]
+position = Vector2( 0, 15 )
+texture = ExtResource( 4 )
+centered = false
+offset = Vector2( -6, 0 )
+region_enabled = true
+region_rect = Rect2( 4, 86, 7, 16 )
+
+[node name="Sprite2" type="Sprite" parent="Side_left4"]
+position = Vector2( 0, 15 )
+z_index = 1
+texture = ExtResource( 4 )
+centered = false
+offset = Vector2( -6, 0 )
+region_enabled = true
+region_rect = Rect2( 4, 86, 5, 16 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Side_left4"]
+position = Vector2( -2, 19 )
+shape = SubResource( 1 )
+
+[node name="Side_left5" type="StaticBody2D" parent="."]
+position = Vector2( 48.2469, -5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Side_left5"]
+position = Vector2( 0, 15 )
+texture = ExtResource( 4 )
+centered = false
+offset = Vector2( -6, 0 )
+region_enabled = true
+region_rect = Rect2( 4, 86, 7, 16 )
+
+[node name="Sprite2" type="Sprite" parent="Side_left5"]
+position = Vector2( 0, 15 )
+z_index = 1
+texture = ExtResource( 4 )
+centered = false
+offset = Vector2( -6, 0 )
+region_enabled = true
+region_rect = Rect2( 4, 86, 5, 16 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Side_left5"]
+position = Vector2( -2, 19 )
+shape = SubResource( 1 )
+
+[node name="Boxes" type="Node2D" parent="."]
+position = Vector2( 0, -0.5 )
+
+[node name="Box" parent="Boxes" instance=ExtResource( 7 )]
+position = Vector2( 7.24691, 9.51635 )
+item_manual = "starfish_blue"
+
+[node name="Box2" parent="Boxes" instance=ExtResource( 7 )]
+position = Vector2( 23.2469, 9.51635 )
+item_manual = "starfish_orange"
+
+[node name="Box3" parent="Boxes" instance=ExtResource( 7 )]
+position = Vector2( 39.2469, 9.51635 )
+item_manual = "seashell_pink"
+
+[node name="Box4" parent="Boxes" instance=ExtResource( 7 )]
+position = Vector2( 55.2469, 9.51635 )
+item_manual = "coconut"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 32.2469, 44.1052 )
+current = true
+zoom = Vector2( 0.4, 0.4 )
+
+[node name="Labels" type="Node2D" parent="."]
+
+[node name="Label" type="Node2D" parent="Labels"]
+position = Vector2( 10.5, -4 )
+scale = Vector2( 0.25, 0.25 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Labels/Label"]
+margin_left = -36.0
+margin_top = -18.0
+margin_right = 52.0
+margin_bottom = 38.0
+rect_clip_content = false
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 5 )
+text = "$0
+x2"
+scroll_active = false
+scroll_following = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Node2D" parent="Labels"]
+position = Vector2( 26.5, -4 )
+scale = Vector2( 0.25, 0.25 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Labels/Label2"]
+margin_left = -36.0496
+margin_top = -5.93465
+margin_right = 51.9504
+margin_bottom = 38.0654
+rect_clip_content = false
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 5 )
+text = "$0
+x4"
+scroll_active = false
+scroll_following = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Node2D" parent="Labels"]
+position = Vector2( 42.5, -4 )
+scale = Vector2( 0.25, 0.25 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Labels/Label3"]
+margin_left = -36.0496
+margin_top = -5.93465
+margin_right = 51.9504
+margin_bottom = 38.0654
+rect_clip_content = false
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 5 )
+text = "$0
+x2"
+scroll_active = false
+scroll_following = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Node2D" parent="Labels"]
+position = Vector2( 58.5, -4 )
+scale = Vector2( 0.25, 0.25 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Labels/Label4"]
+margin_left = -36.0496
+margin_top = -5.93465
+margin_right = 51.9504
+margin_bottom = 38.0654
+rect_clip_content = false
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 5 )
+text = "$0x8"
+scroll_active = false
+scroll_following = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 22.836
+margin_top = -20.0377
+margin_right = 36.836
+margin_bottom = -9.03773
+texture = SubResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = 25.8489
+margin_top = -17.238
+margin_right = 33.8489
+margin_bottom = -9.23799
+texture_normal = ExtResource( 9 )
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="coin_landed" from="Boxes/Box" to="." method="_on_Box_coin_landed"]
+[connection signal="coin_landed" from="Boxes/Box2" to="." method="_on_Box2_coin_landed"]
+[connection signal="coin_landed" from="Boxes/Box3" to="." method="_on_Box3_coin_landed"]
+[connection signal="coin_landed" from="Boxes/Box4" to="." method="_on_Box4_coin_landed"]
+[connection signal="button_down" from="TextureButton" to="." method="_on_TextureButton_button_down"]

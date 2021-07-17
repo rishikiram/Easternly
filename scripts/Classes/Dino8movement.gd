@@ -16,8 +16,9 @@ signal mouse_released
 
 
 func _enter_tree():
-	PlayerVariables.connect("item_clicked", self, "_on_item_clicked")
-	PlayerVariables.connect("backpack_item_removed", self, "_on_backpack_item_removed")
+#	PlayerVariables.connect("item_clicked", self, "_on_item_clicked")
+#	PlayerVariables.connect("backpack_item_removed", self, "_on_backpack_item_removed")
+	pass
 func _ready():
 #	PlayerVariables.player = self
 	
