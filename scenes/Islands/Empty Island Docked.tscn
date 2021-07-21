@@ -79,4 +79,5 @@ texture_hover = ExtResource( 2 )
 expand = true
 stretch_mode = 5
 
+[connection signal="clicked" from="World Objects/NPC" to="." method="_on_NPC_clicked"]
 [connection signal="pressed" from="CanvasLayer/HUD/TextureButton" to="." method="_on_TextureButton_pressed"]

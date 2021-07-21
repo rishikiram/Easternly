@@ -4,6 +4,7 @@ extends Node
 
 var cannon_position:Vector2
 var pinball_position:Vector2
+var started = false
 func _ready():
 #	cannon_position = $Pinball/Cannon.position
 #	$Pinball/Cannon.position = $Pinball/Cannon.position + Vector2(-230, 250)
@@ -46,9 +47,11 @@ func start_pinball():
 #		Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT)
 
 	tween.start()
+	started = true
 
 func _on_NPC_clicked():
-	start_pinball()
+	if not started:
+		start_pinball()
 
 
 

@@ -46,10 +46,11 @@ func box_activated(item:GDInv_ItemDefinition, x_coin):
 		earn_coins($"Betting Panel".bets[i] * $"Betting Panel".rewards[i])
 		print("earned: ",$"Betting Panel".bets[i] * $"Betting Panel".rewards[i])
 	elif x_coin.item == "":
-		earn_coins(1)
+		earn_coins(1,false)
 
-func earn_coins(i):
-	GameData.add_coins(i)
+func earn_coins(i, add_coin = true):
+	if add_coin:
+		GameData.add_coins(i)
 	for _j in range(i):
 		var nc = coin.instance()
 		nc.position = $"Betting Panel".position - Vector2(20,0)

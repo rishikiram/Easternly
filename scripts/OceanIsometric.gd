@@ -54,7 +54,7 @@ func _process(time):
 			loader = null
 			recent_resource = resource
 			return emit_signal("resource_loaded")
-			break
+#			break
 		elif err == OK:
 			update_progress()
 		else: # Error during loading.
@@ -125,7 +125,7 @@ func generate_map(size=Vector2(12,5), density = 30):
 	#[ [type, position :Vector2()], [t, p] ]
 	
 	#repeat number of islands
-	for i in range(num_islands):
+	for _i in range(num_islands):
 		var j = 0
 		while j < 100:#no infinite loop
 			#random position and type

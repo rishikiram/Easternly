@@ -2,8 +2,6 @@ extends MarginContainer
 
 
 onready var coin_counter = $"Top Right/Coin/Label"
-func _enter_tree():
-	GameData.connect("tik", self, "_on_clock_tik")
 func _ready():
 	GameData.connect("update_HUD", self, "_on_update_HUD")
 	update_coins()

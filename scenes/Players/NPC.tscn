@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://art/Characters/DinoSheets/DinoSprites - vita.png" type="Texture" id=1]
 [ext_resource path="res://scripts/NPC.gd" type="Script" id=2]
 [ext_resource path="res://addons/dialogue_tree/scripts/dialogue.gd" type="Script" id=3]
-[ext_resource path="res://xArchives/Shop.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle_fast"
@@ -92,10 +91,6 @@ shape = SubResource( 5 )
 
 [node name="Dialogue" type="Node" parent="."]
 script = ExtResource( 3 )
-
-[node name="Shop" parent="." instance=ExtResource( 4 )]
-visible = false
-position = Vector2( 32, -100 )
 
 [connection signal="body_entered" from="NPCArea" to="." method="_on_NPCArea_body_entered"]
 [connection signal="body_exited" from="NPCArea" to="." method="_on_NPCArea_body_exited"]
