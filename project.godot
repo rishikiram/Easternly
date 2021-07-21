@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "BetterYSort",
 "language": "GDScript",
-"path": "res://scripts/BetterYSort.gd"
+"path": "res://xArchives/BetterYSort.gd"
 }, {
 "base": "Node2D",
 "class": "DialogueVStacker",
@@ -37,22 +37,22 @@ _global_script_classes=[ {
 "base": "RigidBody2D",
 "class": "Item",
 "language": "GDScript",
-"path": "res://scripts/Item.gd"
+"path": "res://xArchives/Item.gd"
 }, {
 "base": "Resource",
 "class": "ItemPriceTable",
 "language": "GDScript",
-"path": "res://scripts/ItemPriceTable.gd"
+"path": "res://xArchives/ItemPriceTable.gd"
 }, {
 "base": "Resource",
 "class": "ShopPriceTable",
 "language": "GDScript",
-"path": "res://scripts/ShopPriceTable.gd"
+"path": "res://xArchives/ShopPriceTable.gd"
 }, {
 "base": "Node",
 "class": "ShopPriceTableCreator",
 "language": "GDScript",
-"path": "res://scripts/ShopPriceItemCreator.gd"
+"path": "res://xArchives/ShopPriceItemCreator.gd"
 } ]
 _global_script_class_icons={
 "BetterYSort": "",
@@ -82,7 +82,7 @@ config/icon="res://Square_screenshot.png"
 Global="*res://scripts/Global.gd"
 GameData="*res://scripts/Singletons/GameData.gd"
 GDInv_ItemDB="*res://addons/gdinv/GDInv_ItemDB.gd"
-InventoryData="*res://scripts/Singletons/InventoryData.gd"
+InventoryData="res://xArchives/InventoryData.gd"
 AudioManager="*res://scenes/AudioManager.tscn"
 
 [debug]

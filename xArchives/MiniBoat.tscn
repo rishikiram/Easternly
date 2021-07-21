@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://art/Ships/Mini Ship/Mini_ship.png" type="Texture" id=1]
-[ext_resource path="res://scripts/MiniBoat.gd" type="Script" id=2]
+[ext_resource path="res://xArchives/MiniBoat.gd" type="Script" id=2]
 [ext_resource path="res://art/Ships/Mini Ship/Sails.png" type="Texture" id=3]
-[ext_resource path="res://scripts/Sail.gd" type="Script" id=4]
+[ext_resource path="res://xArchives/Sail.gd" type="Script" id=4]
 [ext_resource path="res://scripts/Oar.gd" type="Script" id=5]
 [ext_resource path="res://art/Ships/Mini Ship/Oar.png" type="Texture" id=6]
 

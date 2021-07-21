@@ -22,5 +22,5 @@ func _process(delta):
 
 func _on_Coin_Spinning_body_entered(body):
 	if body.is_in_group("miniship"):
-		InventoryData.add_coins(1);
+		GameData.add_coins(1);
 		queue_free()

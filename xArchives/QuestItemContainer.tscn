@@ -2,7 +2,7 @@
 
 [ext_resource path="res://xArchives/Star/Star.png" type="Texture" id=1]
 [ext_resource path="res://xArchives/ItemContainter.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scripts/QuestItemContainer.gd" type="Script" id=3]
+[ext_resource path="res://xArchives/QuestItemContainer.gd" type="Script" id=3]
 
 [node name="QuestItemContainer" instance=ExtResource( 2 )]
 script = ExtResource( 3 )

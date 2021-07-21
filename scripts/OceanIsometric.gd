@@ -71,7 +71,7 @@ func load_chunk(position = Vector2(0,-225), screen = screen_size, num_screens = 
 	# also moves player detector to near end of new chunk 
 	
 	#create virtual map for new islands
-	var map = generate_map(Vector2(12,5),InventoryData.island_density_counter)
+	var map = generate_map(Vector2(12,5),GameData.island_density_counter)
 	#print("map is: \n", map)
 	#load/instantiate islands in map into scene
 	var island_resources := {}
@@ -95,7 +95,7 @@ func load_chunk(position = Vector2(0,-225), screen = screen_size, num_screens = 
 		# transform by chunk x-cordinate
 	$PlayerDetector.position = Vector2(position.x + screen.x*num_screens -720,0)
 	next_chunk_position = position.x + convert_isometric_coordinate(Vector2(12,-12)).x #2304
-	InventoryData.increase_difficulty()
+	GameData.increase_difficulty()
 	
 	#50%change of adding screen island
 	if true:#Global.rng.randi()%2 == 0:

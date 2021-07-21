@@ -2,7 +2,7 @@
 
 [ext_resource path="res://resources/item data/DefaultPriceTable.tres" type="Resource" id=1]
 [ext_resource path="res://xArchives/ShopGUI.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scripts/Shop.gd" type="Script" id=3]
+[ext_resource path="res://xArchives/Shop.gd" type="Script" id=3]
 
 [node name="Shop" type="Node2D"]
 scale = Vector2( 0.5, 0.5 )

@@ -49,7 +49,7 @@ func box_activated(item:GDInv_ItemDefinition, x_coin):
 		earn_coins(1)
 
 func earn_coins(i):
-	InventoryData.add_coins(i)
+	GameData.add_coins(i)
 	for _j in range(i):
 		var nc = coin.instance()
 		nc.position = $"Betting Panel".position - Vector2(20,0)

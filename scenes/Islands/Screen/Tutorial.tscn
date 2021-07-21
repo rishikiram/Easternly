@@ -195,6 +195,7 @@ position = Vector2( -416, 0 )
 visible = false
 position = Vector2( -100, 0 )
 scale = Vector2( 2, 2 )
+z_index = 2
 texture = ExtResource( 1 )
 hframes = 13
 frame = 12

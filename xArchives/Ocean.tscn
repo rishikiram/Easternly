@@ -3,10 +3,10 @@
 [ext_resource path="res://xArchives/Ship Enviroments/Rowboat.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/GUI/HUD.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/HUD.gd" type="Script" id=3]
-[ext_resource path="res://scripts/RowboatShipEnviroment.gd" type="Script" id=4]
+[ext_resource path="res://xArchives/RowboatShipEnviroment.gd" type="Script" id=4]
 [ext_resource path="res://resources/Ocean_Isometric_Tileset.tres" type="TileSet" id=5]
 [ext_resource path="res://scenes/Miniships/Rowboat Mini.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scripts/RowboatMini.gd" type="Script" id=7]
+[ext_resource path="res://xArchives/RowboatMini.gd" type="Script" id=7]
 
 [node name="Node" type="Node"]
 

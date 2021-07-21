@@ -15,7 +15,7 @@ func _ready():
 	randomize()
 	Input.set_custom_mouse_cursor(load("res://art/GUI/Cursor_Hand-sheet.png"), Input.CURSOR_POINTING_HAND)
 	
-	InventoryData.connect("end_game", self, "_on_end_game")
+	GameData.connect("end_game", self, "_on_end_game")
 #func save_test():
 #	var save_game = File.new()
 #	save_game.open("user://savegame.save", File.WRITE)
@@ -24,7 +24,7 @@ func _ready():
 ##	initialize_mouse_cursor()
 func start_game():
 	call_deferred("_deferred_start_game")
-	InventoryData.start_game()
+	GameData.start_game()
 #	AudioManager.start_music()
 func _deferred_start_game():
 	var old_scene = current_scene

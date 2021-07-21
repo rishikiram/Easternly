@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=7 format=2]
 
-[ext_resource path="res://scripts/ShopPriceTable.gd" type="Script" id=1]
-[ext_resource path="res://scripts/ItemPriceTable.gd" type="Script" id=2]
+[ext_resource path="res://xArchives/ShopPriceTable.gd" type="Script" id=1]
+[ext_resource path="res://xArchives/ItemPriceTable.gd" type="Script" id=2]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )

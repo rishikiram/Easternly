@@ -7,9 +7,9 @@
 [ext_resource path="res://PixelFont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://xArchives/ocean.png" type="Texture" id=6]
 [ext_resource path="res://xArchives/beach_tileset.png" type="Texture" id=7]
-[ext_resource path="res://scripts/force_lable.gd" type="Script" id=8]
+[ext_resource path="res://xArchives/force_lable.gd" type="Script" id=8]
 [ext_resource path="res://xArchives/Docking Area.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scripts/SpeedLabel.gd" type="Script" id=10]
+[ext_resource path="res://xArchives/SpeedLabel.gd" type="Script" id=10]
 [ext_resource path="res://xArchives/Ship Enviroments/Rowboat.tscn" type="PackedScene" id=11]
 
 [sub_resource type="TileSet" id=1]

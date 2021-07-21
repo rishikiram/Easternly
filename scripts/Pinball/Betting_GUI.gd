@@ -36,19 +36,19 @@ func spawn_items():
 func _on_Box_coin_landed(item, coin):
 	bets[0] = bets[0]+1
 	$Labels/Label/RichTextLabel.text = str(bets[0])+"$\nx"+str(rewards[0])
-	InventoryData.remove_coins(1)
+	GameData.remove_coins(1)
 func _on_Box2_coin_landed(item, coin):
 	bets[1] = bets[1]+1
 	$Labels/Label2/RichTextLabel.text = str(bets[1])+"$\nx"+str(rewards[1])
-	InventoryData.remove_coins(1)
+	GameData.remove_coins(1)
 func _on_Box3_coin_landed(item,coin ):
 	bets[2] = bets[2]+1
 	$Labels/Label3/RichTextLabel.text = str(bets[2])+"$\nx"+str(rewards[2])
-	InventoryData.remove_coins(1)
+	GameData.remove_coins(1)
 func _on_Box4_coin_landed(item,coin):
 	bets[3] = bets[3]+1
 	$Labels/Label4/RichTextLabel.text = str(bets[3])+"$\nx"+str(rewards[3])
-	InventoryData.remove_coins(1)
+	GameData.remove_coins(1)
 func _on_TextureButton_button_down():
 	var new_coin = coin.instance()
 	get_node(coin_parent).add_child(new_coin)

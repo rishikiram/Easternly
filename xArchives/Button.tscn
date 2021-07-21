@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://scripts/Button_sail.gd" type="Script" id=1]
+[ext_resource path="res://xArchives/Button_sail.gd" type="Script" id=1]
 [ext_resource path="res://art/GUI/Etext.png" type="Texture" id=2]
 
 [node name="Button" type="StaticBody2D" groups=[

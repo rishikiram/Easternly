@@ -23,7 +23,7 @@ func get_forces():
 	return force_sum
 	
 func get_wind_force():
-	var wind_vector := Vector2(InventoryData.wind_speed_counter,0)#Vector2(1,0)
+	var wind_vector := Vector2(GameData.wind_speed_counter,0)#Vector2(1,0)
 	
 	if not get_tree().get_nodes_in_group('wind') or (not get_tree().get_nodes_in_group('wind')[0].visible):
 		return Vector2(0,0)

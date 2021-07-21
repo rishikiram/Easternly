@@ -5,9 +5,9 @@
 [ext_resource path="res://art/Ships/Rowboat/rowboat_hull.png" type="Texture" id=3]
 [ext_resource path="res://art/Ships/Rowboat/rowboat_backoar.png" type="Texture" id=4]
 [ext_resource path="res://art/Ships/Rowboat/rowboat_frontoar.png" type="Texture" id=5]
-[ext_resource path="res://scripts/OarArea.gd" type="Script" id=7]
+[ext_resource path="res://xArchives/OarArea.gd" type="Script" id=7]
 [ext_resource path="res://scenes/Item.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scripts/RowboatShipEnviroment.gd" type="Script" id=9]
+[ext_resource path="res://xArchives/RowboatShipEnviroment.gd" type="Script" id=9]
 [ext_resource path="res://art/GUI/Etext.png" type="Texture" id=10]
 
 [sub_resource type="Animation" id=1]

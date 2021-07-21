@@ -16,7 +16,7 @@
 [ext_resource path="res://art/GUI/Etext.png" type="Texture" id=14]
 [ext_resource path="res://art/GUI/Cursor_Hand-sheet.png" type="Texture" id=15]
 [ext_resource path="res://xArchives/Star/Star.png" type="Texture" id=16]
-[ext_resource path="res://scripts/LoadSaveButton.gd" type="Script" id=17]
+[ext_resource path="res://xArchives/LoadSaveButton.gd" type="Script" id=17]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button

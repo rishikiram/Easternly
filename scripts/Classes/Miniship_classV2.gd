@@ -37,7 +37,7 @@ func get_forces():
 func get_torque():
 	pass
 func loose_coin():
-	InventoryData.remove_coins(1)
+	GameData.remove_coins(1)
 	#create coin
 	var new_coin = spin_coin.instance()
 	#make it fly in an arc

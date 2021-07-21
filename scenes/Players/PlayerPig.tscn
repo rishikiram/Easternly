@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://scripts/PigAnimation.gd" type="Script" id=1]
+[ext_resource path="res://xArchives/PigAnimation.gd" type="Script" id=1]
 [ext_resource path="res://art/Characters/pig.png" type="Texture" id=2]
 [ext_resource path="res://scripts/NPC.gd" type="Script" id=3]
 

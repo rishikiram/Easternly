@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scripts/WindArea.gd" type="Script" id=1]
+[ext_resource path="res://xArchives/WindArea.gd" type="Script" id=1]
 [ext_resource path="res://xArchives/XWindAreaAnimation/WindArea1.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=2]

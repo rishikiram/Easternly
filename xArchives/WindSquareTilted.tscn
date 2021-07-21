@@ -1,6 +1,6 @@
 [gd_scene load_steps=30 format=2]
 
-[ext_resource path="res://scripts/WindSquare.gd" type="Script" id=1]
+[ext_resource path="res://xArchives/WindSquare.gd" type="Script" id=1]
 [ext_resource path="res://art/Wind Animation/Wind9.png" type="Texture" id=2]
 [ext_resource path="res://art/Wind Animation/Wind2.png" type="Texture" id=3]
 [ext_resource path="res://art/Wind Animation/Wind7.png" type="Texture" id=4]
