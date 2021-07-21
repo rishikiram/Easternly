@@ -10,10 +10,10 @@ extents = Vector2( 8, 40 )
 tile_data = PoolIntArray( 3, 7, 7, 4, 7, 3, 5, 7, 5, 65539, 7, 2, 65540, 7, 65539, 65541, 7, 4, 131073, 7, 7, 131074, 7, 3, 131075, 7, 65543, 131076, 7, 0, 196609, 7, 2, 196610, 9, 2, 196611, 7, 65539, 196612, 7, 4, 262144, 7, 7, 262145, 7, 65543, 262146, 7, 65539, 262147, 7, 4, 327680, 7, 6, 327681, 7, 1, 327682, 7, 4 )
 
 [node name="Coin_Spinning" parent="." index="0" instance=ExtResource( 2 )]
-position = Vector2( 16, 36 )
+position = Vector2( 16, 38 )
 
 [node name="Coin_Spinning2" parent="." index="1" instance=ExtResource( 2 )]
-position = Vector2( -48, 36 )
+position = Vector2( -48, 38 )
 
 [node name="Coin_Spinning3" parent="." index="2" instance=ExtResource( 2 )]
 position = Vector2( -32, 68 )

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/OceanIsoTileset.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Coin_Spinning.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 40 )
+
+[node name="Island_f" instance=ExtResource( 1 )]
+tile_data = PoolIntArray( 1, 7, 7, 2, 7, 5, 5, 8, 0, 65536, 7, 7, 65537, 7, 65543, 65538, 7, 0, 65540, 7, 7, 65541, 7, 5, 131072, 7, 2, 131073, 7, 65539, 131074, 7, 65538, 131076, 7, 2, 131077, 7, 0, 196608, 7, 2, 196609, 7, 0, 196611, 7, 65542, 196612, 7, 65543, 196613, 7, 0, 262144, 7, 2, 262145, 7, 0, 262147, 7, 2, 262148, 7, 65539, 262149, 7, 4, 327680, 7, 6, 327681, 7, 4, 327683, 7, 6, 327684, 7, 4 )
+
+[node name="Coin_Spinning" parent="." index="0" instance=ExtResource( 2 )]
+position = Vector2( 0, 50 )
+
+[node name="Area2D" type="Area2D" parent="." index="1" groups=[
+"IslandArea",
+]]
+position = Vector2( 96, 48 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource( 1 )

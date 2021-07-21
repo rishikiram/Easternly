@@ -6,7 +6,7 @@ var rng = RandomNumberGenerator.new()
 #enum {SIXbySIX, TENbyTEN, CIRCLE}
 const DIMENTIONS = [Vector2(1,1), Vector2(2,2), Vector2(2,2),Vector2(1,1)]
 const PATHS = ["res://scenes/Islands/6x6", "res://scenes/Islands/12x12", "res://scenes/Islands/12x12","res://scenes/Islands/Trading Islands"]
-
+const SCEEN_ISLAND_FOLDER := "res://scenes/Islands/Screen"
 var next_chunk_position  = 0
 var chunk_buffer = 50
 
@@ -29,7 +29,7 @@ func load_tutorial():
 	$"WindParrallelX/Wind".visible = false
 	$"YSort/Pirate Miniship".idle = true
 	#load key coins tutorial
-	var tutorial = load("res://scenes/Islands/Screen/Tutorial.tscn").instance()
+	var tutorial = load("res://scenes/Islands/Tutorial.tscn").instance()
 	$YSort.add_child(tutorial)#position = 0,0
 	next_chunk_position = tutorial.size.x
 	
@@ -99,7 +99,8 @@ func load_chunk(position = Vector2(0,-225), screen = screen_size, num_screens = 
 	
 	#50%change of adding screen island
 	if true:#Global.rng.randi()%2 == 0:
-		loader = ResourceLoader.load_interactive("res://scenes/Islands/Screen/IslandScreen_a.tscn")
+		print(get_random_scene_in_folder(SCEEN_ISLAND_FOLDER))
+		loader = ResourceLoader.load_interactive(SCEEN_ISLAND_FOLDER+'/'+get_random_scene_in_folder(SCEEN_ISLAND_FOLDER))#("res://scenes/Islands/Screen/IslandScreen_a.tscn")
 		set_process(true)
 		yield(self, "resource_loaded")
 		var island = recent_resource.instance()

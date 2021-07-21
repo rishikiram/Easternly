@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://art/Wind Animation/Wind_Single_animation.png" type="Texture" id=1]
-[ext_resource path="res://resources/Ocean_Isometric_Tileset.tres" type="TileSet" id=2]
-[ext_resource path="res://scenes/Coin_Spinning.tscn" type="PackedScene" id=3]
-[ext_resource path="res://art/Ocean_Iso_Tileste/WASD_Keys.png" type="Texture" id=4]
-[ext_resource path="res://art/Ocean_Iso_Tileste/Space_Bar.png" type="Texture" id=5]
+[ext_resource path="res://art/Ocean_Iso_Tileste/WASD_Keys.png" type="Texture" id=2]
+[ext_resource path="res://resources/Ocean_Isometric_Tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://art/Ocean_Iso_Tileste/Space_Bar.png" type="Texture" id=4]
+[ext_resource path="res://scenes/Coin_Spinning.tscn" type="PackedScene" id=5]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends \"res://scripts/Islands/IslandScreen.gd\"
@@ -115,7 +115,7 @@ size = Vector2( 1550, 450 )
 [node name="OceanIsoTileset" type="TileMap" parent="."]
 position = Vector2( 800, 0 )
 mode = 1
-tile_set = ExtResource( 2 )
+tile_set = ExtResource( 3 )
 cell_size = Vector2( 32, 16 )
 cell_y_sort = true
 centered_textures = true
@@ -132,63 +132,63 @@ position = Vector2( 725, 0 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OceanIsoTileset/Area2D"]
 shape = SubResource( 2 )
 
-[node name="Coin_Spinning" parent="OceanIsoTileset" instance=ExtResource( 3 )]
+[node name="Coin_Spinning" parent="OceanIsoTileset" instance=ExtResource( 5 )]
 position = Vector2( -96, 0 )
 
-[node name="Coin_Spinning2" parent="OceanIsoTileset" instance=ExtResource( 3 )]
+[node name="Coin_Spinning2" parent="OceanIsoTileset" instance=ExtResource( 5 )]
 
-[node name="Coin_Spinning3" parent="OceanIsoTileset" instance=ExtResource( 3 )]
+[node name="Coin_Spinning3" parent="OceanIsoTileset" instance=ExtResource( 5 )]
 position = Vector2( 96, 0 )
 
-[node name="Coin_Spinning4" parent="OceanIsoTileset" instance=ExtResource( 3 )]
+[node name="Coin_Spinning4" parent="OceanIsoTileset" instance=ExtResource( 5 )]
 position = Vector2( 192, -24 )
 
-[node name="Coin_Spinning5" parent="OceanIsoTileset" instance=ExtResource( 3 )]
+[node name="Coin_Spinning5" parent="OceanIsoTileset" instance=ExtResource( 5 )]
 position = Vector2( 248, -72 )
 
-[node name="Coin_Spinning6" parent="OceanIsoTileset" instance=ExtResource( 3 )]
+[node name="Coin_Spinning6" parent="OceanIsoTileset" instance=ExtResource( 5 )]
 position = Vector2( 272, -136 )
 
-[node name="Coin_Spinning7" parent="OceanIsoTileset" instance=ExtResource( 3 )]
+[node name="Coin_Spinning7" parent="OceanIsoTileset" instance=ExtResource( 5 )]
 position = Vector2( 640, -8 )
 
-[node name="Coin_Spinning8" parent="OceanIsoTileset" instance=ExtResource( 3 )]
+[node name="Coin_Spinning8" parent="OceanIsoTileset" instance=ExtResource( 5 )]
 position = Vector2( 272, -200 )
 
-[node name="Coin_Spinning9" parent="OceanIsoTileset" instance=ExtResource( 3 )]
+[node name="Coin_Spinning9" parent="OceanIsoTileset" instance=ExtResource( 5 )]
 position = Vector2( 272, 192 )
 
-[node name="Coin_Spinning10" parent="OceanIsoTileset" instance=ExtResource( 3 )]
+[node name="Coin_Spinning10" parent="OceanIsoTileset" instance=ExtResource( 5 )]
 position = Vector2( 272, 120 )
 
-[node name="Coin_Spinning11" parent="OceanIsoTileset" instance=ExtResource( 3 )]
+[node name="Coin_Spinning11" parent="OceanIsoTileset" instance=ExtResource( 5 )]
 position = Vector2( 304, 56 )
 
-[node name="Coin_Spinning12" parent="OceanIsoTileset" instance=ExtResource( 3 )]
+[node name="Coin_Spinning12" parent="OceanIsoTileset" instance=ExtResource( 5 )]
 position = Vector2( 632, 0 )
 
-[node name="Coin_Spinning13" parent="OceanIsoTileset" instance=ExtResource( 3 )]
+[node name="Coin_Spinning13" parent="OceanIsoTileset" instance=ExtResource( 5 )]
 position = Vector2( 648, 0 )
 
-[node name="Coin_Spinning14" parent="OceanIsoTileset" instance=ExtResource( 3 )]
+[node name="Coin_Spinning14" parent="OceanIsoTileset" instance=ExtResource( 5 )]
 position = Vector2( 376, 16 )
 
-[node name="Coin_Spinning15" parent="OceanIsoTileset" instance=ExtResource( 3 )]
+[node name="Coin_Spinning15" parent="OceanIsoTileset" instance=ExtResource( 5 )]
 position = Vector2( 448, 0 )
 
-[node name="Coin_Spinning16" parent="OceanIsoTileset" instance=ExtResource( 3 )]
+[node name="Coin_Spinning16" parent="OceanIsoTileset" instance=ExtResource( 5 )]
 position = Vector2( 544, 0 )
 
-[node name="Coin_Spinning17" parent="OceanIsoTileset" instance=ExtResource( 3 )]
+[node name="Coin_Spinning17" parent="OceanIsoTileset" instance=ExtResource( 5 )]
 position = Vector2( 640, 0 )
 
-[node name="Coin_Spinning18" parent="OceanIsoTileset" instance=ExtResource( 3 )]
+[node name="Coin_Spinning18" parent="OceanIsoTileset" instance=ExtResource( 5 )]
 position = Vector2( 640, 8 )
 
-[node name="Coin_Spinning19" parent="OceanIsoTileset" instance=ExtResource( 3 )]
+[node name="Coin_Spinning19" parent="OceanIsoTileset" instance=ExtResource( 5 )]
 position = Vector2( -224, 0 )
 
-[node name="Coin_Spinning20" parent="OceanIsoTileset" instance=ExtResource( 3 )]
+[node name="Coin_Spinning20" parent="OceanIsoTileset" instance=ExtResource( 5 )]
 position = Vector2( -416, 0 )
 
 [node name="Wind Single" type="Sprite" parent="."]
@@ -208,7 +208,7 @@ anims/Wind = SubResource( 3 )
 [node name="WASD_Keys" type="Sprite" parent="."]
 position = Vector2( 700, -164 )
 scale = Vector2( 2, 2 )
-texture = ExtResource( 4 )
+texture = ExtResource( 2 )
 hframes = 4
 frame = 1
 
@@ -218,5 +218,5 @@ anims/Play = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="WASD_Keys"]
 position = Vector2( 15, 35 )
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 hframes = 2

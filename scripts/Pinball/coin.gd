@@ -18,7 +18,7 @@ func _integrate_forces(state):#only runs in mode is rigid
 	position = get_global_mouse_position()
 	state.transform.origin = global_position
 	if not Input.is_action_pressed("lmb"):
-		mode = MODE_RIGID
+#		mode = MODE_RIGID
 		clicked = false
 		set_collision_layer_bit(0,true)
 		set_collision_mask_bit(0,true)
