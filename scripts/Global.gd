@@ -25,6 +25,7 @@ func _ready():
 func start_game():
 	call_deferred("_deferred_start_game")
 	InventoryData.start_game()
+#	AudioManager.start_music()
 func _deferred_start_game():
 	var old_scene = current_scene
 	# Load the new scene.
@@ -41,6 +42,7 @@ func _deferred_start_game():
 	old_scene.free()
 func _on_end_game():
 	call_deferred("_deferred_on_end_game")
+	AudioManager.stop_music()
 func _deferred_on_end_game():
 	# Load the new scene.
 	current_scene.free()

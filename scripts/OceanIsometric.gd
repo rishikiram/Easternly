@@ -4,8 +4,8 @@ const screen_size = Vector2(720, 450)
 var rng = RandomNumberGenerator.new()
 
 #enum {SIXbySIX, TENbyTEN, CIRCLE}
-const DIMENTIONS = [Vector2(1,1), Vector2(2,2), Vector2(2,2)]
-const PATHS = ["res://scenes/Islands/6x6", "res://scenes/Islands/12x12", "res://scenes/Islands/12x12"]
+const DIMENTIONS = [Vector2(1,1), Vector2(2,2), Vector2(2,2),Vector2(1,1)]
+const PATHS = ["res://scenes/Islands/6x6", "res://scenes/Islands/12x12", "res://scenes/Islands/12x12","res://scenes/Islands/Trading Islands"]
 
 var next_chunk_position  = 0
 var chunk_buffer = 50
@@ -22,6 +22,8 @@ func _ready():
 		run_tutorial = false
 		
 	load_chunk(Vector2(next_chunk_position,-225))
+	yield(get_tree().create_timer(4),"timeout")
+	AudioManager.start_music()
 func load_tutorial():
 	#load wind tutorial
 	$"WindParrallelX/Wind".visible = false
@@ -146,7 +148,30 @@ func generate_map(size=Vector2(12,5), density = 30):
 						map_matrix[x_cord+k][y_cord+l] = 0 #false, occupied
 				break
 			j += 1
-		
+	
+	#add x trading islands
+	var j = 0
+	for _i in range(1):
+		while j < 100:#no infinite loop
+				#random position and
+				var x_cord = Global.rng.randi_range(0,map_matrix.size()-1)#(0, 16)
+				var y_cord = Global.rng.randi_range(0,map_matrix[0].size()-1)#(0, 15)
+				
+				#check no other islands in area
+				var bad_island = false
+				for k in range(DIMENTIONS[3].x):
+					for l in range(DIMENTIONS[3].y):
+						if x_cord+k >= map_matrix.size() or y_cord+l >= map_matrix[0].size() or map_matrix[x_cord+k][y_cord+l] != 1:
+							bad_island = true
+							break
+				if not bad_island:
+					island_list.append([3, Vector2(x_cord, y_cord)])
+					#update map
+					for k in range(DIMENTIONS[3].x):
+						for l in range(DIMENTIONS[3].y):
+							map_matrix[x_cord+k][y_cord+l] = 0 #false, occupied
+					break
+				j += 1
 	#return list of position and island ids
 #	for row in map_matrix:
 #		print(row)

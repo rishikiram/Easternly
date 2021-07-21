@@ -13,12 +13,14 @@ func start_game():
 func add_coins(amount = 1)->bool:
 	coins += amount
 	emit_signal("update_HUD")
+	AudioManager.gain_coin()
 	return true
 func remove_coins(amount = 1)->bool:
 	coins -= amount
 	emit_signal("update_HUD")
 	if coins < 0:
 		emit_signal("end_game")
+	AudioManager.loose_coin()
 	#if driving ship, or end of pinball scene, end game
 	return true
 	

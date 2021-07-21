@@ -75,7 +75,7 @@ gdinv/ItemJsonPaths=PoolStringArray( "res://resources/item data/" )
 
 config/name="Easternly"
 run/main_scene="res://scenes/StartMenu.tscn"
-config/icon="res://art/Ocean_Iso_Tileste/shop_flag_iso.png"
+config/icon="res://Square_screenshot.png"
 
 [autoload]
 
@@ -85,6 +85,7 @@ PlayerVariables="res://scripts/PlayerVariables.gd"
 GDInv_ItemDB="*res://addons/gdinv/GDInv_ItemDB.gd"
 QuestDB="res://scripts/Singletons/Quest_DB.gd"
 InventoryData="*res://scripts/Singletons/InventoryData.gd"
+AudioManager="*res://scenes/AudioManager.tscn"
 
 [debug]
 

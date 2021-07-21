@@ -36,6 +36,11 @@ func get_wind_force():
 	
 func _process(delta):
 	rotate_mesh(rotation)
+#func _input(event):
+#	if event.is_action_pressed("shift"):
+#		var image = get_viewport().get_texture().get_data()
+#		image.flip_y()
+#		image.save_png("screenshot.png")
 	
 func rotate_mesh(rot):
 	$Viewport/Ship3D/mesh.rotation = Vector3(0, -rot, 0)
