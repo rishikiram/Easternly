@@ -45,7 +45,7 @@ config/icon="res://Square_screenshot.png"
 
 Global="*res://scripts/Global.gd"
 GameData="*res://scripts/Singletons/GameData.gd"
-GDInv_ItemDB="*res://addons/gdinv/GDInv_ItemDB.gd"
+GDInv_ItemDB="res://addons/gdinv/GDInv_ItemDB.gd"
 AudioManager="*res://scenes/AudioManager.tscn"
 
 [debug]

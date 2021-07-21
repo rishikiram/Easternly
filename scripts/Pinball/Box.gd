@@ -1,17 +1,24 @@
 extends StaticBody2D
 
 var count:= 0
-var item:GDInv_ItemDefinition
+
+enum ITEM  {blue, orange, pink, coconut}
+var item_sprites = [
+	preload("res://art/item sprites/starfish_blue.png"),
+	preload("res://art/item sprites/starfish_orange.png"),
+	preload("res://art/item sprites/seashell_pink.png"),
+	preload("res://art/item sprites/coconut.png")
+]
+var item = ITEM.coconut
 signal coin_landed
-export (String) var item_manual := ""
+export (int) var item_manual = 0
 export (bool) var delete_coins := true
+
 func _ready():
-	if item_manual != "":
-		set_item(GDInv_ItemDB.get_item_by_id(item_manual))
-func set_item(i: GDInv_ItemDefinition):
+	set_item(item_manual)
+func set_item(i: int):
 	item = i
-	var texture_path = "res://art/item sprites/%s.png" % item.identifier
-	$Sprite2/item.texture = load(texture_path)
+	$Sprite2/item.texture = item_sprites[item]
 
 func _on_Area2D_body_entered(body):
 	if not body.is_in_group("coin") or body.clicked:

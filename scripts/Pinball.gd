@@ -21,7 +21,7 @@ func _ready():
 	for child in $Boxes.get_children():
 		var i = Global.rng.randi_range(0,3)
 		box_count[i] += 1
-		child.set_item( GDInv_ItemDB.get_item_by_id(ITEMS[i] ) ) 
+		child.set_item(i) 
 		child.connect("coin_landed", self, "box_activated")
 	$"Betting Panel".ready_boxes(box_count)
 
@@ -36,17 +36,18 @@ func start():
 	#give rewards after all items land
 	
 
-func box_activated(item:GDInv_ItemDefinition, x_coin):
-	var i = ITEMS.find(x_coin.item)
-	if i >=0:
-		items_done[i] = true
-		check_finish_pinball()
-	if item.identifier == x_coin.item:
-		i = ITEMS.find(item.identifier)
-		earn_coins($"Betting Panel".bets[i] * $"Betting Panel".rewards[i])
-		print("earned: ",$"Betting Panel".bets[i] * $"Betting Panel".rewards[i])
-	elif x_coin.item == "":
+func box_activated(item, x_coin):#item is a number, so i x_coin
+	if x_coin.item < 0:
 		earn_coins(1,false)
+		return
+		
+	items_done[x_coin.item] = true
+	check_finish_pinball()
+	if x_coin.item == item:
+#		i = ITEMS.find(item.identifier)
+		earn_coins($"Betting Panel".bets[item] * $"Betting Panel".rewards[item])
+		print("earned: ",$"Betting Panel".bets[item] * $"Betting Panel".rewards[item])
+	
 
 func earn_coins(i, add_coin = true):
 	if add_coin:

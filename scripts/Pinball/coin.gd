@@ -1,6 +1,6 @@
 extends RigidBody2D
 var clicked:=false
-var item:=""
+var item = -1
 func _ready():
 	set_physics_process(false)
 

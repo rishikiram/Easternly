@@ -27,7 +27,7 @@ func spawn_items():
 	for box in $Boxes.get_children():
 		box.get_node("Area2D").monitoring = false
 		var new_coin = coin.instance()
-		new_coin.get_node("Sprite").texture = load("res://art/item sprites/" + box.item_manual + ".png")
+		new_coin.get_node("Sprite").texture = box.get_node("Sprite2/item").texture #load("res://art/item sprites/" + box.item_manual + ".png")
 		get_node(coin_parent).add_child(new_coin)
 		new_coin.global_position = box.global_position
 		new_coin.item = box.item_manual

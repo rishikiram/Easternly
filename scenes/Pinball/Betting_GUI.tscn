@@ -236,19 +236,18 @@ position = Vector2( 0, -0.5 )
 
 [node name="Box" parent="Boxes" instance=ExtResource( 7 )]
 position = Vector2( 7.24691, 9.51635 )
-item_manual = "starfish_blue"
 
 [node name="Box2" parent="Boxes" instance=ExtResource( 7 )]
 position = Vector2( 23.2469, 9.51635 )
-item_manual = "starfish_orange"
+item_manual = 1
 
 [node name="Box3" parent="Boxes" instance=ExtResource( 7 )]
 position = Vector2( 39.2469, 9.51635 )
-item_manual = "seashell_pink"
+item_manual = 2
 
 [node name="Box4" parent="Boxes" instance=ExtResource( 7 )]
 position = Vector2( 55.2469, 9.51635 )
-item_manual = "coconut"
+item_manual = 3
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 32.2469, 44.1052 )
