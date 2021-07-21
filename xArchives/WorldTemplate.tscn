@@ -2,13 +2,13 @@
 
 [ext_resource path="res://xArchives/BeachTileset.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/GUI/HUD.tscn" type="PackedScene" id=2]
-[ext_resource path="res://art/Barrel.png" type="Texture" id=3]
+[ext_resource path="res://xArchives/Barrel.png" type="Texture" id=3]
 [ext_resource path="res://xArchives/BeachTilesetTrees/Treehamock.png" type="Texture" id=4]
 [ext_resource path="res://xArchives/BeachTilesetTrees/Tree_big.png" type="Texture" id=5]
 [ext_resource path="res://xArchives/BeachForegroundTileset.tscn" type="PackedScene" id=6]
-[ext_resource path="res://art/ShopFlag.png" type="Texture" id=8]
+[ext_resource path="res://xArchives/ShopFlag.png" type="Texture" id=8]
 [ext_resource path="res://xArchives/BeachTilesetTrees/Tree2.png" type="Texture" id=9]
-[ext_resource path="res://art/Table.png" type="Texture" id=10]
+[ext_resource path="res://xArchives/Table.png" type="Texture" id=10]
 [ext_resource path="res://xArchives/BeachTilesetTrees/Tree1.png" type="Texture" id=11]
 
 [sub_resource type="CapsuleShape2D" id=1]

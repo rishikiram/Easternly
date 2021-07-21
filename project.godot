@@ -81,9 +81,7 @@ config/icon="res://Square_screenshot.png"
 
 Global="*res://scripts/Global.gd"
 GameData="*res://scripts/Singletons/GameData.gd"
-PlayerVariables="res://scripts/PlayerVariables.gd"
 GDInv_ItemDB="*res://addons/gdinv/GDInv_ItemDB.gd"
-QuestDB="res://scripts/Singletons/Quest_DB.gd"
 InventoryData="*res://scripts/Singletons/InventoryData.gd"
 AudioManager="*res://scenes/AudioManager.tscn"
 
