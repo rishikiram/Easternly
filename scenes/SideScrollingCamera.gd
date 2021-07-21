@@ -8,7 +8,7 @@ func _ready():
 		print("Camera needs a player!")
 	player = get_node(player_path)
 	get_tree().get_root().connect("size_changed", self, "on_window_resize")
-
+	on_window_resize()
 func on_window_resize():
 	if OS.window_size == Vector2(1440, 900):
 		zoom = Vector2(.5,.5)

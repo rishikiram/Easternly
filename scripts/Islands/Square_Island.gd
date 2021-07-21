@@ -7,8 +7,6 @@ var seen := false
 func _ready():
 	set_process(false)
 func _process(delta):
-	print($Tween.tell())
-	print()
 	$Path2D/PathFollow2D.get_child(0).rotate_mesh($Path2D/PathFollow2D.rotation)
 #	$Path2D/PathFollow2D.unit_offset += delta/3
 #	print($Path2D/PathFollow2D.unit_offset)
@@ -16,6 +14,9 @@ func _process(delta):
 #
 #	print(tween)
 func make_player_child(player:KinematicBody2D):
+	var angle = Vector2(1,0).angle_to(position - player.position + Vector2(0,48))
+	$Path2D/PathFollow2D.unit_offset = angle/(2*PI)
+	
 	if player.get_parent():
 		player.get_parent().remove_child(player)
 	$Path2D/PathFollow2D.add_child(player)
@@ -25,9 +26,11 @@ func make_player_child(player:KinematicBody2D):
 	player.set_process(false)
 	set_process(true)
 	
+	
+	
 	var tween = $Tween
 	tween.interpolate_property($Path2D/PathFollow2D, "unit_offset",
-		0.0, 1.0, 4,
+		$Path2D/PathFollow2D.unit_offset, $Path2D/PathFollow2D.unit_offset+0.7, 4,
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
 

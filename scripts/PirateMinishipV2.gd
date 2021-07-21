@@ -25,11 +25,11 @@ func get_forces():
 func get_wind_force():
 	var wind_vector := Vector2(InventoryData.wind_speed_counter,0)#Vector2(1,0)
 	
-	if $"../../WindParrallelX/Wind" and (not $"../../WindParrallelX/Wind".visible):
+	if not get_tree().get_nodes_in_group('wind') or (not get_tree().get_nodes_in_group('wind')[0].visible):
 		return Vector2(0,0)
 		
 	var ship_dir = Vector2(1,0).rotated(rotation)
-	var sail_dir:Vector2 = ship_dir#sail_path.get_sail_direction().rotated(rotation)
+#	var sail_dir:Vector2 = ship_dir#sail_path.get_sail_direction().rotated(rotation)
 	
 #	var wind_sail_angle = sail_dir.angle_to(wind_vector)
 	return ship_dir*(ship_dir.dot(wind_vector)*wind_force_coefficient)

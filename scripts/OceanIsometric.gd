@@ -17,26 +17,20 @@ signal resource_loaded
 
 export (bool) var run_tutorial:= false
 func _ready():
-	#rng.randomize()
 	if run_tutorial:
 		load_tutorial()
 		run_tutorial = false
+		
 	load_chunk(Vector2(next_chunk_position,-225))
-	$Background/OceanBackround.on_window_resize()
-	$Camera2D.on_window_resize()
 func load_tutorial():
 	#load wind tutorial
 	$"WindParrallelX/Wind".visible = false
 	$"YSort/Pirate Miniship".idle = true
-	#load key tutorial
-	
-	#load coins tutorial
+	#load key coins tutorial
 	var tutorial = load("res://scenes/Islands/Screen/Tutorial.tscn").instance()
 	$YSort.add_child(tutorial)#position = 0,0
 	next_chunk_position = tutorial.size.x
 	
-#	yield(get_tree().create_timer(5),"timeout")
-#	$"WindParrallelX/Wind".visible = true
 func _process(time):
 	if loader == null:
 		# no need to process anymore
@@ -98,7 +92,7 @@ func load_chunk(position = Vector2(0,-225), screen = screen_size, num_screens = 
 		#print(new_island.position)
 		# transform by chunk x-cordinate
 	$PlayerDetector.position = Vector2(position.x + screen.x*num_screens -720,0)
-	next_chunk_position = position.x + screen.x*num_screens + chunk_buffer
+	next_chunk_position = position.x + convert_isometric_coordinate(Vector2(12,-12)).x #2304
 	InventoryData.increase_difficulty()
 	
 	#50%change of adding screen island
@@ -134,8 +128,8 @@ func generate_map(size=Vector2(12,5), density = 30):
 		while j < 100:#no infinite loop
 			#random position and type
 			var island_type = Global.rng.randi_range(0, 2)#if island type is static there is no bug not sure why
-			var x_cord = Global.rng.randi_range(0, 16)
-			var y_cord = Global.rng.randi_range(0, 15)
+			var x_cord = Global.rng.randi_range(0,map_matrix.size()-1)#(0, 16)
+			var y_cord = Global.rng.randi_range(0,map_matrix[0].size()-1)#(0, 15)
 			
 			#check no other islands in area
 			var bad_island = false
@@ -177,7 +171,7 @@ func create_isometric_matrix(h=5, w=12) -> Array:
 				matrix[x][y] = 0
 			else:
 				matrix[x][y] = 1
-		#print(matrix[x], " row: ",x)
+#		print(matrix[x], " row: ",x)
 	
 	return matrix
 func convert_isometric_coordinate(iso:Vector2):

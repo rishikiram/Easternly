@@ -1,14 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://art/Pinball/coin_8x8.png" type="Texture" id=1]
 [ext_resource path="res://PixelFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://scripts/HUD.gd" type="Script" id=3]
 [ext_resource path="res://scenes/GUI/PauseMenu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/GUI/Clock.tscn" type="PackedScene" id=9]
-[ext_resource path="res://art/item sprites/starfish_orange.png" type="Texture" id=10]
-[ext_resource path="res://art/item sprites/carpet.png" type="Texture" id=11]
-[ext_resource path="res://art/item sprites/mango_big.png" type="Texture" id=12]
-[ext_resource path="res://art/item sprites/porcelain.png" type="Texture" id=13]
 
 [node name="HUD" type="MarginContainer"]
 anchor_right = 1.0
@@ -58,178 +54,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Starfish" type="HBoxContainer" parent="Top Right"]
-visible = false
-margin_top = 52.0
-margin_right = 144.0
-margin_bottom = 100.0
-size_flags_horizontal = 8
-
-[node name="Texture" type="TextureRect" parent="Top Right/Starfish"]
-margin_right = 64.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 64, 48 )
-texture = ExtResource( 10 )
-expand = true
-stretch_mode = 6
-
-[node name="Label" type="Label" parent="Top Right/Starfish"]
-margin_left = 68.0
-margin_top = 11.0
-margin_right = 144.0
-margin_bottom = 37.0
-rect_min_size = Vector2( 76, 0 )
-custom_fonts/font = ExtResource( 2 )
-text = "10"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Mango" type="HBoxContainer" parent="Top Right"]
-visible = false
-margin_top = 104.0
-margin_right = 144.0
-margin_bottom = 152.0
-size_flags_horizontal = 8
-
-[node name="Texture" type="TextureRect" parent="Top Right/Mango"]
-margin_right = 64.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 64, 48 )
-texture = ExtResource( 12 )
-expand = true
-stretch_mode = 6
-
-[node name="Label" type="Label" parent="Top Right/Mango"]
-margin_left = 68.0
-margin_top = 11.0
-margin_right = 144.0
-margin_bottom = 37.0
-rect_min_size = Vector2( 76, 0 )
-custom_fonts/font = ExtResource( 2 )
-text = "10"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Carpet" type="HBoxContainer" parent="Top Right"]
-visible = false
-margin_top = 156.0
-margin_right = 144.0
-margin_bottom = 204.0
-size_flags_horizontal = 8
-
-[node name="Texture" type="TextureRect" parent="Top Right/Carpet"]
-margin_right = 64.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 64, 48 )
-texture = ExtResource( 11 )
-expand = true
-stretch_mode = 6
-
-[node name="Label" type="Label" parent="Top Right/Carpet"]
-margin_left = 68.0
-margin_top = 11.0
-margin_right = 144.0
-margin_bottom = 37.0
-rect_min_size = Vector2( 76, 0 )
-custom_fonts/font = ExtResource( 2 )
-text = "10"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Porcelain" type="HBoxContainer" parent="Top Right"]
-visible = false
-margin_top = 208.0
-margin_right = 144.0
-margin_bottom = 256.0
-size_flags_horizontal = 8
-
-[node name="Texture" type="TextureRect" parent="Top Right/Porcelain"]
-margin_right = 64.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 64, 48 )
-texture = ExtResource( 13 )
-expand = true
-stretch_mode = 6
-
-[node name="Label" type="Label" parent="Top Right/Porcelain"]
-margin_left = 68.0
-margin_top = 11.0
-margin_right = 144.0
-margin_bottom = 37.0
-rect_min_size = Vector2( 76, 0 )
-custom_fonts/font = ExtResource( 2 )
-text = "10"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CoinContainer" type="HBoxContainer" parent="Top Right"]
-visible = false
-margin_top = 52.0
-margin_right = 607.0
-margin_bottom = 116.0
-mouse_filter = 2
-alignment = 2
-
-[node name="Starfish" type="Label" parent="Top Right/CoinContainer"]
-margin_top = 19.0
-margin_right = 121.0
-margin_bottom = 45.0
-custom_fonts/font = ExtResource( 2 )
-text = "Shells: 10"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Starfish Texture" type="TextureRect" parent="Top Right/CoinContainer"]
-margin_left = 125.0
-margin_right = 189.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 64, 64 )
-texture = ExtResource( 10 )
-stretch_mode = 6
-
-[node name="Mango" type="Label" parent="Top Right/CoinContainer"]
-margin_left = 193.0
-margin_top = 19.0
-margin_right = 314.0
-margin_bottom = 45.0
-custom_fonts/font = ExtResource( 2 )
-text = "Shells: 10"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Mango Texture" type="TextureRect" parent="Top Right/CoinContainer"]
-margin_left = 318.0
-margin_right = 382.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 64, 64 )
-texture = ExtResource( 12 )
-stretch_mode = 6
-
-[node name="Carpet" type="Label" parent="Top Right/CoinContainer"]
-margin_left = 386.0
-margin_top = 19.0
-margin_right = 539.0
-margin_bottom = 45.0
-custom_fonts/font = ExtResource( 2 )
-text = "Carpets: 10"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Carpet Texture" type="TextureRect" parent="Top Right/CoinContainer"]
-margin_left = 543.0
-margin_right = 607.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 64, 64 )
-texture = ExtResource( 11 )
-stretch_mode = 6
-
 [node name="Top Left" type="HBoxContainer" parent="."]
 margin_left = 12.0
 margin_top = 15.0
@@ -237,20 +61,6 @@ margin_right = 12.0
 margin_bottom = 15.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-
-[node name="ClockLabel" type="Label" parent="Top Left"]
-visible = false
-margin_right = 77.0
-margin_bottom = 26.0
-custom_fonts/font = ExtResource( 2 )
-text = "Clock:"
-
-[node name="Time" type="Label" parent="Top Left"]
-visible = false
-margin_right = 19.0
-margin_bottom = 26.0
-custom_fonts/font = ExtResource( 2 )
-text = "0"
 
 [node name="Clock" parent="Top Left" instance=ExtResource( 9 )]
 position = Vector2( 60, 60 )

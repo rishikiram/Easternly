@@ -17,7 +17,7 @@ var current_torque:float
 var velocity :Vector2
 var current_force:float
 
-var idle:=false
+export (bool) var idle:=false
 
 onready var spin_coin = preload("res://scenes/Coin_Spinning.tscn")
 

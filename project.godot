@@ -74,7 +74,7 @@ gdinv/ItemJsonPaths=PoolStringArray( "res://resources/item data/" )
 [application]
 
 config/name="Easternly"
-run/main_scene="res://scenes/StartScreen.tscn"
+run/main_scene="res://scenes/StartMenu.tscn"
 config/icon="res://art/Ocean_Iso_Tileste/shop_flag_iso.png"
 
 [autoload]

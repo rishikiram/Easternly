@@ -8,8 +8,8 @@ func _ready():
 	if camera_path:
 		camera = get_node(camera_path)
 	get_tree().get_root().connect("size_changed", self, "on_window_resize")
-
-
+	on_window_resize()
+	
 
 func _process(delta):
 	if camera:

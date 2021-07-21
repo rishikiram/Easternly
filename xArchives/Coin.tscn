@@ -1,18 +1,18 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://art/Coin/Coin2.png" type="Texture" id=1]
-[ext_resource path="res://art/Coin/Coin5.png" type="Texture" id=2]
-[ext_resource path="res://art/Coin/Coin3.png" type="Texture" id=3]
-[ext_resource path="res://art/Coin/Coin8.png" type="Texture" id=4]
-[ext_resource path="res://art/Coin/Coin6.png" type="Texture" id=5]
-[ext_resource path="res://art/Coin/Coin4.png" type="Texture" id=6]
-[ext_resource path="res://art/Coin/Coin1.png" type="Texture" id=7]
-[ext_resource path="res://art/Coin/Coin7.png" type="Texture" id=8]
-[ext_resource path="res://scripts/Coin.gd" type="Script" id=9]
+[ext_resource path="res://art/Coin/Coin4.png" type="Texture" id=1]
+[ext_resource path="res://art/Coin/Coin8.png" type="Texture" id=2]
+[ext_resource path="res://art/Coin/Coin6.png" type="Texture" id=3]
+[ext_resource path="res://art/Coin/Coin7.png" type="Texture" id=4]
+[ext_resource path="res://art/Coin/Coin1.png" type="Texture" id=5]
+[ext_resource path="res://scripts/Coin.gd" type="Script" id=6]
+[ext_resource path="res://art/Coin/Coin5.png" type="Texture" id=7]
+[ext_resource path="res://art/Coin/Coin3.png" type="Texture" id=8]
+[ext_resource path="res://art/Coin/Coin2.png" type="Texture" id=9]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 7 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 1 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ) ],
 "loop": true,
 "name": "default",
 "speed": 10.0
@@ -28,11 +28,11 @@ radius = 80.0
 contacts_reported = 1
 contact_monitor = true
 linear_damp = 1.0
-script = ExtResource( 9 )
+script = ExtResource( 6 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 5
+frame = 2
 playing = true
 offset = Vector2( -0.5, 0 )
 
