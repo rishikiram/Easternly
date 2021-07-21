@@ -3,7 +3,7 @@ extends Node
 const screen_size = Vector2(720, 450)
 var rng = RandomNumberGenerator.new()
 
-enum {SIXbySIX, TENbyTEN, CIRCLE}
+#enum {SIXbySIX, TENbyTEN, CIRCLE}
 const DIMENTIONS = [Vector2(1,1), Vector2(2,2), Vector2(2,2)]
 const PATHS = ["res://scenes/Islands/6x6", "res://scenes/Islands/12x12", "res://scenes/Islands/12x12"]
 
@@ -15,10 +15,28 @@ var recent_resource
 var time_max = 1
 signal resource_loaded
 
+export (bool) var run_tutorial:= false
 func _ready():
 	#rng.randomize()
-	load_chunk()
+	if run_tutorial:
+		load_tutorial()
+		run_tutorial = false
+	load_chunk(Vector2(next_chunk_position,-225))
 	$Background/OceanBackround.on_window_resize()
+	$Camera2D.on_window_resize()
+func load_tutorial():
+	#load wind tutorial
+	$"WindParrallelX/Wind".visible = false
+	$"YSort/Pirate Miniship".idle = true
+	#load key tutorial
+	
+	#load coins tutorial
+	var tutorial = load("res://scenes/Islands/Screen/Tutorial.tscn").instance()
+	$YSort.add_child(tutorial)#position = 0,0
+	next_chunk_position = tutorial.size.x
+	
+#	yield(get_tree().create_timer(5),"timeout")
+#	$"WindParrallelX/Wind".visible = true
 func _process(time):
 	if loader == null:
 		# no need to process anymore
@@ -57,7 +75,7 @@ func load_chunk(position = Vector2(0,-225), screen = screen_size, num_screens = 
 	# also moves player detector to near end of new chunk 
 	
 	#create virtual map for new islands
-	var map = generate_map(InventoryData.island_density_counter)
+	var map = generate_map(Vector2(12,5),InventoryData.island_density_counter)
 	#print("map is: \n", map)
 	#load/instantiate islands in map into scene
 	var island_resources := {}
@@ -82,6 +100,19 @@ func load_chunk(position = Vector2(0,-225), screen = screen_size, num_screens = 
 	$PlayerDetector.position = Vector2(position.x + screen.x*num_screens -720,0)
 	next_chunk_position = position.x + screen.x*num_screens + chunk_buffer
 	InventoryData.increase_difficulty()
+	
+	#50%change of adding screen island
+	if true:#Global.rng.randi()%2 == 0:
+		loader = ResourceLoader.load_interactive("res://scenes/Islands/Screen/IslandScreen_a.tscn")
+		set_process(true)
+		yield(self, "resource_loaded")
+		var island = recent_resource.instance()
+		$YSort.add_child(island)
+		island.position = Vector2(next_chunk_position,0)
+		next_chunk_position += island.size.x + chunk_buffer
+		$PlayerDetector.position = Vector2(next_chunk_position-720,0)
+		
+	
 
 func generate_map(size=Vector2(12,5), density = 30):
 	var map_matrix := create_isometric_matrix()#5,12 #pass in size ideally
@@ -182,3 +213,10 @@ func _on_PlayerDetector_body_entered(body):
 	print("body entered ",self.name," is ",body.name)
 	if body.is_in_group("miniship"):
 		load_chunk(Vector2(next_chunk_position,-225))
+
+
+func _on_Area2D_area_entered(area):
+	if area.is_in_group("IslandArea"):
+		area.get_parent().queue_free()
+
+

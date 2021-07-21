@@ -1,20 +1,14 @@
 extends Node2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var seen := false
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	set_process(false)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 func _process(delta):
+	print($Tween.tell())
+	print()
 	$Path2D/PathFollow2D.get_child(0).rotate_mesh($Path2D/PathFollow2D.rotation)
 #	$Path2D/PathFollow2D.unit_offset += delta/3
 #	print($Path2D/PathFollow2D.unit_offset)
@@ -33,9 +27,8 @@ func make_player_child(player:KinematicBody2D):
 	
 	var tween = $Tween
 	tween.interpolate_property($Path2D/PathFollow2D, "unit_offset",
-		0, 1, 4,
+		0.0, 1.0, 4,
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		
 	tween.start()
 
 	

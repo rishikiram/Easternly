@@ -16,7 +16,7 @@ func remove_coins(amount = 1)->bool:
 	return true
 	
 var island_density_counter = 25
-var wind_speed_counter = .8
+var wind_speed_counter = .7
 
 func increase_difficulty(i= 1):
 	island_density_counter += i

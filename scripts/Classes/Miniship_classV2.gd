@@ -8,7 +8,7 @@ export (float) var v_drag:= 0.75
 export (float) var h_drag:= 5
 export (float) var min_bounce_speed = 100
 
-export (float) var max_rotational_speed:=2.0
+export (float) var max_rotational_speed:=2.4
 export (float) var rotation_acceleration:=0.2
 export (float) var r_drag:=0.2
 
@@ -17,10 +17,11 @@ var current_torque:float
 var velocity :Vector2
 var current_force:float
 
+var idle:=false
+
+onready var spin_coin = preload("res://scenes/Coin_Spinning.tscn")
 
 func get_input()->void:
-	current_torque = 0
-	#check for max rotational speed  
 	if Input.is_action_pressed('d'): 
 		current_torque += rotation_acceleration
 	if Input.is_action_pressed('a'): 
@@ -37,11 +38,25 @@ func get_torque():
 	pass
 func loose_coin():
 	InventoryData.remove_coins(1)
+	#create coin
+	var new_coin = spin_coin.instance()
+	#make it fly in an arc
+	new_coin.position = position
+	new_coin.idle = false
+	new_coin.monitoring = false
+	new_coin.monitorable = false
+	new_coin.z_index = 1
+	new_coin.direction = Vector2(1,0).rotated(Global.rng.randf_range(0,2*PI))
+	get_parent().add_child(new_coin)
+	
+	#dissapear
+	
 	
 func _physics_process(delta):
 	##reset##
-	current_torque = 0 
-	get_input()
+	current_torque = 0
+	if not idle: 
+		get_input()
 	
 	#####turn ship#####
 		#ship would contunuosly rotate for some reason without this

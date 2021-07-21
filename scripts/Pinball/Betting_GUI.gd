@@ -56,3 +56,27 @@ func _on_TextureButton_button_down():
 	new_coin.set_physics_process(true)
 	new_coin.clicked = true
 	new_coin.input_pickable = true
+
+
+func _on_Switch_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton and event.pressed:
+		
+		$Switch.input_pickable = false
+		
+		var tween = $Tween
+		tween.interpolate_property($Switch/Lever, "rotation",
+		0, -PI/2, 1,
+		Tween.TRANS_ELASTIC, Tween.EASE_OUT)
+		tween.start()
+		yield(tween,"tween_all_completed")
+		spawn_items()
+
+
+func _on_Switch_mouse_entered():
+	$"Switch/Lever".frame = 1
+	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+
+
+func _on_Switch_mouse_exited():
+	$"Switch/Lever".frame = 0
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)

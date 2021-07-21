@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://art/Pinball/plank.png" type="Texture" id=1]
 [ext_resource path="res://art/Pinball/plank_top.png" type="Texture" id=2]
@@ -7,21 +7,30 @@
 [ext_resource path="res://PixelFont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://scripts/Pinball/Betting_GUI.gd" type="Script" id=6]
 [ext_resource path="res://scenes/Pinball/Box.tscn" type="PackedScene" id=7]
+[ext_resource path="res://art/Pinball/Lever.png" type="Texture" id=8]
 [ext_resource path="res://art/Pinball/coin_8x8.png" type="Texture" id=9]
 [ext_resource path="res://art/Pinball/box_top.png" type="Texture" id=10]
 
-[sub_resource type="PhysicsMaterial" id=7]
+[sub_resource type="PhysicsMaterial" id=1]
 friction = 5.0
 rough = true
 bounce = 0.5
 absorbent = true
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 2, 10 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 10 )
 region = Rect2( 6, 4, 14, 11 )
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 7.01293
+height = 9.13625
+
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 4.46971
+height = 4.16066
 
 [node name="Betting_Board" type="Node2D"]
 script = ExtResource( 6 )
@@ -50,7 +59,7 @@ __meta__ = {
 [node name="Plank" type="StaticBody2D" parent="."]
 position = Vector2( -3, 32 )
 scale = Vector2( 0.85, 1 )
-physics_material_override = SubResource( 7 )
+physics_material_override = SubResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -110,7 +119,7 @@ region_rect = Rect2( 4, 1, 7, 23 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Side_left2"]
 position = Vector2( -2, 19 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Side_left6" type="StaticBody2D" parent="."]
 visible = false
@@ -139,7 +148,7 @@ region_rect = Rect2( 4, 1, 7, 23 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Side_left6"]
 position = Vector2( -2, 19 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Side_left3" type="StaticBody2D" parent="."]
 position = Vector2( 16.2469, -5 )
@@ -166,7 +175,7 @@ region_rect = Rect2( 4, 86, 5, 16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Side_left3"]
 position = Vector2( -2, 19 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Side_left4" type="StaticBody2D" parent="."]
 position = Vector2( 32.2469, -5 )
@@ -193,7 +202,7 @@ region_rect = Rect2( 4, 86, 5, 16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Side_left4"]
 position = Vector2( -2, 19 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Side_left5" type="StaticBody2D" parent="."]
 position = Vector2( 48.2469, -5 )
@@ -220,7 +229,7 @@ region_rect = Rect2( 4, 86, 5, 16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Side_left5"]
 position = Vector2( -2, 19 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Boxes" type="Node2D" parent="."]
 position = Vector2( 0, -0.5 )
@@ -336,7 +345,7 @@ margin_left = 22.836
 margin_top = -20.0377
 margin_right = 36.836
 margin_bottom = -9.03773
-texture = SubResource( 8 )
+texture = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -352,8 +361,41 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Switch" type="StaticBody2D" parent="."]
+position = Vector2( -16.5, 9.016 )
+input_pickable = true
+collision_layer = 2
+collision_mask = 2
+
+[node name="Lever" type="Sprite" parent="Switch"]
+position = Vector2( 9, 7 )
+texture = ExtResource( 8 )
+offset = Vector2( -9, -6 )
+hframes = 2
+vframes = 2
+
+[node name="Thing" type="Sprite" parent="Switch"]
+texture = ExtResource( 8 )
+hframes = 2
+vframes = 2
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Switch"]
+position = Vector2( -1, -3.49965 )
+rotation = -0.785398
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Switch"]
+position = Vector2( 6, 7 )
+shape = SubResource( 5 )
+
+[node name="Tween" type="Tween" parent="."]
+
 [connection signal="coin_landed" from="Boxes/Box" to="." method="_on_Box_coin_landed"]
 [connection signal="coin_landed" from="Boxes/Box2" to="." method="_on_Box2_coin_landed"]
 [connection signal="coin_landed" from="Boxes/Box3" to="." method="_on_Box3_coin_landed"]
 [connection signal="coin_landed" from="Boxes/Box4" to="." method="_on_Box4_coin_landed"]
 [connection signal="button_down" from="TextureButton" to="." method="_on_TextureButton_button_down"]
+[connection signal="input_event" from="Switch" to="." method="_on_Switch_input_event"]
+[connection signal="mouse_entered" from="Switch" to="." method="_on_Switch_mouse_entered"]
+[connection signal="mouse_exited" from="Switch" to="." method="_on_Switch_mouse_exited"]

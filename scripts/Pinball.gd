@@ -34,7 +34,7 @@ func start():
 	#launch items one by one
 	
 	#give rewards after all items land
-	pass
+	
 
 func box_activated(item:GDInv_ItemDefinition, x_coin):
 	var i = ITEMS.find(x_coin.item)
@@ -52,11 +52,10 @@ func earn_coins(i):
 	InventoryData.add_coins(i)
 	for _j in range(i):
 		var nc = coin.instance()
-		nc.position = $"Betting Panel".position - Vector2(10,0)
+		nc.position = $"Betting Panel".position - Vector2(20,0)
 		add_child(nc)
-		yield(get_tree().create_timer(.25), "timeout")
+		yield(get_tree().create_timer(.2), "timeout")
 func fire_cannon(new_coin = null):
-	$Cannon.input_pickable = false # fire once
 	$Cannon/AnimationPlayer.play("Fire")
 	if new_coin == null:
 		new_coin = coin.instance()
@@ -73,20 +72,20 @@ func check_finish_pinball():
 		Global.goto_scene("res://scenes/OceanIsometric.tscn")
 		
 
-func _on_Cannon_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.pressed:
-		if $Cannon/AnimationPlayer.is_playing():
-			return
-		start()
-		_on_Cannon_mouse_exited()
-func _on_Cannon_mouse_entered():
-	if $Cannon/AnimationPlayer.is_playing():
-			return
-	$Cannon/Sprite3.visible = true
-	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
-func _on_Cannon_mouse_exited():
-	$Cannon/Sprite3.visible = false
-	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+#func _on_Cannon_input_event(viewport, event, shape_idx):
+#	if event is InputEventMouseButton and event.pressed:
+#		if $Cannon/AnimationPlayer.is_playing():
+#			return
+#		start()
+#		_on_Cannon_mouse_exited()
+#func _on_Cannon_mouse_entered():
+#	if $Cannon/AnimationPlayer.is_playing():
+#			return
+#	$Cannon/Sprite3.visible = true
+#	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+#func _on_Cannon_mouse_exited():
+#	$Cannon/Sprite3.visible = false
+#	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 func _on_Timer_timeout():
 	fire_cannon()
 

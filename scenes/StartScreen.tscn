@@ -26,7 +26,7 @@ script/source = "extends Button
 	
 func _on_Button_pressed():
 	print(\"pressed\")
-	InventoryData.add_coins(25)
+#	InventoryData.add_coins(25)
 	Global.goto_scene(\"res://scenes/OceanIsometric.tscn\")
 "
 
@@ -104,7 +104,7 @@ alignment = 2
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
 visible = false
-margin_right = 338.0
+margin_right = 1024.0
 margin_bottom = 298.0
 size_flags_horizontal = 3
 size_flags_vertical = 3

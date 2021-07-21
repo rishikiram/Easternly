@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/Miniships/Pirate Mini.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/OceanIsometric.gd" type="Script" id=2]
@@ -7,8 +7,15 @@
 [ext_resource path="res://scenes/GUI/HUD.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scripts/WindParallelX.gd" type="Script" id=6]
 [ext_resource path="res://art/Wind Animation/Wind1.png" type="Texture" id=7]
+[ext_resource path="res://scenes/Islands/6x6/Square_v2.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 75 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 100, 10 )
+
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 75, 300 )
 
 [node name="Node" type="Node"]
@@ -26,20 +33,37 @@ scroll_scale = 0.5
 [node name="Pirate Miniship" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( -100, 0 )
 z_index = 1
-max_rotational_speed = 2.4
-oar_force = 5.0
 
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="YSort/Pirate Miniship"]
-position = Vector2( 2.06916, 4.76837e-07 )
-scale = Vector2( 2.02966, 1.25 )
-rect = Rect2( -9, -10, 19, 20 )
+[node name="Square_v2" parent="YSort" instance=ExtResource( 8 )]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2( 2, 2 )
 current = true
-zoom = Vector2( 0.5, 0.5 )
+zoom = Vector2( 0.75, 0.75 )
 script = ExtResource( 3 )
 player_path = NodePath("../YSort/Pirate Miniship")
+
+[node name="Area2D" type="Area2D" parent="Camera2D"]
+position = Vector2( -247.519, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Area2D"]
+shape = SubResource( 1 )
+
+[node name="Top" type="Area2D" parent="Camera2D"]
+position = Vector2( 0, -140 )
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Top"]
+shape = SubResource( 2 )
+
+[node name="Bottom" type="Area2D" parent="Camera2D"]
+position = Vector2( 0, 140 )
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Bottom"]
+shape = SubResource( 2 )
 
 [node name="PlayerDetector" type="Area2D" parent="."]
 position = Vector2( 1024, 7.5 )
@@ -47,7 +71,7 @@ collision_layer = 32
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="WindParrallelX" type="CanvasLayer" parent="."]
 
@@ -59,7 +83,7 @@ texture = ExtResource( 7 )
 centered = false
 hframes = 13
 region_enabled = true
-region_rect = Rect2( 0, 0, 13312, 600 )
+region_rect = Rect2( 0, 0, 18720, 900 )
 script = ExtResource( 6 )
 camera_path = NodePath("../../Camera2D")
 scroll_scale = 2.0
@@ -76,7 +100,9 @@ layer = 2
 [node name="CoinContainer" parent="HUD/HUD/Top Right" index="5"]
 margin_right = 151.0
 
-[connection signal="viewport_exited" from="YSort/Pirate Miniship/VisibilityNotifier2D" to="YSort/Pirate Miniship" method="_on_VisibilityNotifier2D_viewport_exited"]
+[connection signal="area_entered" from="Camera2D/Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="body_entered" from="Camera2D/Top" to="Camera2D" method="_on_Top_body_entered"]
+[connection signal="body_entered" from="Camera2D/Bottom" to="Camera2D" method="_on_Bottom_body_entered"]
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_PlayerDetector_body_entered"]
 [connection signal="timeout" from="WindParrallelX/Wind/Timer" to="WindParrallelX/Wind" method="_on_Timer_timeout"]
 

@@ -32,6 +32,10 @@ func start_pinball():
 		$Camera2D.zoom, Vector2(.25,.25), 2,
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	
+#	tween.interpolate_property($"Background/OceanBackround", "scale",
+#		$"Background/OceanBackround".scale, $"Background/OceanBackround".scale*(.4/.25), 2,
+#		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	
 	#Vector2(145,-180)	
 	tween.interpolate_property($Pinball, "position",
 		$Pinball.position, pinball_position, 2.5,

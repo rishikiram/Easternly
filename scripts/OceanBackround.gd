@@ -13,7 +13,7 @@ func _ready():
 
 func _process(delta):
 	if camera:
-		region_rect.position = camera.position/scale.x / scroll_scale
+		region_rect.position = camera.position/scale.x / camera.zoom.x#scroll_scale
 
 func on_window_resize():
 	#print(OS.window_size)

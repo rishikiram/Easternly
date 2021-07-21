@@ -7,7 +7,7 @@
 [ext_resource path="res://art/Sails-sheet.png" type="Texture" id=6]
 [ext_resource path="res://scenes/Ship3D.tscn" type="PackedScene" id=7]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=1]
 radius = 1.0
 
 [node name="Pirate Miniship" type="KinematicBody2D" groups=[
@@ -79,7 +79,7 @@ collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 6.5, 0 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 500, 300 )

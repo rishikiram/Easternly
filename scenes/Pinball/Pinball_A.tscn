@@ -17,7 +17,7 @@
 [ext_resource path="res://art/Pinball/Cannon_highlighted.png" type="Texture" id=15]
 [ext_resource path="res://scenes/Pinball/Betting_GUI.tscn" type="PackedScene" id=16]
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3, 45 )
 
 [sub_resource type="PhysicsMaterial" id=2]
@@ -58,22 +58,22 @@ tracks/1/keys = {
 "values": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 11 ]
 }
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 0.74419, 10 )
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 2, 2.08345 )
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=8]
 radius = 2.5
 
-[sub_resource type="PhysicsMaterial" id=7]
+[sub_resource type="PhysicsMaterial" id=9]
 friction = 5.0
 rough = true
 bounce = 0.5
 absorbent = true
 
-[sub_resource type="GDScript" id=8]
+[sub_resource type="GDScript" id=10]
 script/source = "extends Area2D
 
 var count := 0
@@ -82,7 +82,7 @@ func _on_Area2D_body_entered(body):
 	$Node2D/RichTextLabel.text = str(count)
 "
 
-[sub_resource type="CircleShape2D" id=9]
+[sub_resource type="CircleShape2D" id=11]
 radius = 1.0
 
 [node name="Pinball" type="Node2D"]
@@ -137,7 +137,7 @@ region_rect = Rect2( 4, 1, 7, 101 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Side_left"]
 position = Vector2( -2, 49 )
-shape = SubResource( 10 )
+shape = SubResource( 1 )
 
 [node name="Side_left2" type="StaticBody2D" parent="."]
 position = Vector2( -23, 0 )
@@ -155,7 +155,7 @@ region_rect = Rect2( 4, 1, 7, 101 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Side_left2"]
 position = Vector2( -2, 44 )
-shape = SubResource( 10 )
+shape = SubResource( 1 )
 
 [node name="Boxes" type="Node2D" parent="."]
 
@@ -208,7 +208,6 @@ polygon = PoolVector2Array( -8, 9, 9, -8, -8, -8 )
 [node name="Cannon" type="StaticBody2D" parent="."]
 position = Vector2( -14, 95 )
 z_index = 1
-input_pickable = true
 collision_layer = 16
 collision_mask = 16
 
@@ -244,14 +243,14 @@ collision_layer = 0
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cannon/Trigger"]
-shape = SubResource( 11 )
+shape = SubResource( 6 )
 
 [node name="Area2D" type="Area2D" parent="Cannon"]
 position = Vector2( 16, -96.4715 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cannon/Area2D"]
 position = Vector2( -8.79125, 99 )
-shape = SubResource( 12 )
+shape = SubResource( 7 )
 
 [node name="Pegs" type="Node2D" parent="."]
 position = Vector2( -18.1772, -10.0753 )
@@ -274,7 +273,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle2"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle3" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 68.1772, 26.0753 )
@@ -291,7 +290,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle3"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle4" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 86.1772, 26.0753 )
@@ -308,7 +307,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle4"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle5" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 104.177, 26.0753 )
@@ -325,7 +324,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle5"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle23" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 32.1772, 86.0753 )
@@ -342,7 +341,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle23"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle24" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 50.1772, 86.0753 )
@@ -359,7 +358,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle24"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle25" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 68.1772, 86.0753 )
@@ -376,7 +375,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle25"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle26" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 86.1772, 86.0753 )
@@ -393,7 +392,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle26"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle27" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 104.177, 86.0753 )
@@ -410,7 +409,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle27"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle6" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 41.1772, 41.0753 )
@@ -427,7 +426,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle6"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle11" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 23.1772, 41.0753 )
@@ -444,7 +443,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle11"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle7" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 59.1772, 41.0753 )
@@ -461,7 +460,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle7"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle8" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 77.1772, 41.0753 )
@@ -478,7 +477,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle8"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle9" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 95.1772, 41.0753 )
@@ -495,7 +494,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle9"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle10" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 113.177, 41.0753 )
@@ -512,7 +511,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle10"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle12" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 32.1772, 56.0753 )
@@ -529,7 +528,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle12"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle13" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 50.1772, 56.0753 )
@@ -546,7 +545,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle13"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle14" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 68.1772, 56.0753 )
@@ -563,7 +562,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle14"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle15" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 86.1772, 56.0753 )
@@ -580,7 +579,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle15"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle16" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 104.177, 56.0753 )
@@ -597,7 +596,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle16"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle17" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 41.1772, 71.0753 )
@@ -614,7 +613,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle17"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle18" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 23.1772, 71.0753 )
@@ -631,7 +630,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle18"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle19" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 59.1772, 71.0753 )
@@ -648,7 +647,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle19"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle20" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 77.1772, 71.0753 )
@@ -665,7 +664,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle20"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle21" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 95.1772, 71.0753 )
@@ -682,7 +681,7 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle21"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Peg_circle22" type="StaticBody2D" parent="Pegs"]
 position = Vector2( 113.177, 71.0753 )
@@ -699,12 +698,12 @@ texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pegs/Peg_circle22"]
 position = Vector2( -1.0387, -0.538696 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Plank" type="StaticBody2D" parent="."]
 position = Vector2( 53, -4 )
 scale = Vector2( 0.85, 1 )
-physics_material_override = SubResource( 7 )
+physics_material_override = SubResource( 9 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -726,7 +725,7 @@ polygon = PoolVector2Array( -29, 3, -29, 2, -28, 0, -27, -1, 26, -1, 27, 0, 28, 
 [node name="Plank2" type="StaticBody2D" parent="."]
 position = Vector2( -6.5, -4 )
 scale = Vector2( 0.9, 1 )
-physics_material_override = SubResource( 7 )
+physics_material_override = SubResource( 9 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -762,18 +761,18 @@ region_rect = Rect2( 4, 1, 7, 101 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Side_right"]
 position = Vector2( 2, 49 )
-shape = SubResource( 10 )
+shape = SubResource( 1 )
 
 [node name="counters" type="Node2D" parent="."]
 visible = false
 
 [node name="Area2D" type="Area2D" parent="counters"]
 position = Vector2( 58, 7 )
-script = SubResource( 8 )
+script = SubResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="counters/Area2D"]
 position = Vector2( -19, 2 )
-shape = SubResource( 9 )
+shape = SubResource( 11 )
 
 [node name="Node2D" type="Node2D" parent="counters/Area2D"]
 position = Vector2( -25.5, 0 )
@@ -791,11 +790,11 @@ __meta__ = {
 
 [node name="Area2D2" type="Area2D" parent="counters"]
 position = Vector2( 78, 7 )
-script = SubResource( 8 )
+script = SubResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="counters/Area2D2"]
 position = Vector2( -19, 2 )
-shape = SubResource( 9 )
+shape = SubResource( 11 )
 
 [node name="Node2D" type="Node2D" parent="counters/Area2D2"]
 position = Vector2( -25.5, 0 )
@@ -812,9 +811,6 @@ __meta__ = {
 }
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="input_event" from="Cannon" to="." method="_on_Cannon_input_event"]
-[connection signal="mouse_entered" from="Cannon" to="." method="_on_Cannon_mouse_entered"]
-[connection signal="mouse_exited" from="Cannon" to="." method="_on_Cannon_mouse_exited"]
 [connection signal="body_entered" from="Cannon/Area2D" to="." method="_on_Cannon_Area2D_body_entered"]
 [connection signal="body_entered" from="counters/Area2D" to="counters/Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="counters/Area2D2" to="counters/Area2D2" method="_on_Area2D_body_entered"]

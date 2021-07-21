@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://art/Ocean_Iso_Tileste/Shop_flag_small_iso.png" type="Texture" id=1]
+[ext_resource path="res://scenes/OceanIsoTileset.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/Islands/Square_Island.gd" type="Script" id=3]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -48, 48, 0, 0, 0, 0, -48, 44, 0, 0, 0, 0, -46, 40, 0, 0, 0, 0, -38, 35, 0, 0, 0, 0, -10, 22, 0, 0, 0, 0, 0, 21, 0, 0, 0, 0, 8, 22, 0, 0, 0, 0, 46, 41, 0, 0, 0, 0, 48, 48, 0, 0, 0, 0, 46, 54, 0, 0, 0, 0, 8, 74, 0, 0, 0, 0, 0, 76, 0, 0, 0, 0, -8, 74, 0, 0, 0, 0, -44, 57, 0, 0, 0, 0, -48, 53, 0, 0, 0, 0, -48, 48 )
+}
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 40 )
+
+[node name="Square_v2" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Ocean Iso" parent="." instance=ExtResource( 2 )]
+tile_data = PoolIntArray( 65537, 7, 7, 65538, 7, 3, 65539, 7, 3, 65540, 7, 5, 131073, 7, 2, 131074, 9, 0, 131075, 7, 131075, 131076, 7, 0, 196609, 7, 2, 196610, 7, 131073, 196611, 7, 131075, 196612, 7, 0, 262145, 7, 6, 262146, 7, 1, 262147, 7, 1, 262148, 7, 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -28, 30 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+position = Vector2( 0, 48 )
+monitorable = false
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -2, -24, -43, -3, -43, 3, -2, 24, 2, 24, 43, 3, 43, -3, 2, -24 )
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2( -48, 48 )
+rotation = -1.51544
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Area2D2" type="Area2D" parent="." groups=[
+"IslandArea",
+]]
+position = Vector2( 96, 48 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

@@ -42,4 +42,4 @@ func _process(delta):
 
 func on_window_resize():
 	#print(OS.window_size)
-	region_rect.size = Vector2(OS.window_size.x*13, OS.window_size.x*13)/ scale.x
+	region_rect.size = Vector2(OS.window_size.x*13, OS.window_size.y)/ scale.x

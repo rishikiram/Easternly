@@ -2,17 +2,17 @@
 
 [ext_resource path="res://art/beach_tileset.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Islands/HomeIsland.gd" type="Script" id=2]
-[ext_resource path="res://scenes/BeachTileset.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/BeachForegroundTileset.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/Ship Enviroments/Pirate.tscn" type="PackedScene" id=5]
+[ext_resource path="res://xArchives/BeachTileset.tscn" type="PackedScene" id=3]
+[ext_resource path="res://xArchives/BeachForegroundTileset.tscn" type="PackedScene" id=4]
+[ext_resource path="res://xArchives/Ship Enviroments/Pirate.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/GUI/HUD.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/Ship Enviroments/Rowboat.tscn" type="PackedScene" id=7]
+[ext_resource path="res://xArchives/Ship Enviroments/Rowboat.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Players/Sloth.tscn" type="PackedScene" id=8]
 [ext_resource path="res://art/BeachTilesetTrees/Tree1.png" type="Texture" id=9]
 [ext_resource path="res://art/BeachTilesetTrees/Tree2.png" type="Texture" id=10]
 [ext_resource path="res://art/BeachTilesetTrees/Tree_big.png" type="Texture" id=11]
 [ext_resource path="res://art/BeachTilesetTrees/Treehamock.png" type="Texture" id=12]
-[ext_resource path="res://scenes/BookStand.tscn" type="PackedScene" id=13]
+[ext_resource path="res://xArchives/BookStand.tscn" type="PackedScene" id=13]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 8, 0, 10, 0, 10, 16, 8, 16 )

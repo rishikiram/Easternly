@@ -1,16 +1,24 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/OceanIsoTileset.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Coin_Spinning.tscn" type="PackedScene" id=2]
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 40 )
+
 [node name="Island_b" instance=ExtResource( 1 )]
 tile_data = PoolIntArray( 0, 7, 7, 1, 7, 3, 2, 7, 3, 3, 7, 3, 4, 7, 5, 5, 8, 1, 65536, 7, 2, 65537, 7, 131072, 65538, 7, 131072, 65539, 7, 65539, 65540, 7, 4, 131072, 7, 2, 131073, 7, 131073, 131074, 7, 65539, 131075, 7, 4, 131076, 8, 2, 196608, 7, 2, 196609, 7, 65539, 196610, 7, 4, 196612, 7, 7, 196613, 7, 5, 262144, 7, 6, 262145, 7, 4, 262146, 8, 2, 262147, 7, 7, 262148, 7, 65543, 262149, 7, 0, 327682, 8, 2, 327683, 7, 6, 327684, 7, 1, 327685, 7, 4 )
 
-[node name="Coin_Spinning" parent="." index="0" instance=ExtResource( 2 )]
-position = Vector2( 0, 56 )
-
-[node name="Coin_Spinning2" parent="." index="1" instance=ExtResource( 2 )]
+[node name="Coin_Spinning2" parent="." index="0" instance=ExtResource( 2 )]
 position = Vector2( -24, 56 )
 
-[node name="Coin_Spinning3" parent="." index="2" instance=ExtResource( 2 )]
+[node name="Coin_Spinning3" parent="." index="1" instance=ExtResource( 2 )]
 position = Vector2( 32, 56 )
+
+[node name="Area2D" type="Area2D" parent="." index="2" groups=[
+"IslandArea",
+]]
+position = Vector2( 96, 48 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource( 2 )
