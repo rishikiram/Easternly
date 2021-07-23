@@ -17,11 +17,15 @@ signal resource_loaded
 
 export (bool) var run_tutorial:= false
 func _ready():
+#	GameData.add_coins(50)
 	if run_tutorial:
 		load_tutorial()
 		run_tutorial = false
-		
-	load_chunk(Vector2(next_chunk_position,-225))
+	
+	if Global.rng.randi()%2 == 0:
+		add_screen_island()
+	else:
+		load_chunk(Vector2(next_chunk_position,-225))
 	yield(get_tree().create_timer(4),"timeout")
 	AudioManager.start_music()
 func load_tutorial():
@@ -69,7 +73,7 @@ func load_chunk(position = Vector2(0,-225), screen = screen_size, num_screens = 
 	#idealy this should preload scenes it needs and then add everyting when needed
 	#return the position of the the end of the chunk generated.
 	# also moves player detector to near end of new chunk 
-	
+
 	#create virtual map for new islands
 	var map = generate_map(Vector2(12,5),GameData.island_density_counter)
 	#print("map is: \n", map)
@@ -98,18 +102,19 @@ func load_chunk(position = Vector2(0,-225), screen = screen_size, num_screens = 
 	GameData.increase_difficulty()
 	
 	#50%change of adding screen island
-	if true:#Global.rng.randi()%2 == 0:
-		print(get_random_scene_in_folder(SCEEN_ISLAND_FOLDER))
-		loader = ResourceLoader.load_interactive(SCEEN_ISLAND_FOLDER+'/'+get_random_scene_in_folder(SCEEN_ISLAND_FOLDER))#("res://scenes/Islands/Screen/IslandScreen_a.tscn")
-		set_process(true)
-		yield(self, "resource_loaded")
-		var island = recent_resource.instance()
-		$YSort.add_child(island)
-		island.position = Vector2(next_chunk_position,0)
-		next_chunk_position += island.size.x + chunk_buffer
-		$PlayerDetector.position = Vector2(next_chunk_position-720,0)
+	add_screen_island()
 		
-	
+
+func add_screen_island():
+	print(get_random_scene_in_folder(SCEEN_ISLAND_FOLDER))
+	loader = ResourceLoader.load_interactive(SCEEN_ISLAND_FOLDER+'/'+get_random_scene_in_folder(SCEEN_ISLAND_FOLDER))#("res://scenes/Islands/Screen/IslandScreen_a.tscn")
+	set_process(true)
+	yield(self, "resource_loaded")
+	var island = recent_resource.instance()
+	$YSort.add_child(island)
+	island.position = Vector2(next_chunk_position,0)
+	next_chunk_position += island.size.x + chunk_buffer
+	$PlayerDetector.position = Vector2(next_chunk_position-720,0)
 
 func generate_map(size=Vector2(12,5), density = 30):
 	var map_matrix := create_isometric_matrix()#5,12 #pass in size ideally
@@ -152,7 +157,8 @@ func generate_map(size=Vector2(12,5), density = 30):
 	
 	#add x trading islands
 	var j = 0
-	for _i in range(1):
+#	for _i in range(1):
+	if Global.rng.randi()%2==0:
 		while j < 100:#no infinite loop
 				#random position and
 				var x_cord = Global.rng.randi_range(0,map_matrix.size()-1)#(0, 16)

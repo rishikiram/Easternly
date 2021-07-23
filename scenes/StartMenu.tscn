@@ -16,6 +16,9 @@ func _ready():
 func _on_Control_gui_input(event):
 	if event is InputEventMouseButton and event.pressed:
 		Global.start_game()
+func _unhandled_key_input(event):
+	Global.start_game()
+	AudioManager.get_node(\"other_sound\").play()
 func on_window_resize():
 	if OS.window_size == Vector2(1440, 900):
 		$\"Control/Pirate Miniship\".scale = Vector2(2,2)
