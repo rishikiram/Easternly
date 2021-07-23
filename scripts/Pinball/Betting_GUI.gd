@@ -34,18 +34,26 @@ func spawn_items():
 		new_coin.input_pickable = false
 	#stop coin spawning?
 func _on_Box_coin_landed(item, c):
+	if GameData.coins <= 0:
+		return
 	bets[0] = bets[0]+1
 	$Labels/Label/RichTextLabel.text = str(bets[0])+"$\nx"+str(rewards[0])
 	GameData.remove_coins(1)
 func _on_Box2_coin_landed(item, c):
+	if GameData.coins <= 0:
+		return
 	bets[1] = bets[1]+1
 	$Labels/Label2/RichTextLabel.text = str(bets[1])+"$\nx"+str(rewards[1])
 	GameData.remove_coins(1)
 func _on_Box3_coin_landed(item,c):
+	if GameData.coins <= 0:
+		return
 	bets[2] = bets[2]+1
 	$Labels/Label3/RichTextLabel.text = str(bets[2])+"$\nx"+str(rewards[2])
 	GameData.remove_coins(1)
 func _on_Box4_coin_landed(item,c):
+	if GameData.coins <= 0:
+		return
 	bets[3] = bets[3]+1
 	$Labels/Label4/RichTextLabel.text = str(bets[3])+"$\nx"+str(rewards[3])
 	GameData.remove_coins(1)

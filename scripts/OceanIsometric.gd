@@ -21,8 +21,8 @@ func _ready():
 	if run_tutorial:
 		load_tutorial()
 		run_tutorial = false
-	
-	if Global.rng.randi()%2 == 0:
+	$"HUD/HUD/Top Right/Distance".visible = true
+	if false:#Global.rng.randi()%2 == 0:
 		add_screen_island()
 	else:
 		load_chunk(Vector2(next_chunk_position,-225))
@@ -106,12 +106,13 @@ func load_chunk(position = Vector2(0,-225), screen = screen_size, num_screens = 
 		
 
 func add_screen_island():
-	print(get_random_scene_in_folder(SCEEN_ISLAND_FOLDER))
+#	print(get_random_scene_in_folder(SCEEN_ISLAND_FOLDER))
 	loader = ResourceLoader.load_interactive(SCEEN_ISLAND_FOLDER+'/'+get_random_scene_in_folder(SCEEN_ISLAND_FOLDER))#("res://scenes/Islands/Screen/IslandScreen_a.tscn")
 	set_process(true)
 	yield(self, "resource_loaded")
 	var island = recent_resource.instance()
 	$YSort.add_child(island)
+	print(get_random_scene_in_folder(SCEEN_ISLAND_FOLDER), island.size.x )
 	island.position = Vector2(next_chunk_position,0)
 	next_chunk_position += island.size.x + chunk_buffer
 	$PlayerDetector.position = Vector2(next_chunk_position-720,0)
@@ -159,6 +160,7 @@ func generate_map(size=Vector2(12,5), density = 30):
 	var j = 0
 #	for _i in range(1):
 	if Global.rng.randi()%2==0:
+		print("added trading island")
 		while j < 100:#no infinite loop
 				#random position and
 				var x_cord = Global.rng.randi_range(0,map_matrix.size()-1)#(0, 16)
@@ -233,10 +235,10 @@ func get_random_scene_in_folder(folder_path):
 
 func update_progress():
 	var progress = float(loader.get_stage()) / loader.get_stage_count()
-	print(progress, "% stages loaded")
+#	print(progress, "% stages loaded")
 
 func _on_PlayerDetector_body_entered(body):
-	print("body entered ",self.name," is ",body.name)
+#	print("body entered ",self.name," is ",body.name)
 	if body.is_in_group("miniship"):
 		load_chunk(Vector2(next_chunk_position,-225))
 
@@ -245,4 +247,5 @@ func _on_Area2D_area_entered(area):
 	if area.is_in_group("IslandArea"):
 		area.get_parent().queue_free()
 
-
+func _exit_tree():
+	print(self.name, "exited")

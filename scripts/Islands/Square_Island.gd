@@ -14,6 +14,7 @@ func _process(delta):
 #
 #	print(tween)
 func make_player_child(player:KinematicBody2D):
+	GameData.distance += 100+floor(get_tree().get_nodes_in_group("miniship")[0].position.x)
 	var angle = Vector2(1,0).angle_to(position - player.position + Vector2(0,48))
 	$Path2D/PathFollow2D.unit_offset = angle/(2*PI)
 	

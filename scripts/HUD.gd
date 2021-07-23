@@ -9,3 +9,6 @@ func update_coins():
 	coin_counter.text = str(GameData.coins)
 func _on_update_HUD():
 	update_coins()
+func _process(delta):
+	if get_tree().get_nodes_in_group("miniship").size()>0:
+		$"Top Right/Distance/Label".text = str(int(GameData.distance + get_tree().get_nodes_in_group("miniship")[0].position.x)/100) + " Meters"

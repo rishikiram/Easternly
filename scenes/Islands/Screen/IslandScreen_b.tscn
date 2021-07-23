@@ -3,7 +3,7 @@
 [ext_resource path="res://resources/Ocean_Isometric_Tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://scenes/Coin_Spinning.tscn" type="PackedScene" id=3]
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=1]
 script/source = "extends \"res://scripts/Islands/IslandScreen.gd\"
 
 var original_wind_speed 
@@ -23,14 +23,15 @@ func _on_Area2D_B_body_entered(body):
 		print(GameData.wind_speed_counter)
 "
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 40 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 10, 256 )
 
 [node name="IslandScreen_b" type="Node2D"]
-script = SubResource( 3 )
+script = SubResource( 1 )
+size = Vector2( 2144, 480 )
 
 [node name="OceanIsoTileset" type="TileMap" parent="."]
 mode = 1
@@ -50,7 +51,7 @@ position = Vector2( 192, 96 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OceanIsoTileset/Area2D"]
 position = Vector2( 832, -96 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Coin_Spinning" parent="OceanIsoTileset" instance=ExtResource( 3 )]
 position = Vector2( 320, 64 )
@@ -91,7 +92,7 @@ tile_data = PoolIntArray( -3080177, 7, 7, -3080176, 7, 3, -3080175, 7, 3, -30801
 position = Vector2( 1312, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OceanIsoTileset2/Area2D"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Coin_Spinning3" parent="OceanIsoTileset2" instance=ExtResource( 3 )]
 position = Vector2( 1008, -56 )
@@ -162,7 +163,7 @@ position = Vector2( 1200, 16 )
 position = Vector2( 2144, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Area2D_A" type="Area2D" parent="."]
 position = Vector2( 305, 0 )
@@ -170,27 +171,27 @@ collision_layer = 32
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_A"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D_A"]
 position = Vector2( 591, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Area2D_A"]
 position = Vector2( 303, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="Area2D_A"]
 position = Vector2( 783, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="Area2D_A"]
 position = Vector2( 1199, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D_A"]
 position = Vector2( 975, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Area2D_B" type="Area2D" parent="."]
 position = Vector2( 1856, 0 )
@@ -198,7 +199,7 @@ collision_layer = 32
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_B"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [connection signal="body_entered" from="Area2D_A" to="." method="_on_Area2D_A_body_entered"]
 [connection signal="body_entered" from="Area2D_B" to="." method="_on_Area2D_B_body_entered"]

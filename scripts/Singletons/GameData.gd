@@ -4,7 +4,7 @@ signal tik
 #var da
 var day_length := 300#10 min if each tick is a second
 var week_length := 7
-
+var distance = 100
 func _enter_tree():
 	connect("timeout", self, "add_time_unit")
 func _ready():

@@ -2,8 +2,9 @@ extends Area2D
 
 var distance := 100.0
 var current_distance = distance
-var ground_speed := distance/0.5 #2 seconds
-var direction = Vector2(1,0)
+var ground_speed := distance/.6 #2 seconds d/t
+var direction := Vector2(1,0)
+var height := 32
 
 var idle := true
 
@@ -14,7 +15,7 @@ func _process(delta):
 	var displacment = direction*delta*ground_speed
 	current_distance -= displacment.length()
 	position += Vector2(displacment.x, displacment.y/2)
-	$Sprite.position.y = current_distance*(current_distance-distance)/(distance*2)
+	$Sprite.position.y = current_distance*(current_distance-distance)/(pow(distance/2,2))*height
 	if current_distance < 0:
 		queue_free()
 	

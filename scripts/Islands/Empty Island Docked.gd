@@ -6,6 +6,7 @@ var cannon_position:Vector2
 var pinball_position:Vector2
 var started = false
 func _ready():
+	GameData.add_coins(10)
 #	cannon_position = $Pinball/Cannon.position
 #	$Pinball/Cannon.position = $Pinball/Cannon.position + Vector2(-230, 250)
 	pinball_position = $Pinball.position

@@ -96,3 +96,8 @@ func _on_Cannon_Area2D_body_entered(body):
 	if body.is_in_group("coin"):
 		body.get_parent().remove_child(body)
 		fire_cannon(body)
+
+
+func _on_TextureButton_button_down():
+	if $Node2D/MarginContainer2.visible:
+		$Node2D/MarginContainer2.visible = false

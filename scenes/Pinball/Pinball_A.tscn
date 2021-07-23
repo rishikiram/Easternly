@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scenes/Pinball/Box.tscn" type="PackedScene" id=1]
 [ext_resource path="res://PixelFont.tres" type="DynamicFont" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://scenes/Pinball/Peg_circle.tscn" type="PackedScene" id=14]
 [ext_resource path="res://art/Pinball/Cannon_highlighted.png" type="Texture" id=15]
 [ext_resource path="res://scenes/Pinball/Betting_GUI.tscn" type="PackedScene" id=16]
+[ext_resource path="res://art/GUI/Box.png" type="Texture" id=17]
+[ext_resource path="res://Pixel.ttf" type="DynamicFontData" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3, 45 )
@@ -84,6 +86,12 @@ func _on_Area2D_body_entered(body):
 
 [sub_resource type="CircleShape2D" id=11]
 radius = 1.0
+
+[sub_resource type="DynamicFont" id=12]
+size = 20
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 18 )
 
 [node name="Pinball" type="Node2D"]
 script = ExtResource( 3 )
@@ -810,7 +818,49 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( -29, -16.0334 )
+scale = Vector2( 0.25, 0.25 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="Node2D"]
+anchor_bottom = 1.0
+margin_left = -248.0
+margin_right = -2.0
+margin_bottom = 224.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Node2D/MarginContainer2"]
+margin_right = 246.0
+margin_bottom = 224.0
+texture = ExtResource( 17 )
+
+[node name="MarginContainer" type="MarginContainer" parent="Node2D/MarginContainer2"]
+margin_right = 246.0
+margin_bottom = 224.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="Node2D/MarginContainer2/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 226.0
+margin_bottom = 204.0
+size_flags_horizontal = 5
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 12 )
+text = "   CLICK the Coin and place it in a bin to place a bet.
+   PULL the lever to start"
+autowrap = true
+clip_text = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="button_down" from="Betting Panel/TextureButton" to="." method="_on_TextureButton_button_down"]
 [connection signal="body_entered" from="Cannon/Area2D" to="." method="_on_Cannon_Area2D_body_entered"]
 [connection signal="body_entered" from="counters/Area2D" to="counters/Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="counters/Area2D2" to="counters/Area2D2" method="_on_Area2D_body_entered"]
+
+[editable path="Betting Panel"]

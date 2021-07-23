@@ -50,5 +50,6 @@ func rotate_mesh(rot):
 	$CollisionPolygon2D.rotation = -sin(rot*2) * .2
 	$CollisionPolygon2D.scale.x = cos(rot*2)*.2 + .75
 
-
+func _exit_tree():
+	print(self.name, "exited")
 
