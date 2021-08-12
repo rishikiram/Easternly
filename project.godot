@@ -39,7 +39,7 @@ gdinv/ItemJsonPaths=PoolStringArray( "res://resources/item data/" )
 
 config/name="Easternly"
 run/main_scene="res://scenes/StartMenu.tscn"
-config/icon="res://Square_screenshot.png"
+config/icon="res://Icon.png"
 
 [autoload]
 

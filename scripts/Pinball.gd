@@ -71,7 +71,10 @@ func check_finish_pinball():
 	if !items_done.has(false):
 		yield(get_tree().create_timer(4),"timeout")
 		#play animation
-		Global.goto_scene("res://scenes/OceanIsometric.tscn")
+		if false:#get_parent():
+			get_parent()._on_TextureButton_pressed()
+		else:
+			Global.goto_scene("res://scenes/OceanIsometric.tscn")
 		
 
 #func _on_Cannon_input_event(viewport, event, shape_idx):

@@ -2,7 +2,7 @@ extends Node2D
 
 
 var seen := false
-
+var old_pos:Vector2
 
 func _ready():
 	set_process(false)
@@ -14,6 +14,7 @@ func _process(delta):
 #
 #	print(tween)
 func make_player_child(player:KinematicBody2D):
+	old_pos = player.position
 	GameData.distance += 100+floor(get_tree().get_nodes_in_group("miniship")[0].position.x)
 	var angle = Vector2(1,0).angle_to(position - player.position + Vector2(0,48))
 	$Path2D/PathFollow2D.unit_offset = angle/(2*PI)
@@ -35,6 +36,20 @@ func make_player_child(player:KinematicBody2D):
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
 
+func remove_player_child_and_disable():
+	if not $Path2D/PathFollow2D.get_child(0):
+		return
+		
+	var ship:KinematicBody2D = $Path2D/PathFollow2D.get_child(0)
+	
+	remove_child(ship)
+	ship.position = old_pos
+	
+	get_parent().add_child(ship)
+	
+	ship.set_physics_process(true)
+	ship.set_process(true)
+	set_process(false)
 	
 func _on_Area2D_body_entered(body):
 	if body.is_in_group('miniship'):
@@ -43,4 +58,5 @@ func _on_Area2D_body_entered(body):
 
 
 func _on_Tween_tween_all_completed():
+#	Global.pause_and_switch_scene("res://scenes/Islands/Empty Island Docked.tscn")
 	Global.goto_scene("res://scenes/Islands/Empty Island Docked.tscn")

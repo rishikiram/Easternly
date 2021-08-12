@@ -120,8 +120,9 @@ func _physics_process(delta):
 	
 #	var velocity = Vector2(speed,0).rotated(rotation)
 	var collision = move_and_collide(Vector2(velocity.x, velocity.y/2) * delta)
-	if collision:
-		loose_coin()
+	if collision: 
+		if not collision.get_collider().get_parent().is_in_group("trade island"):
+			loose_coin()
 		velocity = velocity.bounce(collision.normal)
 		if velocity.dot(collision.normal) < min_bounce_speed:
 			velocity = velocity + collision.normal*(min_bounce_speed-velocity.dot(collision.normal))

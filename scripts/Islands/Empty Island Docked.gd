@@ -5,6 +5,7 @@ extends Node
 var cannon_position:Vector2
 var pinball_position:Vector2
 var started = false
+signal resume
 func _ready():
 	GameData.add_coins(10)
 #	cannon_position = $Pinball/Cannon.position
@@ -59,4 +60,5 @@ func _on_NPC_clicked():
 
 
 func _on_TextureButton_pressed():
+#	emit_signal("resume")
 	Global.goto_scene("res://scenes/OceanIsometric.tscn")

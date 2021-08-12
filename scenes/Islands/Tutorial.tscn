@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://art/Wind Animation/Wind_Single_animation.png" type="Texture" id=1]
-[ext_resource path="res://art/Ocean_Iso_Tileste/WASD_Keys.png" type="Texture" id=2]
+[ext_resource path="res://art/Ocean_Iso_Tileste/Cloud_keys.png" type="Texture" id=2]
 [ext_resource path="res://resources/Ocean_Isometric_Tileset.tres" type="TileSet" id=3]
-[ext_resource path="res://art/Ocean_Iso_Tileste/Space_Bar.png" type="Texture" id=4]
 [ext_resource path="res://scenes/Coin_Spinning.tscn" type="PackedScene" id=5]
 
 [sub_resource type="GDScript" id=1]
@@ -46,6 +45,9 @@ func _on_start():
 	yield(tween,\"tween_all_completed\")
 	node.get_node(\"YSort/Pirate Miniship\").idle = false
 	
+func _process(delta):
+	var speed = 12
+	$Cloud_Keys.position += Vector2(2,1).normalized()*delta*speed
 "
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -80,8 +82,8 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-resource_name = "Play"
-length = 1.25
+resource_name = "blink"
+length = 3.0
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -90,22 +92,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.6, 1, 1.6, 2, 2.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 1, 2 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.3, 0.5, 0.8, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 1, 0, 1, 0 ]
+"values": [ 0, 1, 0, 2, 0, 3 ]
 }
 
 [node name="Tutorial" type="Node2D"]
@@ -122,7 +112,7 @@ centered_textures = true
 collision_layer = 64
 collision_mask = 64
 format = 1
-tile_data = PoolIntArray( -2490365, 7, 7, -2490364, 7, 3, -2490363, 7, 5, -2424829, 7, 6, -2424828, 7, 65541, -2424827, 7, 65536, -2424826, 7, 5, -2359292, 7, 6, -2359291, 7, 65541, -2359290, 7, 65536, -2359289, 7, 5, -2293755, 7, 6, -2293754, 7, 65541, -2293753, 7, 65536, -2293752, 7, 5, -2228218, 7, 6, -2228217, 7, 65541, -2228216, 7, 65536, -2228215, 7, 5, -2162681, 7, 6, -2162680, 7, 65541, -2162679, 7, 0, -2097144, 7, 2, -2097143, 7, 0, -2031608, 7, 2, -2031607, 7, 0, -1966072, 7, 2, -1966071, 7, 0, -1900536, 7, 2, -1900535, 7, 0, -1835000, 7, 2, -1834999, 7, 0, -1769464, 7, 2, -1769463, 7, 0, -1703928, 7, 2, -1703927, 7, 0, -1638400, 8, 2, -1638399, 8, 2, -1638398, 8, 2, -1638397, 8, 2, -1638392, 7, 2, -1638391, 7, 0, -1572864, 8, 2, -1572863, 8, 2, -1572856, 7, 2, -1572855, 7, 0, -1507328, 8, 2, -1507326, 8, 2, -1507320, 7, 2, -1507319, 7, 0, -1441792, 8, 2, -1441789, 8, 2, -1441784, 7, 2, -1441783, 7, 0, -1376252, 8, 2, -1376248, 7, 2, -1376247, 7, 0, -1310715, 8, 2, -1310712, 7, 2, -1310711, 7, 0, -1245178, 8, 2, -1245176, 7, 2, -1245175, 7, 0, -1179640, 7, 2, -1179639, 7, 0, -1048583, 8, 2, -1048582, 8, 2, -1048581, 8, 2, -1048580, 8, 2, -1114104, 7, 2, -1114103, 7, 0, -983047, 8, 2, -983046, 8, 2, -1048568, 7, 2, -1048567, 7, 0, -917511, 8, 2, -917509, 8, 2, -983032, 7, 2, -983031, 7, 0, -851975, 8, 2, -851972, 8, 2, -917496, 7, 2, -917495, 7, 0, -786435, 8, 2, -851960, 7, 2, -851959, 7, 0, -720898, 8, 2, -786424, 7, 2, -786423, 7, 0, -655361, 8, 2, -720888, 7, 2, -720887, 7, 0, -655352, 7, 2, -655351, 7, 0, -589816, 7, 2, -589815, 7, 0, -524280, 7, 2, -524279, 7, 0, -458744, 7, 2, -458743, 7, 0, -393208, 7, 2, -393207, 7, 0, -327672, 7, 2, -327671, 7, 0, -262136, 7, 2, -262135, 7, 0, -196600, 7, 2, -196599, 7, 0, -131064, 7, 2, -131063, 7, 0, -65528, 7, 2, -65527, 7, 0, 8, 7, 2, 9, 7, 0, 65544, 7, 2, 65545, 7, 0, 131080, 7, 2, 131081, 7, 0, 196616, 7, 2, 196617, 7, 0, 262152, 7, 2, 262153, 7, 0, 327688, 7, 2, 327689, 7, 0, 393224, 7, 2, 393225, 7, 0, 458760, 7, 2, 458761, 7, 65536, 458762, 7, 5, 524296, 7, 6, 524297, 7, 65541, 524298, 7, 65536, 524299, 7, 5, 589833, 7, 6, 589834, 7, 65541, 589835, 7, 65536, 589836, 7, 5, 655370, 7, 6, 655371, 7, 65541, 655372, 7, 65536, 655373, 7, 5, 720907, 7, 6, 720908, 7, 65541, 720909, 7, 65536, 720910, 7, 5, 786444, 7, 6, 786445, 7, 65541, 786446, 7, 65536, 786447, 7, 5, 851981, 7, 6, 851982, 7, 65541, 851983, 7, 0, 917518, 7, 6, 917519, 7, 4 )
+tile_data = PoolIntArray( -2490365, 7, 7, -2490364, 7, 3, -2490363, 7, 5, -2424829, 7, 6, -2424828, 7, 65541, -2424827, 7, 65536, -2424826, 7, 5, -2359292, 7, 6, -2359291, 7, 65541, -2359290, 7, 65536, -2359289, 7, 5, -2293755, 7, 6, -2293754, 7, 65541, -2293753, 7, 65536, -2293752, 7, 5, -2228218, 7, 6, -2228217, 7, 65541, -2228216, 7, 65536, -2228215, 7, 5, -2162681, 7, 6, -2162680, 7, 65541, -2162679, 7, 0, -2097144, 7, 2, -2097143, 7, 0, -2031608, 7, 2, -2031607, 7, 0, -1966072, 7, 2, -1966071, 7, 0, -1900536, 7, 2, -1900535, 7, 0, -1835000, 7, 2, -1834999, 7, 0, -1769464, 7, 2, -1769463, 7, 0, -1703928, 7, 2, -1703927, 7, 0, -1638392, 7, 2, -1638391, 7, 0, -1572856, 7, 2, -1572855, 7, 0, -1507320, 7, 2, -1507319, 7, 0, -1441784, 7, 2, -1441783, 7, 0, -1376248, 7, 2, -1376247, 7, 0, -1310712, 7, 2, -1310711, 7, 0, -1245176, 7, 2, -1245175, 7, 0, -1179640, 7, 2, -1179639, 7, 0, -1114104, 7, 2, -1114103, 7, 0, -1048568, 7, 2, -1048567, 7, 0, -983032, 7, 2, -983031, 7, 0, -917496, 7, 2, -917495, 7, 0, -851960, 7, 2, -851959, 7, 0, -786424, 7, 2, -786423, 7, 0, -720888, 7, 2, -720887, 7, 0, -655352, 7, 2, -655351, 7, 0, -589816, 7, 2, -589815, 7, 0, -524280, 7, 2, -524279, 7, 0, -458744, 7, 2, -458743, 7, 0, -393208, 7, 2, -393207, 7, 0, -327672, 7, 2, -327671, 7, 0, -262136, 7, 2, -262135, 7, 0, -196600, 7, 2, -196599, 7, 0, -131064, 7, 2, -131063, 7, 0, -65528, 7, 2, -65527, 7, 0, 8, 7, 2, 9, 7, 0, 65544, 7, 2, 65545, 7, 0, 131080, 7, 2, 131081, 7, 0, 196616, 7, 2, 196617, 7, 0, 262152, 7, 2, 262153, 7, 0, 327688, 7, 2, 327689, 7, 0, 393224, 7, 2, 393225, 7, 0, 458760, 7, 2, 458761, 7, 65536, 458762, 7, 5, 524296, 7, 6, 524297, 7, 65541, 524298, 7, 65536, 524299, 7, 5, 589833, 7, 6, 589834, 7, 65541, 589835, 7, 65536, 589836, 7, 5, 655370, 7, 6, 655371, 7, 65541, 655372, 7, 65536, 655373, 7, 5, 720907, 7, 6, 720908, 7, 65541, 720909, 7, 65536, 720910, 7, 5, 786444, 7, 6, 786445, 7, 65541, 786446, 7, 65536, 786447, 7, 5, 851981, 7, 6, 851982, 7, 65541, 851983, 7, 0, 917518, 7, 6, 917519, 7, 4 )
 
 [node name="Area2D" type="Area2D" parent="OceanIsoTileset" groups=[
 "IslandArea",
@@ -131,65 +121,6 @@ position = Vector2( 725, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OceanIsoTileset/Area2D"]
 shape = SubResource( 2 )
-
-[node name="Coin_Spinning" parent="OceanIsoTileset" instance=ExtResource( 5 )]
-position = Vector2( -96, 0 )
-
-[node name="Coin_Spinning2" parent="OceanIsoTileset" instance=ExtResource( 5 )]
-
-[node name="Coin_Spinning3" parent="OceanIsoTileset" instance=ExtResource( 5 )]
-position = Vector2( 96, 0 )
-
-[node name="Coin_Spinning4" parent="OceanIsoTileset" instance=ExtResource( 5 )]
-position = Vector2( 192, -24 )
-
-[node name="Coin_Spinning5" parent="OceanIsoTileset" instance=ExtResource( 5 )]
-position = Vector2( 248, -72 )
-
-[node name="Coin_Spinning6" parent="OceanIsoTileset" instance=ExtResource( 5 )]
-position = Vector2( 272, -136 )
-
-[node name="Coin_Spinning7" parent="OceanIsoTileset" instance=ExtResource( 5 )]
-position = Vector2( 640, -8 )
-
-[node name="Coin_Spinning8" parent="OceanIsoTileset" instance=ExtResource( 5 )]
-position = Vector2( 272, -200 )
-
-[node name="Coin_Spinning9" parent="OceanIsoTileset" instance=ExtResource( 5 )]
-position = Vector2( 272, 192 )
-
-[node name="Coin_Spinning10" parent="OceanIsoTileset" instance=ExtResource( 5 )]
-position = Vector2( 272, 120 )
-
-[node name="Coin_Spinning11" parent="OceanIsoTileset" instance=ExtResource( 5 )]
-position = Vector2( 304, 56 )
-
-[node name="Coin_Spinning12" parent="OceanIsoTileset" instance=ExtResource( 5 )]
-position = Vector2( 632, 0 )
-
-[node name="Coin_Spinning13" parent="OceanIsoTileset" instance=ExtResource( 5 )]
-position = Vector2( 648, 0 )
-
-[node name="Coin_Spinning14" parent="OceanIsoTileset" instance=ExtResource( 5 )]
-position = Vector2( 376, 16 )
-
-[node name="Coin_Spinning15" parent="OceanIsoTileset" instance=ExtResource( 5 )]
-position = Vector2( 448, 0 )
-
-[node name="Coin_Spinning16" parent="OceanIsoTileset" instance=ExtResource( 5 )]
-position = Vector2( 544, 0 )
-
-[node name="Coin_Spinning17" parent="OceanIsoTileset" instance=ExtResource( 5 )]
-position = Vector2( 640, 0 )
-
-[node name="Coin_Spinning18" parent="OceanIsoTileset" instance=ExtResource( 5 )]
-position = Vector2( 640, 8 )
-
-[node name="Coin_Spinning19" parent="OceanIsoTileset" instance=ExtResource( 5 )]
-position = Vector2( -224, 0 )
-
-[node name="Coin_Spinning20" parent="OceanIsoTileset" instance=ExtResource( 5 )]
-position = Vector2( -416, 0 )
 
 [node name="Wind Single" type="Sprite" parent="."]
 visible = false
@@ -205,18 +136,99 @@ anims/Wind = SubResource( 3 )
 
 [node name="Tween" type="Tween" parent="."]
 
-[node name="WASD_Keys" type="Sprite" parent="."]
-position = Vector2( 700, -164 )
+[node name="Cloud_Keys" type="Sprite" parent="."]
+position = Vector2( 576, -112 )
 scale = Vector2( 2, 2 )
+z_index = 2
 texture = ExtResource( 2 )
 hframes = 4
-frame = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="WASD_Keys"]
-autoplay = "Play"
-anims/Play = SubResource( 4 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cloud_Keys"]
+autoplay = "blink"
+anims/blink = SubResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="WASD_Keys"]
-position = Vector2( 15, 35 )
-texture = ExtResource( 4 )
-hframes = 2
+[node name="Area2D" type="Area2D" parent="." groups=[
+"IslandArea",
+]]
+position = Vector2( 1525, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
+
+[node name="Coin_Spinning" parent="." instance=ExtResource( 5 )]
+position = Vector2( 704, 0 )
+
+[node name="Coin_Spinning2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 800, 0 )
+
+[node name="Coin_Spinning3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 896, 0 )
+
+[node name="Coin_Spinning4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 992, -24 )
+
+[node name="Coin_Spinning5" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1048, -72 )
+
+[node name="Coin_Spinning6" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1072, -136 )
+
+[node name="Coin_Spinning26" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1072, -160 )
+
+[node name="Coin_Spinning7" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1440, -8 )
+
+[node name="Coin_Spinning8" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1072, -200 )
+
+[node name="Coin_Spinning21" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1056, -192 )
+
+[node name="Coin_Spinning22" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1088, -192 )
+
+[node name="Coin_Spinning23" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1072, -184 )
+
+[node name="Coin_Spinning25" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1104, -184 )
+
+[node name="Coin_Spinning24" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1040, -184 )
+
+[node name="Coin_Spinning9" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1072, 192 )
+
+[node name="Coin_Spinning10" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1072, 120 )
+
+[node name="Coin_Spinning11" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1104, 56 )
+
+[node name="Coin_Spinning12" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1432, 0 )
+
+[node name="Coin_Spinning13" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1448, 0 )
+
+[node name="Coin_Spinning14" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1176, 16 )
+
+[node name="Coin_Spinning15" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1248, 0 )
+
+[node name="Coin_Spinning16" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1344, 0 )
+
+[node name="Coin_Spinning17" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1440, 0 )
+
+[node name="Coin_Spinning18" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1440, 8 )
+
+[node name="Coin_Spinning19" parent="." instance=ExtResource( 5 )]
+position = Vector2( 576, 0 )
+
+[node name="Coin_Spinning20" parent="." instance=ExtResource( 5 )]
+position = Vector2( 384, 0 )

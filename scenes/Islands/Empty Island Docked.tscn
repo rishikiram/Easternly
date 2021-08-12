@@ -12,6 +12,7 @@
 [ext_resource path="res://art/World Objects/Book1.png" type="Texture" id=10]
 
 [node name="Empty Island Docked" type="Node"]
+pause_mode = 2
 script = ExtResource( 8 )
 
 [node name="Tween" type="Tween" parent="."]

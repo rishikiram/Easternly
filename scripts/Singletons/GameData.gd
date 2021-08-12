@@ -46,5 +46,5 @@ var wind_speed_counter = .7
 
 func increase_difficulty(i= 1):
 	island_density_counter += i
-	wind_speed_counter += i/10
+	wind_speed_counter += i/20
 

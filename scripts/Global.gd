@@ -16,16 +16,9 @@ func _ready():
 	Input.set_custom_mouse_cursor(load("res://art/GUI/Cursor_Hand-sheet.png"), Input.CURSOR_POINTING_HAND)
 	
 	GameData.connect("end_game", self, "_on_end_game")
-#func save_test():
-#	var save_game = File.new()
-#	save_game.open("user://savegame.save", File.WRITE)
-#	save_game.store_line("test")
-#	save_game.close()
-##	initialize_mouse_cursor()
 func start_game():
 	call_deferred("_deferred_start_game")
 	GameData.start_game()
-#	AudioManager.start_music()
 func _deferred_start_game():
 	var old_scene = current_scene
 	# Load the new scene.
@@ -40,6 +33,7 @@ func _deferred_start_game():
 	get_tree().set_current_scene(current_scene)
 	emit_signal("scene_loaded")
 	old_scene.free()
+	
 func _on_end_game():
 	call_deferred("_deferred_on_end_game")
 	AudioManager.stop_music()
@@ -56,8 +50,8 @@ func _deferred_on_end_game():
 	get_tree().get_root().add_child(current_scene)
 	get_tree().set_current_scene(current_scene)
 	emit_signal("scene_loaded")
+	
 func goto_scene(scene_path, ship_enviroment_node = null):#island_id #-1 could be the ocean
-	#get scene state from game data
 	call_deferred("_deferred_goto_scene", scene_path, ship_enviroment_node)
 func _deferred_goto_scene(scene_path, ship_enviroment_node = null):
 	# It is now safe to remove the current scene
@@ -86,47 +80,26 @@ func _deferred_goto_scene(scene_path, ship_enviroment_node = null):
 #	if current_scene.has_method("load_scene"):#in ready function beacuse it should be called everytime
 #		current_scene.load_scene()#GameData.island_registery[scene_path])
 	emit_signal("scene_loaded")
-#func save_game(slot = 1):
-#	current_scene.save_scene()
-#	var save_dict := {
-#		"game data" : GameData.create_save_file(),
-#		"current scene path" : current_scene.scene_path,
-#		"player state" : PlayerVariables.save_game()
-#
-#	}
-#	var json_str = JSON.print(save_dict)
-#	var save_game = File.new()
-#
-#	save_game.open("user://savegame" +str(slot)+ ".save", File.WRITE)
-#	save_game.store_line(json_str)
-#	save_game.close()
-#	#write savve_dict as json to a save file
-#func load_game(save_file_path = "user://savegame1.save" ):
-#	var save_game = File.new()
-#	if not save_game.file_exists(save_file_path):
-#		print("save file not found")
-#		return
-#	#gets first line which is json dict for everything
-#	save_game.open(save_file_path, File.READ)
-#	var save_data = parse_json(save_game.get_line())
-#	save_game.close()
-#
-#	GameData.load_save_file(save_data["game data"])
-#	goto_scene(save_data["current scene path"])
-##	yield(self, "scene_loaded")
-##	PlayerVariables.load_game(save_data["player state"]) 
-##func create_island_save(dict: Dictionary, island_name:String):
-##	var file = File.new()
-##	file.open("res://resources/island data/" + island_name +".json", File.WRITE)
-##	file.store_line(to_json(dict))
-##	file.close()
-#static func find_player(node, group_name = "Player"):
-#	for child in node.get_children():
-##		print("checked ", child.name)
-#		if child.is_in_group(group_name):
-#			return child
-#		elif child.get_child_count() > 0:
-#			var nod = find_player(child) 
-#			if nod != null:
-#				return nod
-#	return null
+
+func pause_and_switch_scene(path):
+	#load new scene(pinball)
+	var new_scene = ResourceLoader.load(path)
+	
+	#pause and hide ocean_isometric
+	get_tree().paused = true
+	current_scene.visible = false#doesnt work
+	
+	#add new scene
+	get_tree().get_root().add_child(new_scene)
+	
+	#wait until pinball is done
+	yield(new_scene, "resume")
+	new_scene.queue_free()
+	
+	#move ship back to main scene
+	var ship:KinematicBody2D = get_tree().get_nodes_in_group("miniship")[0]
+	ship.get_parent().remove_player_child_and_disable()
+	
+	#resume ocean scene
+	get_tree().paused = false
+	current_scene.visible = true#umm

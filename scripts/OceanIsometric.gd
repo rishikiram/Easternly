@@ -21,8 +21,8 @@ func _ready():
 	if run_tutorial:
 		load_tutorial()
 		run_tutorial = false
-	$"HUD/HUD/Top Right/Distance".visible = true
-	if false:#Global.rng.randi()%2 == 0:
+	$"HUD/HUD/Top Left/Distance".visible = true
+	if Global.rng.randi()%2 == 0:
 		add_screen_island()
 	else:
 		load_chunk(Vector2(next_chunk_position,-225))

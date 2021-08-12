@@ -68,7 +68,6 @@ monitorable = false
 shape = SubResource( 2 )
 
 [node name="Bottom Block" type="TileMap" parent="."]
-visible = false
 position = Vector2( 48, 0 )
 mode = 1
 tile_set = ExtResource( 1 )

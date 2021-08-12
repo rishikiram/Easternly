@@ -12,7 +12,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 40 )
 
-[node name="Square_v2" type="Node2D"]
+[node name="Square_v2" type="Node2D" groups=[
+"trade island",
+]]
 script = ExtResource( 3 )
 
 [node name="Ocean Iso" parent="." instance=ExtResource( 2 )]

@@ -14,13 +14,13 @@ func _ready():
 func _on_Area2D_A_body_entered(body):
 	if body.is_in_group(\"miniship\"):
 		GameData.wind_speed_counter+=0.2
-		print(GameData.wind_speed_counter)
+#		print(GameData.wind_speed_counter)
 
 
 func _on_Area2D_B_body_entered(body):
 	if body.is_in_group(\"miniship\"):
 		GameData.wind_speed_counter = original_wind_speed
-		print(GameData.wind_speed_counter)
+#		print(GameData.wind_speed_counter)
 "
 
 [sub_resource type="RectangleShape2D" id=2]
