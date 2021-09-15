@@ -6,6 +6,7 @@ extends Node
 ###
 var rng = RandomNumberGenerator.new()
 var current_scene = null
+var is_testing = false
 #var current_scene_path :String
 signal scene_loaded
 func _ready():

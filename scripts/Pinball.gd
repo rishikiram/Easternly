@@ -46,7 +46,7 @@ func box_activated(item, x_coin):#item is a number, so i x_coin
 	if x_coin.item == item:
 #		i = ITEMS.find(item.identifier)
 		earn_coins($"Betting Panel".bets[item] * $"Betting Panel".rewards[item])
-		print("earned: ",$"Betting Panel".bets[item] * $"Betting Panel".rewards[item])
+#		print("earned: ",$"Betting Panel".bets[item] * $"Betting Panel".rewards[item])
 	
 
 func earn_coins(i, add_coin = true):
